@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 from manager.insert import insert_data
 from search.index import Search_Data
@@ -29,11 +30,12 @@ with st.form('Input_Form'):
     if submitted2 and AddForm == True:
         name = st.text_input('Enter website name:')
         address = st.text_input('Enter website address:')
-        
+
         if name and address:
-            insert_data(name, address)
-            st.success('Data inserted successfully!')
-            st.session_state.add_state = False
+            with st.spinner('Checking the given information...'):
+                time.sleep(1)
+                insert_data(name, address)
+                st.session_state.add_state = False
     elif submitted2 and not AddForm:
         st.session_state.add_state = True
         
