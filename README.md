@@ -12,11 +12,11 @@ MonoSearch is a project dedicated to crafting a straightforward and user-friendl
   
 ## How to Contribute
 
-We welcome contributions from developers and enthusiasts alike. If you're interested in improving MonoSearch or adding new features, feel free to fork the repository and submit a pull request with your changes.
+We welcome contributions from developers and enthusiasts alike. If you're interested in improving MonoSearch or adding new features, feel free to fork the repository and submit a pull request with your changes. You can learn more with our wiki.
 
 ## Getting Started
 
-To get started with MonoSearch, simply clone the repository to your local machine and follow the setup instructions provided in the documentation.
+To get started with MonoSearch, simply clone the repository to your local machine and follow the setup instructions provided in the wiki.
 
 ## Feedback and Support
 
