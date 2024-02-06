@@ -7,5 +7,10 @@ def Initializer_Database():
     cursor.execute('''CREATE TABLE IF NOT EXISTS information
                     (name TEXT, address TEXT, text TEXT)''')
 
+    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_name ON information (name)''')
+    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_address ON information (address)''')
+
     conn.commit()
     conn.close()
+
+    return conn

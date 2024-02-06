@@ -8,11 +8,12 @@ def summary(text):
     else:
         return ' '.join(words[:30]) + ' ...'
 
-def Search_Data(keyword):
-    conn = sqlite3.connect('./database/search-index.db')
+def Search_Data(conn, keyword):
     cursor = conn.cursor()
+
     cursor.execute('''SELECT * FROM information
                       WHERE name LIKE ? OR address LIKE ?''', ('%' + keyword + '%', '%' + keyword + '%'))
+
     rows = cursor.fetchall()
     conn.close()
     

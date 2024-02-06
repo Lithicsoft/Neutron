@@ -6,8 +6,8 @@ import json
 
 GOOGLE_SAFE_BROWSING_API_KEY = 'API_KEY'
 
-def content_exists(text_content, address):
-    with sqlite3.connect('./database/search-index.db') as conn:
+def content_exists(conn, text_content, address):
+    with conn:
         cursor = conn.cursor()
         if text_content:
             cursor.execute('''SELECT COUNT(*) FROM information WHERE text = ?''', (text_content,))
@@ -41,7 +41,7 @@ def is_content_safe(text_content):
             return False
     return True
 
-def insert_data(name, address):
+def insert_data(conn, name, address):
     try:
         response = requests.get(address)
         response.raise_for_status()
@@ -51,7 +51,7 @@ def insert_data(name, address):
         st.error("Error accessing or parsing the website:", e)
         return
 
-    if content_exists(text_content, address):
+    if content_exists(conn, text_content, address):
         st.warning("Content already exists in the database.")
         return
 
@@ -59,7 +59,7 @@ def insert_data(name, address):
         st.warning("Unsafe content detected. Not inserting into the database.")
         return
 
-    with sqlite3.connect('./database/search-index.db') as conn:
+    with conn:
         cursor = conn.cursor()
         try:
             cursor.execute('''INSERT INTO information (name, address, text)

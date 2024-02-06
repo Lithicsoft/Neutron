@@ -1,11 +1,14 @@
 import streamlit as st
 import time
 
+from initializer.loader import database_loader
 from manager.insert import insert_data
 from search.index import Search_Data
 from initializer.database import Initializer_Database
 
 Initializer_Database()
+
+conn = database_loader()
 
 st.title('MonoSearch')
 
@@ -25,7 +28,7 @@ with st.form('Input_Form'):
         submitted2 = st.form_submit_button('Add')
 
     if keyword and submitted1:
-        Search_Data(keyword)
+        Search_Data(conn, keyword)
 
     if submitted2 and AddForm == True:
         name = st.text_input('Enter website name:')
@@ -34,7 +37,7 @@ with st.form('Input_Form'):
         if name and address:
             with st.spinner('Checking the given information...'):
                 time.sleep(1)
-                insert_data(name, address)
+                insert_data(conn, name, address)
                 st.session_state.add_state = False
     elif submitted2 and not AddForm:
         st.session_state.add_state = True
