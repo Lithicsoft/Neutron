@@ -98,3 +98,5 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
             st.success("Data inserted successfully.")
         except sqlite3.Error as e:
             st.error("Error inserting data into the database:", e)
+
+    cursor.close()

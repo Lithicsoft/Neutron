@@ -1,6 +1,19 @@
 import sqlite3
 from datetime import datetime
 
+from account.database import create_users_database
+
+def Initializer_Censorship_Database():
+    source_conn = sqlite3.connect('./database/search-index.db')
+
+    destination_conn = sqlite3.connect('./database/censorship.db')
+
+    source_conn.backup(destination_conn)
+
+    source_conn.close()
+    destination_conn.close()
+
+
 def Initializer_Database():
     conn = sqlite3.connect('./database/search-index.db')
     cursor = conn.cursor()
@@ -23,5 +36,8 @@ def Initializer_Database():
 
     conn.commit()
     conn.close()
+
+    Initializer_Censorship_Database()
+    create_users_database()
 
     return conn
