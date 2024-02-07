@@ -3,20 +3,36 @@ import sqlite3
 import requests
 from bs4 import BeautifulSoup
 import json
+from datetime import datetime
+from urllib.parse import urlparse
+from os.path import splitext
 
 GOOGLE_SAFE_BROWSING_API_KEY = 'API_KEY'
 
-def content_exists(conn, text_content, address):
+allowed_extensions = {"http", "https"}
+
+def normalize(link):
+    parsed_url = urlparse(link)
+
+    if (splitext(parsed_url.path)[1][1:] not in allowed_extensions) and parsed_url.path:
+        return None
+
+    final_link = parsed_url.scheme + "://" + parsed_url.netloc + parsed_url.path
+    if parsed_url.port != None and parsed_url.port != -1:
+        final_link += ":" + str(parsed_url.port)
+    if not final_link.endswith("/") and "." not in final_link:
+        final_link += "/"
+
+    return final_link
+
+def content_exists(conn, link):
     with conn:
         cursor = conn.cursor()
-        if text_content:
-            cursor.execute('''SELECT COUNT(*) FROM information WHERE text = ?''', (text_content,))
-        else:
-            cursor.execute('''SELECT COUNT(*) FROM information WHERE address = ?''', (address,))
+        cursor.execute('''SELECT COUNT(*) FROM information WHERE link = ?''', (link,))
         count = cursor.fetchone()[0]
         return count > 0
 
-def is_content_safe(text_content):
+def is_content_safe(link):
     url = 'https://safebrowsing.googleapis.com/v4/threatMatches:find?key=' + GOOGLE_SAFE_BROWSING_API_KEY
     payload = {
         "client": {
@@ -27,7 +43,7 @@ def is_content_safe(text_content):
             "threatTypes": ["MALWARE", "SOCIAL_ENGINEERING", "UNWANTED_SOFTWARE", "POTENTIALLY_HARMFUL_APPLICATION"],
             "platformTypes": ["ANY_PLATFORM"],
             "threatEntryTypes": ["URL"],
-            "threatEntries": [{"url": text_content}]
+            "threatEntries": [{"url": link}]
         }
     }
     headers = {
@@ -41,29 +57,43 @@ def is_content_safe(text_content):
             return False
     return True
 
-def insert_data(conn, name, address):
+def insert_data(conn, link, title, text, description, keywords, shorttext):
+    added = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    cursor = conn.cursor()
+    cursor.execute("SELECT MAX(site_id) FROM information")
+    max_site_id = cursor.fetchone()[0]
+    if max_site_id is None:
+        site_id = 1
+    else:
+        site_id = max_site_id + 1
+
+    normalize_link = normalize(link)
+
     try:
-        response = requests.get(address)
+        response = requests.get(normalize_link)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
         text_content = "\n".join([p.text for p in soup.find_all('p')])
     except requests.RequestException as e:
-        st.error("Error accessing or parsing the website:", e)
+        st.error("Error accessing or parsing the website.")
         return
 
-    if content_exists(conn, text_content, address):
+    if content_exists(conn, normalize_link):
         st.warning("Content already exists in the database.")
         return
 
-    if not is_content_safe(address):
+    if not is_content_safe(normalize_link):
         st.warning("Unsafe content detected. Not inserting into the database.")
         return
 
     with conn:
         cursor = conn.cursor()
         try:
-            cursor.execute('''INSERT INTO information (name, address, text)
-                            VALUES (?, ?, ?)''', (name, address, text_content))
+            cursor.execute('''INSERT INTO information 
+                              (site_id, link, title, text, description, keywords, shorttext, added) 
+                              VALUES (?, ?, ?, ?, ?, ?, ?, ?)''', 
+                           (site_id, normalize_link, title, text, description, keywords, shorttext, added))
             conn.commit()
             st.success("Data inserted successfully.")
         except sqlite3.Error as e:

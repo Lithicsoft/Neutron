@@ -12,7 +12,7 @@ conn = database_loader()
 
 st.title('MonoSearch')
 
-st.session_state.setdefault('add_state', False)
+st.session_state.setdefault('add_state', True)
 
 with st.form('Input_Form'):
     col1, col2, col3 = st.columns([3, 0.6, 0.4])
@@ -31,13 +31,17 @@ with st.form('Input_Form'):
         Search_Data(conn, keyword)
 
     if submitted2 and AddForm == True:
-        name = st.text_input('Enter website name:')
-        address = st.text_input('Enter website address:')
+        link = st.text_input('Link (Should not contain a "/" at the end, use only "http" and "https"): ')
+        title = st.text_input('Title: ')
+        text = st.text_input('Text: ')
+        description = st.text_input('Description: ')
+        keywords = st.text_input('Keywords: ')
+        shorttext = st.text_input('Short Text: ')
 
-        if name and address:
+        if link and title and text and description and keywords and shorttext:
             with st.spinner('Checking the given information...'):
                 time.sleep(1)
-                insert_data(conn, name, address)
+                insert_data(conn, link, title, text, description, keywords, shorttext)
                 st.session_state.add_state = False
     elif submitted2 and not AddForm:
         st.session_state.add_state = True
