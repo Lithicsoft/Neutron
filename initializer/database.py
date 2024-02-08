@@ -1,4 +1,5 @@
 import sqlite3
+from log.write import log, sys_log
 from datetime import datetime
 
 from account.database import create_users_database
@@ -40,4 +41,6 @@ def Initializer_Database():
     Initializer_Censorship_Database()
     create_users_database()
 
-    return conn
+    sys_log("Initializer Database", "search-index.db")
+    sys_log("Initializer Censorship Database", "censorship.db")
+    sys_log("Create Users Account Database", "users-account.db")

@@ -1,4 +1,6 @@
 import streamlit as st
+from account.userid import get_user_id
+from log.write import log
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability
 from initializer.loader import censorship_database_loader
@@ -17,10 +19,12 @@ def manager_insert_data(conn, username, password, link, title, text, description
         insert_data(censorship_conn, link, title, text, description, keywords, shorttext)
         st.success("Your add request has been sent to the administrator.")
         censorship_conn.close()
-    elif reliability == 1:
+    elif reliability >= 1:
         insert_data(conn, link, title, text, description, keywords, shorttext)
     else: 
         st.error("The user's reliability cannot be determined.")
+    
+    log(cursor, username, password, "Insert Data", "Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
     
     cursor.close()
     account_conn.close()
@@ -36,11 +40,13 @@ def manager_edit_data(conn, username, password, site_id, link, title, text, desc
         edit_data(censorship_conn, site_id, link, title, text, description, keywords, shorttext)
         st.success("Your edit request has been sent to the administrator.")
         censorship_conn.close()
-    elif reliability == 1:
+    elif reliability >= 2:
         edit_data(conn, site_id, link, title, text, description, keywords, shorttext)
     else: 
         st.error("The user's reliability cannot be determined.")
     
+    log(cursor, username, password, "Edit Data", "Site ID: " + site_id + " Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
+
     cursor.close()
     account_conn.close()
 
@@ -50,10 +56,13 @@ def manager_remove_data(conn, username, password, site_id):
 
     reliability = get_user_reliability(cursor, username, password)
 
-    if reliability == 1:
+    if reliability >= 3:
         remove_data(conn, site_id)
         st.success("Data removed successfully.")
+    else: 
+        st.error("The user's reliability cannot be determined.")
+
+    log(cursor, username, password, "Remove Data", "Site ID: " + site_id)
+
     account_conn.close()
     cursor.close()
-
-

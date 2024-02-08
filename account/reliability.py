@@ -1,5 +1,3 @@
-from account.loader import account_database_loader
-
 def get_user_reliability(cursor, username, password):
     cursor.execute('SELECT password FROM users WHERE username = ?', (username,))
     row = cursor.fetchone()

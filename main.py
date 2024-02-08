@@ -12,11 +12,11 @@ conn = database_loader()
 
 st.title('MonoSearch')
 
-st.session_state.setdefault('add_state', True)
+st.session_state.setdefault('form_state', True)
 
 with st.form('Input_Form'):
     col1, col2, col3, col4, col5 = st.columns([3, 0.8, 0.6, 0.6, 0.8])
-    AForm = st.session_state.add_state
+    AForm = st.session_state.form_state
 
     with col1:
         keyword = st.text_input('Try to search something!', value='Try to search something!', placeholder='Try to search something!', label_visibility='collapsed')
