@@ -1,8 +1,13 @@
+from datetime import datetime
 import os
 import shutil
 import sqlite3
+import subprocess
+from FTS.initializer import Initializer_Virtual_Table
+from FTS.update import Update_Virtual_Table
 from account.userid import get_user_id
 from account.username import get_username
+from initializer.database import Initializer_Database
 from log.write import log, sys_log
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability
@@ -99,6 +104,7 @@ reliability = get_user_reliability(account_cursor, username, password)
 
 if reliability is None:
     print("Account does not exist.")
+    exit()
 elif reliability >= 4:
     print('Logged in successfully.')
 else:
@@ -110,10 +116,22 @@ while(True):
     
     if command == "exit":
         exit()
+    elif command == "start":
+        yn = input('Do you want to start the server including: Search, Account [y/n]: ')
+        if (yn != 'n'):
+                Initializer_Database()
+                Initializer_Virtual_Table()
+                Update_Virtual_Table()
+                subprocess.call("start server1", shell=True)
+                subprocess.call("start server2", shell=True)
+                print('The server has been started successfully.')
+                sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
     elif command == "check":
         compare_databases()
     elif command == "sync":
         synchronization_databases()
+    elif command == "sync-fts":
+        Update_Virtual_Table()
     elif command == "log":
         with open('log.txt', 'r') as file:
             for line in file:

@@ -1,12 +1,8 @@
 import streamlit as st
 import time
-
 from initializer.loader import database_loader
 from manager.manager import *
 from search.index import Search_Data
-from initializer.database import Initializer_Database
-
-Initializer_Database()
 
 conn = database_loader()
 

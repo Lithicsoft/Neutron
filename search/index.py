@@ -4,9 +4,8 @@ import sqlite3
 def Search_Data(conn, keyword):
     cursor = conn.cursor()
 
-    cursor.execute('''SELECT * FROM information
-                      WHERE title LIKE ? OR text LIKE ? OR description LIKE ? OR keywords LIKE ? OR shorttext LIKE ?''', 
-                      ('%' + keyword + '%', '%' + keyword + '%', '%' + keyword + '%', '%' + keyword + '%', '%' + keyword + '%'))
+    cursor.execute('''SELECT * FROM information_fts
+                  WHERE information_fts MATCH ?''', (keyword,))
 
     rows = cursor.fetchall()
     conn.close()
