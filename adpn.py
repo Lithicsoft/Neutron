@@ -13,7 +13,7 @@ from log.write import log, sys_log
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability
 
-print('Welcome to MonoSearch Administrator Panel')
+print('Welcome to Neutron Administrator Panel')
 
 def compare_databases():
     try:

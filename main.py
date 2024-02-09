@@ -6,7 +6,7 @@ from search.index import Search_Data
 
 conn = database_loader()
 
-st.title('MonoSearch')
+st.title('Neutron')
 
 st.session_state.setdefault('form_state', True)
 
