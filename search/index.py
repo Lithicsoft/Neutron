@@ -1,3 +1,4 @@
+import pandas as pd
 import streamlit as st
 
 def Search_Data(conn, keyword):
@@ -11,9 +12,4 @@ def Search_Data(conn, keyword):
     if len(rows) == 0:
         st.write("No results found")
     else:
-        for row in rows:
-            st.write(row[0]) 
-            st.write(row[1])
-            st.write(row[2])
-            st.write(row[6])
-            st.markdown("---")
+        return rows

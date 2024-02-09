@@ -11,20 +11,6 @@ GOOGLE_SAFE_BROWSING_API_KEY = 'API_KEY'
 
 allowed_extensions = {"http", "https"}
 
-def normalize(link):
-    parsed_url = urlparse(link)
-
-    if (splitext(parsed_url.path)[1][1:] not in allowed_extensions) and parsed_url.path:
-        return None
-
-    final_link = parsed_url.scheme + "://" + parsed_url.netloc + parsed_url.path
-    if parsed_url.port != None and parsed_url.port != -1:
-        final_link += ":" + str(parsed_url.port)
-    if not final_link.endswith("/") and "." not in final_link:
-        final_link += "/"
-
-    return final_link
-
 def content_exists(conn, link):
     with conn:
         cursor = conn.cursor()
@@ -60,7 +46,7 @@ def is_content_safe(link):
 def edit_data(conn, site_id, link, title, text, description, keywords, shorttext):
     added = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-    normalize_link = normalize(link)
+    normalize_link = link
 
     try:
         response = requests.get(normalize_link)

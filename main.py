@@ -3,13 +3,14 @@ import time
 from initializer.loader import database_loader
 from manager.manager import *
 from search.index import Search_Data
-from streamlit_searchbox import st_searchbox
 
 conn = database_loader()
 
 st.title('MonoSearch')
 
 st.session_state.setdefault('form_state', True)
+
+Search_Result = []
 
 with st.form('Input_Form'):
     col1, col2, col3, col4, col5 = st.columns([3, 0.8, 0.6, 0.6, 0.8])
@@ -31,7 +32,7 @@ with st.form('Input_Form'):
         submitted4 = st.form_submit_button('Remove')
 
     if keyword and submitted1:
-        Search_Data(conn, keyword)
+        Search_Result = Search_Data(conn, keyword)
 
     if submitted2 and AForm == True:
         username = st.text_input('Username: ')
@@ -85,4 +86,9 @@ with st.form('Input_Form'):
                 st.session_state.add_state = False
     elif submitted4 and not AForm:
         st.session_state.add_state = True
-        
+
+for row in Search_Result:
+    st.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
+    st.markdown("### [" + row[2] + ']' + '(' + row[1] + ')')
+    st.write(row[6])
+    st.markdown("&nbsp;&nbsp;&nbsp;")

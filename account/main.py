@@ -1,4 +1,3 @@
-import smtplib
 import time
 import streamlit as st
 from account.loader import account_database_loader
