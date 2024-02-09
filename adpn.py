@@ -7,6 +7,7 @@ from FTS.initializer import Initializer_Virtual_Table
 from FTS.update import Update_Virtual_Table
 from account.userid import get_user_id
 from account.username import get_username
+from atmt import ATMT_STRT
 from initializer.database import Initializer_Database
 from log.write import log, sys_log
 from account.loader import account_database_loader
@@ -126,6 +127,9 @@ while(True):
                 subprocess.call("start server2", shell=True)
                 print('The server has been started successfully.')
                 sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+    elif command == "atmt":
+        keyword = input('Keyword: ')
+        ATMT_STRT(keyword)
     elif command == "check":
         compare_databases()
     elif command == "sync":

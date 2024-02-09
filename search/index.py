@@ -1,6 +1,8 @@
 import pandas as pd
 import streamlit as st
 
+from atmt import ATMT_STRT
+
 def Search_Data(conn, keyword):
     cursor = conn.cursor()
 
@@ -11,5 +13,6 @@ def Search_Data(conn, keyword):
     
     if len(rows) == 0:
         st.write("No results found")
+        ATMT_STRT(keyword)
     else:
         return rows
