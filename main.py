@@ -3,6 +3,7 @@ import time
 from initializer.loader import database_loader
 from manager.manager import *
 from search.index import Search_Data
+from streamlit_searchbox import st_searchbox
 
 conn = database_loader()
 
@@ -15,7 +16,7 @@ with st.form('Input_Form'):
     AForm = st.session_state.form_state
 
     with col1:
-        keyword = st.text_input('Try to search something!', value='Try to search something!', placeholder='Try to search something!', label_visibility='collapsed')
+        keyword = st.text_input('Try to search something!', placeholder='Try to search something!', label_visibility='collapsed')
     
     with col2:
         submitted1 = st.form_submit_button('Search')

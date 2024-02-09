@@ -1,5 +1,4 @@
 import streamlit as st
-import sqlite3
 
 def Search_Data(conn, keyword):
     cursor = conn.cursor()
@@ -8,7 +7,6 @@ def Search_Data(conn, keyword):
                   WHERE information_fts MATCH ?''', (keyword,))
 
     rows = cursor.fetchall()
-    conn.close()
     
     if len(rows) == 0:
         st.write("No results found")
