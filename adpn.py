@@ -9,6 +9,7 @@ from account.userid import get_user_id
 from account.username import get_username
 from atmt import ATMT_STRT
 from initializer.database import Initializer_Database
+from initializer.loader import database_loader
 from log.write import log, sys_log
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability
@@ -134,8 +135,11 @@ while(True):
         compare_databases()
     elif command == "sync":
         synchronization_databases()
+        print("Successful data synchronization.")
     elif command == "sync-fts":
-        Update_Virtual_Table()
+        vt_conn = database_loader()
+        Update_Virtual_Table(vt_conn)
+        print("Successful data synchronization.")
     elif command == "log":
         with open('log.txt', 'r') as file:
             for line in file:

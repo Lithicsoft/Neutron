@@ -7,6 +7,7 @@ from initializer.loader import censorship_database_loader
 from manager.edit import edit_data
 from manager.insert import insert_data
 from manager.remove import remove_data
+from FTS.update import Update_Virtual_Table
 
 def manager_insert_data(conn, username, password, link, title, text, description, keywords, shorttext):
     account_conn = account_database_loader()
@@ -29,6 +30,8 @@ def manager_insert_data(conn, username, password, link, title, text, description
     cursor.close()
     account_conn.close()
 
+    Update_Virtual_Table(conn)
+
 def manager_edit_data(conn, username, password, site_id, link, title, text, description, keywords, shorttext):
     account_conn = account_database_loader()
     cursor = account_conn.cursor()
@@ -50,6 +53,8 @@ def manager_edit_data(conn, username, password, site_id, link, title, text, desc
     cursor.close()
     account_conn.close()
 
+    Update_Virtual_Table(conn)
+
 def manager_remove_data(conn, username, password, site_id):
     account_conn = account_database_loader()
     cursor = account_conn.cursor()
@@ -66,3 +71,5 @@ def manager_remove_data(conn, username, password, site_id):
 
     account_conn.close()
     cursor.close()
+
+    Update_Virtual_Table(conn)
