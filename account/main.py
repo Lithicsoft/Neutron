@@ -1,3 +1,4 @@
+import re
 import time
 import streamlit as st
 from account.loader import account_database_loader
@@ -23,6 +24,13 @@ def update_username(user_id, email, new_username):
     cursor.execute("UPDATE users SET username = ? WHERE id = ?", (new_username, user_id))
     sys_log("Changed Username", "Username: " + username + " User ID: " + str(user_id) + " Email: " + email + " Password: " + password)
     conn.commit()
+
+def verify_email(email):
+    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
+    if(re.fullmatch(regex, email)):
+        return False
+    else:
+        return True
 
 def check_existing_email(email):
     cursor.execute("SELECT * FROM users WHERE email=?", (email,))
@@ -56,6 +64,8 @@ with st.form(key = 'Account_Form'):
             if email and username and password:
                 if check_existing_email(email):
                     st.error('This email is already registered. Please use a different email.')
+                elif verify_email(email):
+                    st.error('This email is invalid, please check again.')
                 elif check_existing_username(username):
                     st.error('This user name already in use. Please use another username.')
                 else:
