@@ -1,5 +1,3 @@
-import sqlite3
-
 def remove_data(conn, site_id):
     cursor = conn.cursor()
 

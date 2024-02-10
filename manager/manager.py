@@ -1,5 +1,4 @@
 import streamlit as st
-from account.userid import get_user_id
 from log.write import log
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability

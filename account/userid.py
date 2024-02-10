@@ -1,5 +1,3 @@
-import sqlite3
-
 def get_user_id(cursor, username):
     cursor.execute("SELECT id FROM users WHERE username = ?", (username,))
 

@@ -1,5 +1,3 @@
-import sqlite3
-
 from log.write import sys_log
 
 def Update_Virtual_Table(conn):

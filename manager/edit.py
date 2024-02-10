@@ -4,8 +4,6 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
-from urllib.parse import urlparse
-from os.path import splitext
 
 GOOGLE_SAFE_BROWSING_API_KEY = 'API_KEY'
 

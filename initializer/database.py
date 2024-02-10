@@ -1,5 +1,5 @@
 import sqlite3
-from log.write import log, sys_log
+from log.write import sys_log
 from datetime import datetime
 
 from account.database import create_users_database
