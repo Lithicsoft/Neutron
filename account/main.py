@@ -22,7 +22,7 @@ def send_email(subject, from_email, to_email, content):
         html_content=content)
 
     try:
-        sg = SendGridAPIClient('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')
+        sg = SendGridAPIClient('API_KEY')
         response = sg.send(message)
         print(response.status_code)
         print(response.body)
