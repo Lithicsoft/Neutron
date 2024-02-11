@@ -1,4 +1,3 @@
-import pandas as pd
 import streamlit as st
 
 from atmt import ATMT_STRT

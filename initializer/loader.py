@@ -2,7 +2,7 @@ import sqlite3
 from log.write import sys_log
 
 def database_loader():
-    conn = sqlite3.connect('./database/search-index.db')
+    conn = sqlite3.connect('./database/search-index.db', check_same_thread=False)
     sys_log("Loaded", "search-index.db")
     return conn
 

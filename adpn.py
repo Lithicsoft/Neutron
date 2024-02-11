@@ -12,6 +12,7 @@ from initializer.loader import database_loader
 from log.write import sys_log
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability
+from main import MainForm
 
 print('Welcome to Neutron Administrator Panel')
 
@@ -122,7 +123,9 @@ while(True):
         if (yn != 'n'):
                 Initializer_Database()
                 Initializer_Virtual_Table()
-                Update_Virtual_Table()
+                vt_conn = database_loader()
+                Update_Virtual_Table(vt_conn)
+                vt_conn.close()
                 subprocess.call("start server1", shell=True)
                 subprocess.call("start server2", shell=True)
                 print('The server has been started successfully.')
@@ -138,6 +141,7 @@ while(True):
     elif command == "sync-fts":
         vt_conn = database_loader()
         Update_Virtual_Table(vt_conn)
+        vt_conn.close()
         print("Successful data synchronization.")
     elif command == "log":
         with open('log.txt', 'r') as file:

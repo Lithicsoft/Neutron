@@ -20,7 +20,7 @@ def get_website_info(url):
             title = soup.title.string.strip()
 
             text_content = ''
-            for paragraph in soup.find_all(['p', 'div']):
+            for paragraph in soup.find_all(['p']):
                 text_content += paragraph.get_text().strip() + '\n'
 
             meta_description = soup.find('meta', attrs={'name': 'description'})
@@ -45,7 +45,7 @@ def ATMT_STRT(random_keyword):
     conn = database_loader()
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107 Safari/537.36'
     headers = {'User-Agent': user_agent}
-    search_url = f"https://www.google.com/search?q={random_keyword}&hl=en"
+    search_url = f"https://www.bing.com/search?q={random_keyword}"
 
     response = requests.get(search_url, headers=headers)
 
