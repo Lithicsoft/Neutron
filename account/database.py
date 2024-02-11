@@ -9,7 +9,8 @@ def create_users_database():
                         email TEXT,
                         username TEXT,
                         password TEXT,
-                        reliability INTGER DEFAULT 0
+                        reliability INTGER DEFAULT -1,
+                        confirm INTGER DEFAULT 0
                     )''')
     conn.commit()
     conn.close()

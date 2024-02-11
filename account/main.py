@@ -1,6 +1,10 @@
 import re
+import os
 import time
+import random
 import streamlit as st
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability
 from account.userid import get_user_id
@@ -10,8 +14,24 @@ from log.write import sys_log
 conn = account_database_loader()
 cursor = conn.cursor()
 
-def add_user(email, username, password):
-    cursor.execute('''INSERT INTO users (email, username, password) VALUES (?, ?, ?)''', (email, username, password))
+def send_email(subject, from_email, to_email, content):
+    message = Mail(
+        from_email=from_email,
+        to_emails=to_email,
+        subject=subject,
+        html_content=content)
+
+    try:
+        sg = SendGridAPIClient('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')
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print("Error sending email:", str(e))
+
+def add_user(email, username, password, confirm):
+    cursor.execute('''INSERT INTO users (email, username, password, confirm) VALUES (?, ?, ?, ?)''', (email, username, password, confirm))
     sys_log("Created User Account", "Username: " + username + " Email: " + email + " Password: " + password)
     conn.commit()
 
@@ -40,10 +60,29 @@ def check_existing_username(username):
     cursor.execute("SELECT * FROM users WHERE username=?", (username,))
     return cursor.fetchone() is not None
 
+def verification(user_id, confirmation_code, confirm_value):
+    if int(confirmation_code) == confirm_value:
+        cursor.execute("UPDATE users SET confirm = 0 WHERE id = ?", (user_id,))
+        cursor.execute("UPDATE users SET reliability = 0 WHERE id = ?", (user_id,))
+        conn.commit()
+        st.success('Your account has been successfully created.')
+
+        st.session_state.email_input = False
+        st.session_state.username_input = False
+        st.session_state.password_input = False
+        st.session_state.confirm_code_input = True
+        st.session_state.create_state = True
+    else:
+        st.error('The verification code is incorrect, please check again.')
+    
 st.title('Account Manager')
 
 st.session_state.setdefault('form_state', True)
+st.session_state.setdefault('create_state', True)
 AForm = st.session_state.form_state
+
+st.session_state.setdefault('confirm_value', 0)
+st.session_state.setdefault('confirmation_code', 0)
 
 with st.form(key = 'Account_Form'):
     col1, col2, col3 = st.columns([0.1, 0.1, 0.1])
@@ -60,19 +99,34 @@ with st.form(key = 'Account_Form'):
             email = st.text_input('Email:')
             username = st.text_input('Username:')
             password = st.text_input('Password:', type='password')
+            confirm_code = st.text_input('Confirmation code:')
+            st.session_state.confirmation_code = confirm_code
 
             if email and username and password:
-                if check_existing_email(email):
-                    st.error('This email is already registered. Please use a different email.')
-                elif verify_email(email):
-                    st.error('This email is invalid, please check again.')
-                elif check_existing_username(username):
-                    st.error('This user name already in use. Please use another username.')
+                if st.session_state.create_state:
+                    if check_existing_email(email):
+                        st.error('This email is already registered. Please use a different email.')
+                    elif verify_email(email):
+                        st.error('This email is invalid, please check again.')
+                    elif check_existing_username(username):
+                        st.error('This user name already in use. Please use another username.')
+                    else:
+                        with st.spinner('Creating account...'):
+                            st.session_state.confirm_value = random.randint(1000, 9999)
+                            add_user(email, username, password, st.session_state.confirm_value)
+                            send_email('Verification', 'lithicsoft@gmail.com', email, 'Hello ' + username + ', Your Neutron confirmation code is: ' + str(st.session_state.confirm_value))
+                            time.sleep(1)
+                            st.success('An email containing a confirmation code has been sent to your account.')
+
+                            st.session_state.create_state = False
                 else:
-                    with st.spinner('Checking the given information...'):
-                        add_user(email, username, password)
-                        time.sleep(1)
-                        st.success('Your account has been successfully created.')
+                    user_id = get_user_id(cursor, username)
+                    verification(user_id, st.session_state.confirmation_code, st.session_state.confirm_value)
+
+            close_button = st.form_submit_button('Close')
+
+            if close_button:
+                st.session_state.form_state = False
         
         if submitted2:
             email = st.text_input('Email: ')
@@ -83,8 +137,8 @@ with st.form(key = 'Account_Form'):
 
             if get_user_reliability(cursor, username, password) is not None:
                 user_id = get_user_id(cursor, username)
-                new_username = st.text_input('New Username: ')
-                new_password = st.text_input('New Password: ', type='password')
+                new_username = st.text_input('New Username:')
+                new_password = st.text_input('New Password:', type='password')
                 if new_username:
                     update_username(user_id, email, new_username)
                     st.success('Your account username has been successfully updated.')
@@ -108,9 +162,9 @@ with st.form(key = 'Account_Form'):
             st.markdown('---')
 
             if username and not user_id:
-                st.write("User ID: " + str(get_user_id(cursor, username)))
+                st.write("User ID:" + str(get_user_id(cursor, username)))
             elif user_id and not username:
-                st.write("Username: " + get_username(cursor, user_id))
+                st.write("Username:" + get_username(cursor, user_id))
 
     else:
         open_button = st.form_submit_button('Open Form')
