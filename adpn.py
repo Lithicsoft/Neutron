@@ -203,25 +203,34 @@ while(True):
     if command == "exit":
         exit()
     elif command == "start":
-        yn = input('Do you want to start the server including: Search, Account [y/n]: ')
-        if (yn != 'n'):
-                Initializer_Database()
-                Initializer_Virtual_Table()
+        if os.environ.get('SG_API_KEY') is None or os.environ.get('GSB_API_KEY') is None:
+            print('The required API KEY to start the servers was not found, please use the "api-config" command to set the required environment API KEY variables.')
+        else:
+            yn = input('Do you want to start the server including: Search, Account [y/n]: ')
+            if (yn != 'n'):
+                    Initializer_Database()
+                    Initializer_Virtual_Table()
 
-                vt_conn = database_loader(0)
-                Update_Virtual_Table(vt_conn)
-                vt_conn.close()
-                vt_conn = database_loader(1)
-                Update_Virtual_Table(vt_conn)
-                vt_conn.close()
-                vt_conn = database_loader(2)
-                Update_Virtual_Table(vt_conn)
-                vt_conn.close()
-                
-                subprocess.call("start server1", shell=True)
-                subprocess.call("start server2", shell=True)
-                print('The server has been started successfully.')
-                sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+                    vt_conn = database_loader(0)
+                    Update_Virtual_Table(vt_conn)
+                    vt_conn.close()
+                    vt_conn = database_loader(1)
+                    Update_Virtual_Table(vt_conn)
+                    vt_conn.close()
+                    vt_conn = database_loader(2)
+                    Update_Virtual_Table(vt_conn)
+                    vt_conn.close()
+
+                    subprocess.call("start server1", shell=True)
+                    subprocess.call("start server2", shell=True)
+                    print('The server has been started successfully.')
+                    sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+    elif command == "api-config":
+        SG_API = input('Sendgrid API KEY: ')
+        GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
+        os.environ['SG_API_KEY'] = SG_API
+        os.environ['GSB_API_KEY'] = GSB_API
+        print('Successfully created API environment variable.')
     elif command == "atmt":
         keyword = input('Keyword: ')
         ATMT_STRT(keyword)

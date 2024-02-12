@@ -3,6 +3,7 @@ import os
 import time
 import random
 import streamlit as st
+from hashlib import sha256
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from account.loader import account_database_loader
@@ -27,7 +28,7 @@ def send_email(subject, from_email, to_email, content):
         html_content=content)
 
     try:
-        sg = SendGridAPIClient('API_KEY')
+        sg = SendGridAPIClient(os.environ.get('SG_API_KEY'))
         response = sg.send(message)
         print(response.status_code)
         print(response.body)
@@ -36,18 +37,19 @@ def send_email(subject, from_email, to_email, content):
         print("Error sending email:", str(e))
 
 def add_user(email, username, password, confirm):
+    password = sha256(password.encode('utf-8')).hexdigest()
     cursor.execute('''INSERT INTO users (email, username, password, confirm) VALUES (?, ?, ?, ?)''', (email, username, password, confirm))
-    sys_log("Created User Account", "Username: " + username + " Email: " + email + " Password: " + password)
+    sys_log("Created User Account", "Username: " + username + " Email: " + email)
     conn.commit()
 
 def update_password(user_id, email, new_password):
     cursor.execute("UPDATE users SET password = ? WHERE id = ?", (new_password, user_id))
-    sys_log("Changed User Password", "Username: " + username + " User ID: " + str(user_id) + " Email: " + email + " Password: " + password)
+    sys_log("Changed User Password", "Username: " + username + " User ID: " + str(user_id) + " Email: " + email)
     conn.commit()
 
 def update_username(user_id, email, new_username):
     cursor.execute("UPDATE users SET username = ? WHERE id = ?", (new_username, user_id))
-    sys_log("Changed Username", "Username: " + username + " User ID: " + str(user_id) + " Email: " + email + " Password: " + password)
+    sys_log("Changed Username", "Username: " + username + " User ID: " + str(user_id) + " Email: " + email)
     conn.commit()
 
 def verify_email(email):

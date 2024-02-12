@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import sqlite3
 import requests
@@ -7,7 +8,7 @@ from datetime import datetime
 
 from search.safe import escape_special_characters
 
-GOOGLE_SAFE_BROWSING_API_KEY = 'API_KEY'
+GOOGLE_SAFE_BROWSING_API_KEY = os.environ.get('GSB_API_KEY')
 
 allowed_extensions = {"http", "https"}
 

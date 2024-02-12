@@ -1,4 +1,8 @@
+from hashlib import sha256
+
 def get_user_reliability(cursor, username, password):
+    password = sha256(password.encode('utf-8')).hexdigest()
+
     cursor.execute('SELECT password FROM users WHERE username = ?', (username,))
     row = cursor.fetchone()
 
