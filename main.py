@@ -94,32 +94,46 @@ with st.form('Input_Form'):
         st.session_state.add_state = True
 
 if search_type == 'Text':
-    for row in Search_Result:
-        row2 = return_special_characters(row[2])
-        row6 = return_special_characters(row[6])
-        st.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
-        row_title = row2.replace('\n', ' ')
-        row_title = row_title.replace(':', ' ')
-        st.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
-        row_shorttext = row6.replace('\n', ' ')
-        row_shorttext = row_shorttext.replace('```', ' ')
-        st.markdown("```" + row_shorttext + "```")
-        st.markdown("&nbsp;&nbsp;&nbsp;")
+    if Search_Result is None:
+        st.write("No results found")
+    else:
+        for row in Search_Result:
+            row2 = return_special_characters(row[2])
+            row6 = return_special_characters(row[6])
+            row_title = row2.replace('\n', ' ')
+            row_title = row_title.replace(':', ' ')
+            row_shorttext = row6.replace('\n', ' ')
+            row_shorttext = row_shorttext.replace('```', ' ')
+            st.markdown("### [" + row_title + ']' + '(' + row[1] + ') ' + '```' + str(row[0]) + '```')
+            st.markdown(row_shorttext)
+            st.markdown("   ")
 elif search_type == 'Image':
-    for row in Search_Result:
-        st.image(image=row[1])
-        row2 = return_special_characters(row[2])
-        st.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
-        row_title = row2.replace('\n', ' ')
-        row_title = row_title.replace(':', ' ')
-        st.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
-        st.markdown("&nbsp;&nbsp;&nbsp;")
+    if Search_Result is None:
+        st.write("No results found")
+    else:
+        for i in range(0, len(Search_Result), 2):
+            cols = st.columns(2)
+            for j in range(2):
+                if i + j < len(Search_Result):
+                    row = Search_Result[i + j]
+                    cols[j].image(image=row[1])
+                    row2 = return_special_characters(row[2])
+                    row_title = row2.replace('\n', ' ')
+                    row_title = row_title.replace(':', ' ')
+                    cols[j].markdown("### [" + row_title + ']' + '(' + row[1] + ')' + '```' + str(row[0]) + '```')
+                    cols[j].markdown(row[4])
+                    cols[j].markdown("   ")
 elif search_type == 'Video':
-    for row in Search_Result:
-        st.video(row[1])
-        row2 = return_special_characters(row[2])
-        st.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
-        row_title = row2.replace('\n', ' ')
-        row_title = row_title.replace(':', ' ')
-        st.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
-        st.markdown("&nbsp;&nbsp;&nbsp;")
+    if Search_Result is None:
+        st.write("No results found")
+    else:
+        for row in Search_Result:
+            col1, col2 = st.columns([1, 3])
+            col1.video(row[1])
+            row2 = return_special_characters(row[2])
+            row_title = row2.replace('\n', ' ')
+            row_title = row_title.replace(':', ' ')
+            col2.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
+            col2.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
+            col2.markdown(row[7])
+            st.markdown("   ")

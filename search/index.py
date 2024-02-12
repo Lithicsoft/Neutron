@@ -1,6 +1,3 @@
-import streamlit as st
-
-from atmt import ATMT_STRT
 from search.safe import escape_special_characters
 
 def Search_Data(conn, keyword):
@@ -14,7 +11,6 @@ def Search_Data(conn, keyword):
     rows = cursor.fetchall()
     
     if len(rows) == 0:
-        st.write("No results found")
-        #ATMT_STRT(keyword)
+        return None
     else:
         return rows
