@@ -3,6 +3,7 @@ import time
 from initializer.loader import database_loader
 from manager.manager import *
 from search.index import Search_Data
+from search.safe import return_special_characters
 
 if 'conn' not in st.session_state:
     st.session_state.conn = database_loader()
@@ -14,9 +15,9 @@ Search_Result = []
 with st.form('Input_Form'):
     col1, col2, col3, col4, col5 = st.columns([3, 0.8, 0.6, 0.6, 0.8])
     AForm = st.session_state.form_state
+
     with col1:
         keyword = st.text_input('Try to search something!', placeholder='Try to search something!', label_visibility='collapsed')
-    
     with col2:
         submitted1 = st.form_submit_button('Search')
     with col3:
@@ -25,6 +26,7 @@ with st.form('Input_Form'):
         submitted3 = st.form_submit_button('Edit')
     with col5:
         submitted4 = st.form_submit_button('Remove')
+    
     if keyword and submitted1:
         Search_Result = Search_Data(conn, keyword)
     if submitted2 and AForm == True:
@@ -73,11 +75,13 @@ with st.form('Input_Form'):
     elif submitted4 and not AForm:
         st.session_state.add_state = True
 for row in Search_Result:
+    row2 = return_special_characters(row[2])
+    row6 = return_special_characters(row[6])
     st.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
-    row_title = row[2].replace('\n', ' ')
+    row_title = row2.replace('\n', ' ')
     row_title = row_title.replace(':', ' ')
     st.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
-    row_shorttext = row[6].replace('\n', ' ')
+    row_shorttext = row6.replace('\n', ' ')
     row_shorttext = row_shorttext.replace('```', ' ')
     st.markdown("```" + row_shorttext + "```")
     st.markdown("&nbsp;&nbsp;&nbsp;")

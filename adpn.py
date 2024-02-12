@@ -12,7 +12,6 @@ from initializer.loader import database_loader
 from log.write import sys_log
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability
-from main import MainForm
 
 print('Welcome to Neutron Administrator Panel')
 

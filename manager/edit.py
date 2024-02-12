@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 import json
 from datetime import datetime
 
+from search.safe import escape_special_characters
+
 GOOGLE_SAFE_BROWSING_API_KEY = 'API_KEY'
 
 allowed_extensions = {"http", "https"}
@@ -42,6 +44,12 @@ def is_content_safe(link):
     return True
 
 def edit_data(conn, site_id, link, title, text, description, keywords, shorttext):
+    title = escape_special_characters(title)
+    text = escape_special_characters(text)
+    description = escape_special_characters(description)
+    keywords = escape_special_characters(keywords)
+    shorttext = escape_special_characters(shorttext)
+
     added = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     normalize_link = link
