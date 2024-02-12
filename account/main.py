@@ -11,6 +11,11 @@ from account.userid import get_user_id
 from account.username import get_username
 from log.write import sys_log
 
+st.set_page_config(
+    page_title="Neutron Account",
+    page_icon="👤",
+)
+
 conn = account_database_loader()
 cursor = conn.cursor()
 

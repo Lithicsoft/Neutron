@@ -5,6 +5,12 @@ from manager.manager import *
 from search.index import Search_Data
 from search.safe import return_special_characters
 
+if 'config' not in st.session_state:
+    st.session_state.config = st.set_page_config(
+    page_title="Neutron Search",
+    page_icon="🔎",
+)
+
 if 'conn0' not in st.session_state:
     st.session_state.conn0 = database_loader(0)
 conn0 = st.session_state.conn0
@@ -18,8 +24,10 @@ if 'conn2' not in st.session_state:
 conn2 = st.session_state.conn2
 
 st.title('Neutron')
+
 st.session_state.setdefault('form_state', True)
 Search_Result = []
+
 with st.form('Input_Form'):
     col1, col2, col3, col4, col5 = st.columns([3, 0.8, 0.6, 0.6, 0.8])
     AForm = st.session_state.form_state
