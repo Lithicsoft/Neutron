@@ -5,9 +5,17 @@ from manager.manager import *
 from search.index import Search_Data
 from search.safe import return_special_characters
 
-if 'conn' not in st.session_state:
-    st.session_state.conn = database_loader()
-conn = st.session_state.conn
+if 'conn0' not in st.session_state:
+    st.session_state.conn0 = database_loader(0)
+conn0 = st.session_state.conn0
+
+if 'conn1' not in st.session_state:
+    st.session_state.conn1 = database_loader(1)
+conn1 = st.session_state.conn1
+
+if 'conn2' not in st.session_state:
+    st.session_state.conn2 = database_loader(2)
+conn2 = st.session_state.conn2
 
 st.title('Neutron')
 st.session_state.setdefault('form_state', True)
@@ -26,7 +34,17 @@ with st.form('Input_Form'):
         submitted3 = st.form_submit_button('Edit')
     with col5:
         submitted4 = st.form_submit_button('Remove')
-    
+
+    options_types = ['Text', 'Image', 'Video']
+    search_type = st.radio('', options_types, index=0)
+
+    if search_type == 'Text':
+        conn = conn0
+    elif search_type == 'Image':
+        conn = conn1
+    elif search_type == 'Video':
+        conn = conn2 
+
     if keyword and submitted1:
         Search_Result = Search_Data(conn, keyword)
     if submitted2 and AForm == True:
@@ -74,14 +92,34 @@ with st.form('Input_Form'):
                 st.session_state.add_state = False
     elif submitted4 and not AForm:
         st.session_state.add_state = True
-for row in Search_Result:
-    row2 = return_special_characters(row[2])
-    row6 = return_special_characters(row[6])
-    st.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
-    row_title = row2.replace('\n', ' ')
-    row_title = row_title.replace(':', ' ')
-    st.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
-    row_shorttext = row6.replace('\n', ' ')
-    row_shorttext = row_shorttext.replace('```', ' ')
-    st.markdown("```" + row_shorttext + "```")
-    st.markdown("&nbsp;&nbsp;&nbsp;")
+
+if search_type == 'Text':
+    for row in Search_Result:
+        row2 = return_special_characters(row[2])
+        row6 = return_special_characters(row[6])
+        st.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
+        row_title = row2.replace('\n', ' ')
+        row_title = row_title.replace(':', ' ')
+        st.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
+        row_shorttext = row6.replace('\n', ' ')
+        row_shorttext = row_shorttext.replace('```', ' ')
+        st.markdown("```" + row_shorttext + "```")
+        st.markdown("&nbsp;&nbsp;&nbsp;")
+elif search_type == 'Image':
+    for row in Search_Result:
+        st.image(image=row[1])
+        row2 = return_special_characters(row[2])
+        st.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
+        row_title = row2.replace('\n', ' ')
+        row_title = row_title.replace(':', ' ')
+        st.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
+        st.markdown("&nbsp;&nbsp;&nbsp;")
+elif search_type == 'Video':
+    for row in Search_Result:
+        st.video(row[1])
+        row2 = return_special_characters(row[2])
+        st.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
+        row_title = row2.replace('\n', ' ')
+        row_title = row_title.replace(':', ' ')
+        st.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
+        st.markdown("&nbsp;&nbsp;&nbsp;")

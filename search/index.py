@@ -15,6 +15,6 @@ def Search_Data(conn, keyword):
     
     if len(rows) == 0:
         st.write("No results found")
-        ATMT_STRT(keyword)
+        #ATMT_STRT(keyword)
     else:
         return rows

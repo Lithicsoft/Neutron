@@ -7,4 +7,4 @@ def Update_Virtual_Table(conn):
 
     conn.commit()
 
-    sys_log("Update Virtual Table", "search-index.db")
+    sys_log("Update Virtual Table", "search-index012.db")
