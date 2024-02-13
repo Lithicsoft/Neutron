@@ -2,8 +2,8 @@ import re
 import os
 import time
 import random
+import hashlib
 import streamlit as st
-from hashlib import sha256
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from account.loader import account_database_loader
@@ -37,7 +37,7 @@ def send_email(subject, from_email, to_email, content):
         print("Error sending email:", str(e))
 
 def add_user(email, username, password, confirm):
-    password = sha256(password.encode('utf-8')).hexdigest()
+    password = hashlib.md5(hashlib.sha256(password.encode('utf-8')).hexdigest().encode()).hexdigest()
     cursor.execute('''INSERT INTO users (email, username, password, confirm) VALUES (?, ?, ?, ?)''', (email, username, password, confirm))
     sys_log("Created User Account", "Username: " + username + " Email: " + email)
     conn.commit()
