@@ -40,7 +40,7 @@ with st.form('Input_Form'):
     with col2:
         submitted1 = st.form_submit_button('Search')
         options_language = ['all', 'en', 'vi']
-        search_language = st.radio('Language:', options_language, index=0)
+        search_language = st.selectbox('Language:', options_language)
     with col3:
         submitted2 = st.form_submit_button('Add')
     with col4:

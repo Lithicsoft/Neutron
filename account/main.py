@@ -119,7 +119,7 @@ with st.form(key = 'Account_Form'):
                         st.error('This user name already in use. Please use another username.')
                     else:
                         with st.spinner('Creating account...'):
-                            st.session_state.confirm_value = random.randint(1000, 9999)
+                            st.session_state.confirm_value = random.randint(10000, 99999)
                             add_user(email, username, password, st.session_state.confirm_value)
                             send_email('Verification', 'lithicsoft@gmail.com', email, 'Hello ' + username + ', Your Neutron confirmation code is: ' + str(st.session_state.confirm_value))
                             time.sleep(1)
