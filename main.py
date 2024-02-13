@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+from langdetect import detect
 from initializer.loader import database_loader
 from manager.manager import *
 from search.index import Search_Data
@@ -34,17 +35,18 @@ with st.form('Input_Form'):
 
     with col1:
         keyword = st.text_input('Try to search something!', placeholder='Try to search something!', label_visibility='collapsed')
+        options_types = ['Text', 'Image', 'Video']
+        search_type = st.radio('Type:', options_types, index=0)
     with col2:
         submitted1 = st.form_submit_button('Search')
+        options_language = ['all', 'en', 'vi']
+        search_language = st.radio('Language:', options_language, index=0)
     with col3:
         submitted2 = st.form_submit_button('Add')
     with col4:
         submitted3 = st.form_submit_button('Edit')
     with col5:
         submitted4 = st.form_submit_button('Remove')
-
-    options_types = ['Text', 'Image', 'Video']
-    search_type = st.radio('', options_types, index=0)
 
     if search_type == 'Text':
         conn = conn0
@@ -105,43 +107,84 @@ if search_type == 'Text':
     if Search_Result is None:
         st.write("No results found")
     else:
-        for row in Search_Result:
-            row2 = return_special_characters(row[2])
-            row6 = return_special_characters(row[6])
-            row_title = row2.replace('\n', ' ')
-            row_title = row_title.replace(':', ' ')
-            row_shorttext = row6.replace('\n', ' ')
-            row_shorttext = row_shorttext.replace('```', ' ')
-            st.markdown("### [" + row_title + ']' + '(' + row[1] + ') ' + '```' + str(row[0]) + '```')
-            st.markdown(row_shorttext)
-            st.markdown("   ")
+        if search_language == 'all':
+            for row in Search_Result:
+                row2 = return_special_characters(row[2])
+                row6 = return_special_characters(row[6])
+                row_title = row2.replace('\n', ' ')
+                row_title = row_title.replace(':', ' ')
+                row_shorttext = row6.replace('\n', ' ')
+                row_shorttext = row_shorttext.replace('```', ' ')
+                st.markdown("### [" + row_title + ']' + '(' + row[1] + ') ' + '```' + str(row[0]) + '```')
+                st.markdown(row_shorttext)
+                st.markdown("   ")
+        else:
+            for row in Search_Result:
+                if detect(row[2]) == search_language or detect(row[6]) == search_language:
+                    row2 = return_special_characters(row[2])
+                    row6 = return_special_characters(row[6])
+                    row_title = row2.replace('\n', ' ')
+                    row_title = row_title.replace(':', ' ')
+                    row_shorttext = row6.replace('\n', ' ')
+                    row_shorttext = row_shorttext.replace('```', ' ')
+                    st.markdown("### [" + row_title + ']' + '(' + row[1] + ') ' + '```' + str(row[0]) + '```')
+                    st.markdown(row_shorttext)
+                    st.markdown("   ")
 elif search_type == 'Image':
     if Search_Result is None:
         st.write("No results found")
     else:
-        for i in range(0, len(Search_Result), 2):
-            cols = st.columns(2)
-            for j in range(2):
-                if i + j < len(Search_Result):
-                    row = Search_Result[i + j]
-                    cols[j].image(image=row[1])
-                    row2 = return_special_characters(row[2])
-                    row_title = row2.replace('\n', ' ')
-                    row_title = row_title.replace(':', ' ')
-                    cols[j].markdown("### [" + row_title + ']' + '(' + row[1] + ')' + '```' + str(row[0]) + '```')
-                    cols[j].markdown(row[4])
-                    cols[j].markdown("   ")
+        if search_language == 'all':
+            for i in range(0, len(Search_Result), 2):
+                cols = st.columns(2)
+                for j in range(2):
+                    if i + j < len(Search_Result):
+                        row = Search_Result[i + j]
+                        cols[j].image(image=row[1])
+                        row2 = return_special_characters(row[2])
+                        row_title = row2.replace('\n', ' ')
+                        row_title = row_title.replace(':', ' ')
+                        cols[j].markdown("### [" + row_title + ']' + '(' + row[1] + ')' + '```' + str(row[0]) + '```')
+                        cols[j].markdown(row[4])
+                        cols[j].markdown("   ")
+        else:
+            for i in range(0, len(Search_Result), 2):
+                if detect(row[2]) == search_language:
+                    cols = st.columns(2)
+                    for j in range(2):
+                        if i + j < len(Search_Result):
+                            row = Search_Result[i + j]
+                            cols[j].image(image=row[1])
+                            row2 = return_special_characters(row[2])
+                            row_title = row2.replace('\n', ' ')
+                            row_title = row_title.replace(':', ' ')
+                            cols[j].markdown("### [" + row_title + ']' + '(' + row[1] + ')' + '```' + str(row[0]) + '```')
+                            cols[j].markdown(row[4])
+                            cols[j].markdown("   ")
 elif search_type == 'Video':
     if Search_Result is None:
         st.write("No results found")
     else:
-        for row in Search_Result:
-            col1, col2 = st.columns([1, 3])
-            col1.video(row[1])
-            row2 = return_special_characters(row[2])
-            row_title = row2.replace('\n', ' ')
-            row_title = row_title.replace(':', ' ')
-            col2.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
-            col2.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
-            col2.markdown(row[7])
-            st.markdown("   ")
+        if search_language == 'all':
+            for row in Search_Result:
+                col1, col2 = st.columns([1, 3])
+                col1.video(row[1])
+                row2 = return_special_characters(row[2])
+                row_title = row2.replace('\n', ' ')
+                row_title = row_title.replace(':', ' ')
+                col2.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
+                col2.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
+                col2.markdown(row[7])
+                st.markdown("   ")
+        else:
+            for row in Search_Result:
+                if detect(row[2]) == search_language:
+                    col1, col2 = st.columns([1, 3])
+                    col1.video(row[1])
+                    row2 = return_special_characters(row[2])
+                    row_title = row2.replace('\n', ' ')
+                    row_title = row_title.replace(':', ' ')
+                    col2.markdown('```' + str(row[0]) + '``` ```' + row[1] + '```')
+                    col2.markdown("### [" + row_title + ']' + '(' + row[1] + ')')
+                    col2.markdown(row[7])
+                    st.markdown("   ")

@@ -202,6 +202,23 @@ while(True):
     
     if command == "exit":
         exit()
+    elif command == "help":
+        print('''
+            exit: Exit ADPN.
+            help: This command.
+            clear: Clear the terminal.
+            start: Start the servers needed for MonoSearch.
+            api-config: Add the necessary API KEY environment variables to the servers.
+            atmt: Start ATMT STRT with keywords.
+            check: Lists the data that needs to be censored.
+            sync: Synchronize the censored database and the parent database (requirement: no data that needs to be censored).
+            sync-fts: Synchronize data in the root table with the virtual table.
+            log: Prints the server log.
+            users-list: Lists the list of users.
+            users-rel: Changes user reliability through their user id.
+        ''')
+    elif command == "clear":
+        subprocess.call("cls", shell=True)
     elif command == "start":
         if os.environ.get('SG_API_KEY') is None or os.environ.get('GSB_API_KEY') is None:
             print('The required API KEY to start the servers was not found, please use the "api-config" command to set the required environment API KEY variables.')
