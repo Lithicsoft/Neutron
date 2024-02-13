@@ -1,0 +1,9 @@
+version: "2"
+authtoken: API_KEY
+tunnels:
+  server1:
+    addr: 8501
+    proto: http
+  server2:
+    addr: 8502
+    proto: http
