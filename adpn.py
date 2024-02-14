@@ -245,8 +245,8 @@ while(True):
     elif command == "api-config":
         SG_API = input('Sendgrid API KEY: ')
         GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
-        os.environ['SG_API_KEY'] = SG_API
-        os.environ['GSB_API_KEY'] = GSB_API
+        subprocess.call('setx SG_API_KEY "' + SG_API + '" /M')
+        subprocess.call('setx SGB_API_KEY "' + GSB_API + '" /M')
         print('Successfully created API environment variable.')
     elif command == "atmt":
         keyword = input('Keyword: ')
