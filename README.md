@@ -16,7 +16,7 @@ We welcome contributions from developers and enthusiasts alike. If you're intere
 
 ## Getting Started
 
-To get started with Neutron, simply clone the repository to your local machine and follow the setup instructions provided in the wiki.
+To get started with Neutron, simply clone the repository to your local machine and follow the setup instructions provided in the [wiki](https://github.com/Lithicsoft/Neutron/wiki).
 
 ## Feedback and Support
 
