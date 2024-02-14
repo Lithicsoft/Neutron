@@ -1,6 +1,6 @@
 # Neutron Project
 
-Welcome to the Neutron project!
+Welcome to the [Neutron](https://lithicsoft.github.io/neutron) project!
 
 Neutron is a project dedicated to crafting a straightforward and user-friendly search engine. Our primary goal is to provide a platform where users can effortlessly add and contribute websites to expand our search database.
 
@@ -20,6 +20,6 @@ To get started with Neutron, simply clone the repository to your local machine a
 
 ## Feedback and Support
 
-We value your feedback! If you have any suggestions, encounter issues, or need assistance, please don't hesitate to open an issue on GitHub. Our team is here to help and continuously improve the Neutron experience.
+We value your feedback! If you have any suggestions, encounter issues, or need assistance, please don't hesitate to open an issue on [GitHub](https://github.com/Lithicsoft/Neutron/issues). Our team is here to help and continuously improve the Neutron experience.
 
 Thank you for your interest in Neutron. Happy searching!
