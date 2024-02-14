@@ -238,8 +238,9 @@ while(True):
                     Update_Virtual_Table(vt_conn)
                     vt_conn.close()
 
-                    subprocess.call("start server1", shell=True)
-                    subprocess.call("start server2", shell=True)
+                    subprocess.call("start python search/index.py", shell=True)
+                    subprocess.call("start python -m streamlit run main.py", shell=True)
+                    subprocess.call("start python -m streamlit run account/main.py", shell=True)
                     print('The server has been started successfully.')
                     sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
     elif command == "api-config":

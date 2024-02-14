@@ -1,6 +1,9 @@
 version: "2"
 authtoken: API_KEY
 tunnels:
+  server0:
+    address: 8500
+    proto: http
   server1:
     addr: 8501
     proto: http

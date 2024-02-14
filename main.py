@@ -5,9 +5,8 @@ import wikipedia
 from typing import List
 from langdetect import detect
 from streamlit_searchbox import st_searchbox
-from initializer.loader import database_loader
 from manager.manager import *
-from search.index import Search_Data
+from search.get import Search_Data
 from search.safe import return_special_characters
 
 if 'config' not in st.session_state:
@@ -15,18 +14,6 @@ if 'config' not in st.session_state:
     page_title="Neutron Search",
     page_icon="🔎",
 )
-
-if 'conn0' not in st.session_state:
-    st.session_state.conn0 = database_loader(0)
-conn0 = st.session_state.conn0
-
-if 'conn1' not in st.session_state:
-    st.session_state.conn1 = database_loader(1)
-conn1 = st.session_state.conn1
-
-if 'conn2' not in st.session_state:
-    st.session_state.conn2 = database_loader(2)
-conn2 = st.session_state.conn2
 
 def search_suggestion(searchterm: str) -> List[any]:
     return wikipedia.search(searchterm) if searchterm else []
@@ -56,15 +43,13 @@ with st.form('Input_Form'):
     with col5:
         submitted4 = st.form_submit_button('Remove')
 
-    if search_type == 'Text':
-        conn = conn0
-    elif search_type == 'Image':
-        conn = conn1
-    elif search_type == 'Video':
-        conn = conn2 
-
     if keyword and submitted1:
-        Search_Result = Search_Data(conn, keyword)
+        if search_type == 'Text':
+            Search_Result = Search_Data(0, keyword)
+        elif search_type == 'Image':
+            Search_Result = Search_Data(1, keyword)
+        elif search_type == 'Video':
+            Search_Result = Search_Data(2, keyword)
     if submitted2 and AForm == True:
         username = st.text_input('Username: ')
         password = st.text_input('Password: ', type='password')
@@ -77,7 +62,7 @@ with st.form('Input_Form'):
         if username and password and link and title and text and description and keywords and shorttext:
             with st.spinner('Checking the given information...'):
                 time.sleep(1)
-                manager_insert_data(conn, username, password, link, title, text, description, keywords, shorttext)
+                manager_insert_data(search_type, username, password, link, title, text, description, keywords, shorttext)
                 st.session_state.add_state = False
     elif submitted2 and not AForm:
         st.session_state.add_state = True
@@ -94,7 +79,7 @@ with st.form('Input_Form'):
         if username and password and site_id and link and title and text and description and keywords and shorttext:
             with st.spinner('Checking the given information...'):
                 time.sleep(1)
-                manager_edit_data(conn, username, password, site_id, link, title, text, description, keywords, shorttext)
+                manager_edit_data(search_type, username, password, site_id, link, title, text, description, keywords, shorttext)
                 st.session_state.add_state = False
     elif submitted3 and not AForm:
         st.session_state.add_state = True
@@ -106,7 +91,7 @@ with st.form('Input_Form'):
         if username and password and site_id:
             with st.spinner('Checking the given information...'):
                 time.sleep(1)
-                manager_remove_data(conn, username, password, site_id)
+                manager_remove_data(search_type, username, password, site_id)
                 st.session_state.add_state = False
     elif submitted4 and not AForm:
         st.session_state.add_state = True
