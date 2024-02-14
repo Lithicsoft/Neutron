@@ -39,7 +39,7 @@ with st.form('Input_Form'):
         search_type = st.radio('Type:', options_types, index=0)
     with col2:
         submitted1 = st.form_submit_button('Search')
-        options_language = ['all', 'en', 'vi']
+        options_language = ['all', 'af', 'ar', 'bg', 'bn', 'ca', 'cs', 'cy', 'da', 'de', 'el', 'en', 'es', 'et', 'fa', 'fi', 'fr', 'gu', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lt', 'lv', 'mk', 'ml', 'mr', 'ne', 'nl', 'no', 'pa', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'so', 'sq', 'sv', 'sw', 'ta', 'te', 'th', 'tl', 'tr', 'uk', 'ur', 'vi', 'zh-cn', 'zh-tw']
         search_language = st.selectbox('Language:', options_language)
     with col3:
         submitted2 = st.form_submit_button('Add')
