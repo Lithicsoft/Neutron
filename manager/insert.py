@@ -20,7 +20,7 @@ def content_exists(conn, link):
         return count > 0
 
 def is_content_safe(link):
-    url = 'https://safebrowsing.googleapis.com/v4/threatMatches:find?key=' + GOOGLE_SAFE_BROWSING_API_KEY
+    url = 'https://safebrowsing.googleapis.com/v4/threatMatches:find?key=' + str(GOOGLE_SAFE_BROWSING_API_KEY)
     payload = {
         "client": {
             "clientId": "your-client-id",
@@ -51,7 +51,7 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
     keywords = escape_special_characters(keywords)
     shorttext = escape_special_characters(shorttext)
 
-    added = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    added = datetime.now()
 
     cursor = conn.cursor()
     cursor.execute("SELECT MAX(site_id) FROM information")
@@ -61,10 +61,8 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
     else:
         site_id = max_site_id + 1
 
-    normalize_link = link
-
     try:
-        response = requests.get(normalize_link)
+        response = requests.get(link)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
         text_content = "\n".join([p.text for p in soup.find_all('p')])
@@ -72,11 +70,11 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
         st.error("Error accessing or parsing the website.")
         return
 
-    if content_exists(conn, normalize_link):
+    if content_exists(conn, link):
         st.warning("Content already exists in the database.")
         return
 
-    if not is_content_safe(normalize_link):
+    if not is_content_safe(link):
         st.warning("Unsafe content detected. Not inserting into the database.")
         return
 
@@ -86,7 +84,7 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
             cursor.execute('''INSERT INTO information 
                               (site_id, link, title, text, description, keywords, shorttext, added) 
                               VALUES (?, ?, ?, ?, ?, ?, ?, ?)''', 
-                           (site_id, normalize_link, title, text, description, keywords, shorttext, added))
+                           (site_id, link, title, text, description, keywords, shorttext, added))
             conn.commit()
             st.success("Data inserted successfully.")
         except sqlite3.Error as e:

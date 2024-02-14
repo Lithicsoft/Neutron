@@ -51,12 +51,10 @@ def edit_data(conn, site_id, link, title, text, description, keywords, shorttext
     keywords = escape_special_characters(keywords)
     shorttext = escape_special_characters(shorttext)
 
-    added = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-    normalize_link = link
+    added = datetime.now()
 
     try:
-        response = requests.get(normalize_link)
+        response = requests.get(link)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
         text_content = "\n".join([p.text for p in soup.find_all('p')])
@@ -64,7 +62,7 @@ def edit_data(conn, site_id, link, title, text, description, keywords, shorttext
         st.error("Error accessing or parsing the website.")
         return
 
-    if not is_content_safe(normalize_link):
+    if not is_content_safe(link):
         st.warning("Unsafe content detected. Not editing the database.")
         return
 
@@ -74,7 +72,7 @@ def edit_data(conn, site_id, link, title, text, description, keywords, shorttext
             cursor.execute('''UPDATE information 
                               SET link=?, title=?, text=?, description=?, keywords=?, shorttext=?, added=?
                               WHERE site_id=?''', 
-                           (normalize_link, title, text, description, keywords, shorttext, added, site_id))
+                           (link, title, text, description, keywords, shorttext, added, site_id))
             conn.commit()
             st.success("Data edited successfully.")
         except sqlite3.Error as e:
