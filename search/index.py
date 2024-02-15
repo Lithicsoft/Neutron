@@ -1,6 +1,10 @@
 from flask import Flask, request
-from loader import database_loader
 from safe import escape_special_characters
+
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join('./')))
+from initializer.loader import database_loader
 
 conn0 = database_loader(0)
 conn1 = database_loader(1)

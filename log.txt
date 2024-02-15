@@ -1,0 +1,3 @@
+SYS: Loaded: search-index0.db
+SYS: Loaded: search-index1.db
+SYS: Loaded: search-index2.db

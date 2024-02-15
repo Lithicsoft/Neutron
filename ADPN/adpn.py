@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join('./')))
+from initializer.loader import database_loader
 from datetime import datetime
 import os
 import shutil
