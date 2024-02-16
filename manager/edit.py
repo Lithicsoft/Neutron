@@ -59,12 +59,10 @@ def edit_data(conn, site_id, link, title, text, description, keywords, shorttext
         soup = BeautifulSoup(response.text, 'html.parser')
         text_content = "\n".join([p.text for p in soup.find_all('p')])
     except requests.RequestException as e:
-        st.error("Error accessing or parsing the website.")
-        return
+        return "Error accessing or parsing the website."
 
     if not is_content_safe(link):
-        st.warning("Unsafe content detected. Not editing the database.")
-        return
+        return "Unsafe content detected. Not editing the database."
 
     with conn:
         cursor = conn.cursor()
@@ -74,8 +72,8 @@ def edit_data(conn, site_id, link, title, text, description, keywords, shorttext
                               WHERE site_id=?''', 
                            (link, title, text, description, keywords, shorttext, added, site_id))
             conn.commit()
-            st.success("Data edited successfully.")
+            cursor.close()
+            return "Data edited successfully."
         except sqlite3.Error as e:
-            st.error("Error editing data in the database:", e)
-
-    cursor.close()
+            cursor.close()
+            return "Error editing data in the database:", e

@@ -1,81 +1,74 @@
-import streamlit as st
+from flask import Flask, request
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join('./')))
+from initializer.loader import database_loader
 from log.write import log
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability
 from initializer.loader import censorship_database_loader, database_loader
-from manager.edit import edit_data
-from manager.insert import insert_data
-from manager.remove import remove_data
+from edit import edit_data
+from insert import insert_data
+from remove import remove_data
 from FTS.update import Update_Virtual_Table
 
 conn0 = database_loader(0)
 conn1 = database_loader(1)
 conn2 = database_loader(2)
+censorship_conn0 = censorship_database_loader(0)
+censorship_conn1 = censorship_database_loader(1)
+censorship_conn2 = censorship_database_loader(2)
+
+account_conn = account_database_loader()
+cursor = account_conn.cursor()
 
 def manager_insert_data(type, username, password, link, title, text, description, keywords, shorttext):
-    account_conn = account_database_loader()
-    cursor = account_conn.cursor()
-
     if type == 'Text':
         conn = conn0
+        censorship_conn = censorship_conn0
     elif type == 'Image':
         conn = conn1
+        censorship_conn = censorship_conn1
     elif type == 'Video':
         conn == conn2
+        censorship_conn - censorship_conn2
 
     reliability = get_user_reliability(cursor, username, password)
 
     if reliability == 0: 
-        censorship_conn = censorship_database_loader()
         insert_data(censorship_conn, link, title, text, description, keywords, shorttext)
-        st.success("Your add request has been sent to the administrator.")
-        censorship_conn.close()
+        return "Your add request has been sent to the administrator."
     elif reliability >= 1:
-        insert_data(conn, link, title, text, description, keywords, shorttext)
+        log(cursor, username, password, "Insert Data", "Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
+        Update_Virtual_Table(conn)
+        return insert_data(conn, link, title, text, description, keywords, shorttext)
     else: 
-        st.error("The user's reliability cannot be determined.")
-    
-    log(cursor, username, password, "Insert Data", "Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
-    
-    cursor.close()
-    account_conn.close()
-
-    Update_Virtual_Table(conn)
+        return "The user's reliability cannot be determined."
 
 def manager_edit_data(type, username, password, site_id, link, title, text, description, keywords, shorttext):
-    account_conn = account_database_loader()
-    cursor = account_conn.cursor()
-
     if type == 'Text':
         conn = conn0
+        censorship_conn = censorship_conn0
     elif type == 'Image':
         conn = conn1
+        censorship_conn = censorship_conn1
     elif type == 'Video':
         conn == conn2
+        censorship_conn = censorship_conn2
 
     reliability = get_user_reliability(cursor, username, password)
 
     if reliability == 0: 
-        censorship_conn = censorship_database_loader()
         edit_data(censorship_conn, site_id, link, title, text, description, keywords, shorttext)
-        st.success("Your edit request has been sent to the administrator.")
-        censorship_conn.close()
+        return "Your edit request has been sent to the administrator."
     elif reliability >= 2:
-        edit_data(conn, site_id, link, title, text, description, keywords, shorttext)
+        log(cursor, username, password, "Edit Data", "Site ID: " + site_id + " Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
+        Update_Virtual_Table(conn)
+        return edit_data(conn, site_id, link, title, text, description, keywords, shorttext)
     else: 
-        st.error("The user's reliability cannot be determined.")
-    
-    log(cursor, username, password, "Edit Data", "Site ID: " + site_id + " Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
-
-    cursor.close()
-    account_conn.close()
-
-    Update_Virtual_Table(conn)
+        return "The user's reliability cannot be determined."
 
 def manager_remove_data(type, username, password, site_id):
-    account_conn = account_database_loader()
-    cursor = account_conn.cursor()
-
     if type == 'Text':
         conn = conn0
     elif type == 'Image':
@@ -87,13 +80,39 @@ def manager_remove_data(type, username, password, site_id):
 
     if reliability >= 3:
         remove_data(conn, site_id)
-        st.success("Data removed successfully.")
+        log(cursor, username, password, "Remove Data", "Site ID: " + site_id)
+        Update_Virtual_Table(conn)
+        return "Data removed successfully."
     else: 
-        st.error("The user's reliability cannot be determined.")
+        return "The user's reliability cannot be determined."
 
-    log(cursor, username, password, "Remove Data", "Site ID: " + site_id)
+app = Flask(__name__)
 
-    account_conn.close()
-    cursor.close()
+@app.route('/manager', methods=['POST'])
+def manager():
+    data = request.get_json()
+    call = data['call']
+    type = data['type']
+    username = data['username']
+    password = data['password']
+    site_id = data['site_id']
+    link = data['link']
+    title = data['title']
+    text = data['text']
+    description = data['description']
+    keywords = data['keywords']
+    shorttext = data['shorttext']
 
-    Update_Virtual_Table(conn)
+    if call == 'insert':
+        return_result = manager_insert_data(type, username, password, link, title, text, description, keywords, shorttext)
+        print(return_result)
+        return return_result
+    elif call == 'edit':
+        return_result = manager_edit_data(type, username, password, site_id, link, title, text, description, keywords, shorttext)
+        return return_result
+    elif call == 'remove':
+        return_result = manager_remove_data(type, username, password, site_id)
+        return return_result
+    
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8501)

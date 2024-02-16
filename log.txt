@@ -1,3 +1,2 @@
-SYS: Loaded: search-index0.db
-SYS: Loaded: search-index1.db
-SYS: Loaded: search-index2.db
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: https://youtube.com Title: Youtube Text: Share your videos with friends, family and the world. Description: Share your videos with friends, family and the world. Keywords: Google Youtube ShortText: Share your videos with friends, family and the world ...
+SYS: Update Virtual Table: search-index012.db

@@ -243,6 +243,7 @@ while(True):
                     vt_conn.close()
 
                     subprocess.call("start python search/index.py", shell=True)
+                    subprocess.call("start python manager/manager.py", shell=True)
                     subprocess.call("start python -m streamlit run main.py", shell=True)
                     subprocess.call("start python -m streamlit run account/main.py", shell=True)
                     print('The server has been started successfully.')

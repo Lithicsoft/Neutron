@@ -10,3 +10,6 @@ tunnels:
   server2:
     addr: 8502
     proto: http
+  server3:
+    addr: 8503
+    proto: http

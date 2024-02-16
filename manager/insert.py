@@ -67,16 +67,13 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
         soup = BeautifulSoup(response.text, 'html.parser')
         text_content = "\n".join([p.text for p in soup.find_all('p')])
     except requests.RequestException as e:
-        st.error("Error accessing or parsing the website.")
-        return
+        return "Error accessing or parsing the website."
 
     if content_exists(conn, link):
-        st.warning("Content already exists in the database.")
-        return
+        return "Content already exists in the database."
 
     if not is_content_safe(link):
-        st.warning("Unsafe content detected. Not inserting into the database.")
-        return
+        return "Unsafe content detected. Not inserting into the database."
 
     with conn:
         cursor = conn.cursor()
@@ -86,8 +83,8 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
                               VALUES (?, ?, ?, ?, ?, ?, ?, ?)''', 
                            (site_id, link, title, text, description, keywords, shorttext, added))
             conn.commit()
-            st.success("Data inserted successfully.")
+            cursor.close()
+            return "Data inserted successfully."
         except sqlite3.Error as e:
-            st.error("Error inserting data into the database:", e)
-
-    cursor.close()
+            cursor.close()
+            return "Error inserting data into the database:", e

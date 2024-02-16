@@ -17,14 +17,14 @@ def database_loader(num):
 
 def censorship_database_loader(num):
     if num == 0:
-        conn = sqlite3.connect('./database/censorship0.db')
+        conn = sqlite3.connect('./database/censorship0.db', check_same_thread=False)
         sys_log("Loaded", "censorship0.db")
         return conn
     if num == 1:
-        conn = sqlite3.connect('./database/censorship1.db')
+        conn = sqlite3.connect('./database/censorship1.db', check_same_thread=False)
         sys_log("Loaded", "censorship1.db")
         return conn
     if num == 2:
-        conn = sqlite3.connect('./database/censorship2.db')
+        conn = sqlite3.connect('./database/censorship2.db', check_same_thread=False)
         sys_log("Loaded", "censorship2.db")
         return conn
