@@ -62,7 +62,7 @@ with st.form('Input_Form'):
         if username and password and link and title and text and description and keywords and shorttext:
             with st.spinner('Checking the given information...'):
                 time.sleep(1)
-                st.write(manager_insert_data(search_type, username, password, link, title, text, description, keywords, shorttext))
+                st.info(manager_insert_data(search_type, username, password, link, title, text, description, keywords, shorttext), icon="ℹ️")
                 st.session_state.add_state = False
     elif submitted2 and not AForm:
         st.session_state.add_state = True
@@ -79,7 +79,7 @@ with st.form('Input_Form'):
         if username and password and site_id and link and title and text and description and keywords and shorttext:
             with st.spinner('Checking the given information...'):
                 time.sleep(1)
-                st.write(manager_edit_data(search_type, username, password, site_id, link, title, text, description, keywords, shorttext))
+                st.info(manager_edit_data(search_type, username, password, site_id, link, title, text, description, keywords, shorttext), icon="ℹ️")
                 st.session_state.add_state = False
     elif submitted3 and not AForm:
         st.session_state.add_state = True
@@ -91,7 +91,7 @@ with st.form('Input_Form'):
         if username and password and site_id:
             with st.spinner('Checking the given information...'):
                 time.sleep(1)
-                st.write(manager_remove_data(search_type, username, password, site_id))
+                st.info(manager_remove_data(search_type, username, password, site_id), icon="ℹ️")
                 st.session_state.add_state = False
     elif submitted4 and not AForm:
         st.session_state.add_state = True

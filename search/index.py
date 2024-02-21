@@ -12,7 +12,7 @@ conn2 = database_loader(2)
 
 app = Flask(__name__)
 
-@app.route('/search-index', methods=['POST'])
+@app.route('/', methods=['POST'])
 def Search_Data():
     data = request.get_json()
 

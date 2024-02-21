@@ -43,6 +43,7 @@ def add_user(email, username, password, confirm):
     conn.commit()
 
 def update_password(user_id, email, new_password):
+    password = hashlib.md5(hashlib.sha256(password.encode('utf-8')).hexdigest().encode()).hexdigest()
     cursor.execute("UPDATE users SET password = ? WHERE id = ?", (new_password, user_id))
     sys_log("Changed User Password", "Username: " + username + " User ID: " + str(user_id) + " Email: " + email)
     conn.commit()

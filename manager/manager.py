@@ -88,7 +88,7 @@ def manager_remove_data(type, username, password, site_id):
 
 app = Flask(__name__)
 
-@app.route('/manager', methods=['POST'])
+@app.route('/', methods=['POST'])
 def manager():
     data = request.get_json()
     call = data['call']
