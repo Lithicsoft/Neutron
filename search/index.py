@@ -32,12 +32,13 @@ def Search_Data():
     if exact_match:
         cursor = conn.cursor()
 
+        safe_keyword = escape_special_characters(keyword)
+
         cursor.execute('''SELECT * FROM information
                         WHERE title LIKE ? OR text LIKE ? OR description LIKE ? OR keywords LIKE ? OR shorttext LIKE ?''', 
-                        ('%' + keyword + '%', '%' + keyword + '%', '%' + keyword + '%', '%' + keyword + '%', '%' + keyword + '%'))
+                        ('%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%'))
 
         rows = cursor.fetchall()
-        conn.close()
     else:
         cursor = conn.cursor()
 

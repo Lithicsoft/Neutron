@@ -4,7 +4,6 @@ import time
 import wikipedia
 from typing import List
 from langdetect import detect
-from streamlit_searchbox import st_searchbox
 from manager.call import *
 from search.get import Search_Data
 from search.safe import return_special_characters
@@ -15,8 +14,23 @@ if 'config' not in st.session_state:
     page_icon="🔎",
 )
 
-def search_suggestion(searchterm: str) -> List[any]:
-    return wikipedia.search(searchterm) if searchterm else []
+def get_wikipedia_excerpt(keyword, language):
+    try:
+        if keyword != '':
+            if language == 'all':
+                wikipedia.set_lang('en')
+            else: wikipedia.set_lang(language)
+
+            search_results = wikipedia.search(keyword)
+
+            if not search_results:
+                return None
+
+            page_summary = wikipedia.summary(search_results[0], sentences=3)
+
+            return page_summary
+    except wikipedia.exceptions.WikipediaException as e:
+        return None
 
 st.title('Neutron')
 
@@ -28,7 +42,7 @@ with st.form('Input_Form'):
     AForm = st.session_state.form_state
 
     with col1:
-        keyword = st_searchbox(search_suggestion, placeholder='Try to search something!')
+        keyword = st.text_input('Try to search something!', placeholder='Try to search something!', label_visibility='collapsed')
     with col2:
         submitted1 = st.form_submit_button('Search')
         options_types = ['Text', 'Image', 'Video']
@@ -53,7 +67,7 @@ with st.form('Input_Form'):
     if submitted2 and AForm == True:
         username = st.text_input('Username: ')
         password = st.text_input('Password: ', type='password')
-        link = st.text_input('Link (Should not contain a "/" at the end, use only "http" and "https"): ')
+        link = st.text_input('Link: ')
         title = st.text_input('Title: ')
         text = st.text_input('Text: ')
         description = st.text_input('Description: ')
@@ -70,7 +84,7 @@ with st.form('Input_Form'):
         username = st.text_input('Username: ')
         password = st.text_input('Password: ', type='password')
         site_id = st.text_input('Site ID: ')
-        link = st.text_input('Link (Should not contain a "/" at the end, use only "http" and "https"): ')
+        link = st.text_input('Link: ')
         title = st.text_input('Title: ')
         text = st.text_input('Text: ')
         description = st.text_input('Description: ')
@@ -99,8 +113,12 @@ with st.form('Input_Form'):
 #####
 
 if search_type == 'Text':
+    excerpt = get_wikipedia_excerpt(keyword, search_language)
+    if excerpt is not None:
+        st.markdown('```' + excerpt + '```')
+
     if Search_Result is None:
-        st.write("No results found.")
+        st.info("No results found.", icon="ℹ️")
     else:
         if search_language == 'all':
             if search_time is None:
@@ -155,7 +173,7 @@ if search_type == 'Text':
                             st.markdown("   ")
 elif search_type == 'Image':
     if Search_Result is None:
-        st.write("No results found.")
+        st.info("No results found.", icon="ℹ️")
     else:
         if search_language == 'all':
             if search_time is None:
@@ -219,7 +237,7 @@ elif search_type == 'Image':
                                     cols[j].markdown("   ")
 elif search_type == 'Video':
     if Search_Result is None:
-        st.write("No results found.")
+        st.info("No results found.", icon="ℹ️")
     else:
         if search_language == 'all':
             if search_time is None:
