@@ -52,4 +52,8 @@ To get started with Neutron, simply clone the repository to your local machine a
 
 We value your feedback! If you have any suggestions, encounter issues, or need assistance, please don't hesitate to open an issue on [GitHub](https://github.com/Lithicsoft/Neutron/issues). Our team is here to help and continuously improve the Neutron experience.
 
+## Credits
+
+Special thanks to [@Andrej Bartulin](https://github.com/Andrej123456789/) for contributing the project name. Your input has been invaluable to our project's identity and success.
+
 Thank you for your interest in Neutron. Happy searching!
