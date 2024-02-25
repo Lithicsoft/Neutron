@@ -56,4 +56,5 @@ We value your feedback! If you have any suggestions, encounter issues, or need a
 
 Special thanks to [@Andrej Bartulin](https://github.com/Andrej123456789/) for contributing the project name. Your input has been invaluable to our project's identity and success.
 
+---
 Thank you for your interest in Neutron. Happy searching!
