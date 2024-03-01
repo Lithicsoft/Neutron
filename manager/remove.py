@@ -1,8 +1,10 @@
+from ..dbmanager import delete_information,update_information
+
 def remove_data(conn, site_id):
     cursor = conn.cursor()
 
-    cursor.execute("DELETE FROM information WHERE site_id = ?", (site_id,))
-    cursor.execute("UPDATE information SET site_id = site_id - 1 WHERE site_id > ?", (site_id,))
+    delete_information(cursor, site_id)
+    update_information(cursor, site_id)
 
     conn.commit()
 

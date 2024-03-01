@@ -7,6 +7,8 @@ import re
 sys.path.append(os.path.abspath(os.path.join('./')))
 from initializer.loader import database_loader
 
+from ..dbmanager import select_from_information_longer,select_from_information_shorter
+
 conn0 = database_loader(0)
 conn1 = database_loader(1)
 conn2 = database_loader(2)
@@ -33,21 +35,12 @@ def Search_Data():
         cursor = conn.cursor()
 
         safe_keyword = escape_special_characters(keyword)
-
-        cursor.execute('''SELECT * FROM information
-                        WHERE title LIKE ? OR text LIKE ? OR description LIKE ? OR keywords LIKE ? OR shorttext LIKE ?''', 
-                        ('%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%'))
-
-        rows = cursor.fetchall()
+        rows = select_from_information_longer(cursor, safe_keyword)
     else:
         cursor = conn.cursor()
 
         safe_keyword = escape_special_characters(keyword)
-
-        cursor.execute('''SELECT * FROM information_fts
-                        WHERE information_fts MATCH ?''', (safe_keyword,))
-
-        rows = cursor.fetchall()
+        rows = select_from_information_shorter(cursor, safe_keyword)
             
     if len(rows) == 0:
         return None

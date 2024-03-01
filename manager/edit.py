@@ -8,6 +8,8 @@ from datetime import datetime
 
 from search.safe import escape_special_characters
 
+from ..dbmanager import select_count_from_information,update_information_longer
+
 GOOGLE_SAFE_BROWSING_API_KEY = os.environ.get('GSB_API_KEY')
 
 allowed_extensions = {"http", "https"}
@@ -15,8 +17,7 @@ allowed_extensions = {"http", "https"}
 def content_exists(conn, link):
     with conn:
         cursor = conn.cursor()
-        cursor.execute('''SELECT COUNT(*) FROM information WHERE link = ?''', (link,))
-        count = cursor.fetchone()[0]
+        count = select_count_from_information(cursor, link)
         return count > 0
 
 def is_content_safe(link):
@@ -67,10 +68,7 @@ def edit_data(conn, site_id, link, title, text, description, keywords, shorttext
     with conn:
         cursor = conn.cursor()
         try:
-            cursor.execute('''UPDATE information 
-                              SET link=?, title=?, text=?, description=?, keywords=?, shorttext=?, added=?
-                              WHERE site_id=?''', 
-                           (link, title, text, description, keywords, shorttext, added, site_id))
+            update_information_longer(cursor, link, title, text, description, keywords, shorttext, added, site_id)
             conn.commit()
             cursor.close()
             return "Data edited successfully."

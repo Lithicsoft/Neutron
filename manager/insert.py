@@ -8,6 +8,8 @@ from datetime import datetime
 
 from search.safe import escape_special_characters
 
+from ..dbmanager import select_count_from_information,select_max,insert_information
+
 GOOGLE_SAFE_BROWSING_API_KEY = os.environ.get('GSB_API_KEY')
 
 allowed_extensions = {"http", "https"}
@@ -15,7 +17,7 @@ allowed_extensions = {"http", "https"}
 def content_exists(conn, link):
     with conn:
         cursor = conn.cursor()
-        cursor.execute('''SELECT COUNT(*) FROM information WHERE link = ?''', (link,))
+        select_count_from_information(count, link)
         count = cursor.fetchone()[0]
         return count > 0
 
@@ -54,8 +56,7 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
     added = datetime.now()
 
     cursor = conn.cursor()
-    cursor.execute("SELECT MAX(site_id) FROM information")
-    max_site_id = cursor.fetchone()[0]
+    max_site_id = select_max(cursor)
     if max_site_id is None:
         site_id = 1
     else:
@@ -78,10 +79,7 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
     with conn:
         cursor = conn.cursor()
         try:
-            cursor.execute('''INSERT INTO information 
-                              (site_id, link, title, text, description, keywords, shorttext, added) 
-                              VALUES (?, ?, ?, ?, ?, ?, ?, ?)''', 
-                           (site_id, link, title, text, description, keywords, shorttext, added))
+            insert_information(cursor, site_id, link, title, text, description, keywords, shorttext, added)
             conn.commit()
             cursor.close()
             return "Data inserted successfully."

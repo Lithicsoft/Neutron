@@ -3,6 +3,8 @@ from log.write import sys_log
 
 from account.database import create_users_database
 
+from ..dbmanager import create_table,create_index
+
 def Initializer_Censorship_Database():
     source_conn1 = sqlite3.connect('./database/search-index0.db')
 
@@ -35,21 +37,13 @@ def Initializer_Database():
     conn = sqlite3.connect('./database/search-index0.db')
     cursor = conn.cursor()
 
-    cursor.execute('''CREATE TABLE IF NOT EXISTS information
-                    (site_id INTEGER, 
-                    link TEXT, 
-                    title TEXT, 
-                    text TEXT, 
-                    description TEXT, 
-                    keywords TEXT, 
-                    shorttext TEXT, 
-                    added TIMESTAMP)''')
+    create_table(cursor)
 
-    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_title ON information (title)''')
-    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_text ON information (text)''')
-    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_description ON information (description)''')
-    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_keywords ON information (keywords)''')
-    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_shorttext ON information (shorttext)''')
+    create_index(cursor, "title")
+    create_index(cursor, "text")
+    create_index(cursor, "description")
+    create_index(cursor, "keywords")
+    create_index(cursor, "shorttext")
 
     conn.commit()
 
