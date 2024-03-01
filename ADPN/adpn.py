@@ -270,8 +270,8 @@ while(True):
         elif os_name == 'Linux':
             SG_API = input('Sendgrid API KEY: ')
             GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
-            subprocess.call('export SG_API_KEY=' + SG_API)
-            subprocess.call('export GSB_API_KEY=' + GSB_API)
+            subprocess.call('export SG_API_KEY=' + SG_API, shell=True)
+            subprocess.call('export GSB_API_KEY=' + GSB_API, shel=True)
             print('Successfully created API environment variable.')
         else:
             print('The operating system you are using is not capable of executing this command.')
