@@ -1,3 +1,4 @@
+import platform
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join('./')))
@@ -10,7 +11,6 @@ import subprocess
 from FTS.initializer import Initializer_Virtual_Table
 from FTS.update import Update_Virtual_Table
 from account.username import get_username
-from atmt import ATMT_STRT
 from initializer.database import Initializer_Database
 from initializer.loader import database_loader
 from log.write import sys_log
@@ -201,6 +201,8 @@ else:
     print('You do not have sufficient rights to access the panel.')
     exit()
 
+os_name = platform.system()
+
 while(True):
     command = input('>>> ')
     
@@ -242,21 +244,37 @@ while(True):
                     Update_Virtual_Table(vt_conn)
                     vt_conn.close()
 
-                    subprocess.call("start python search/index.py", shell=True)
-                    subprocess.call("start python manager/manager.py", shell=True)
-                    subprocess.call("start python -m streamlit run main.py", shell=True)
-                    subprocess.call("start python -m streamlit run account/main.py", shell=True)
-                    print('The server has been started successfully.')
-                    sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+                    if os_name == 'Windows':
+                        subprocess.call("start python search/index.py", shell=True)
+                        subprocess.call("start python manager/manager.py", shell=True)
+                        subprocess.call("start python -m streamlit run main.py", shell=True)
+                        subprocess.call("start python -m streamlit run account/main.py", shell=True)
+                        print('The server has been started successfully.')
+                        sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+                    elif os_name == 'Linux':
+                        subprocess.call("xterm -e python search/index.py &", shell=True)
+                        subprocess.call("xterm -e python manager/manager.py &", shell=True)
+                        subprocess.call("xterm -e python -m streamlit run main.py &", shell=True)
+                        subprocess.call("xterm -e python -m streamlit run account/main.py &", shell=True)
+                        print('The server has been started successfully.')
+                        sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+                    else:
+                        print('The operating system you are using is not capable of executing this command.')
     elif command == "api-config":
-        SG_API = input('Sendgrid API KEY: ')
-        GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
-        subprocess.call('setx SG_API_KEY "' + SG_API + '" /M')
-        subprocess.call('setx GSB_API_KEY "' + GSB_API + '" /M')
-        print('Successfully created API environment variable.')
-    elif command == "atmt":
-        keyword = input('Keyword: ')
-        ATMT_STRT(keyword)
+        if os_name == 'Windows':
+            SG_API = input('Sendgrid API KEY: ')
+            GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
+            subprocess.call('setx SG_API_KEY "' + SG_API + '" /M')
+            subprocess.call('setx GSB_API_KEY "' + GSB_API + '" /M')
+            print('Successfully created API environment variable.')
+        elif os_name == 'Linux':
+            SG_API = input('Sendgrid API KEY: ')
+            GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
+            subprocess.call('export SG_API_KEY=' + SG_API)
+            subprocess.call('export GSB_API_KEY=' + GSB_API)
+            print('Successfully created API environment variable.')
+        else:
+            print('The operating system you are using is not capable of executing this command.')
     elif command == "check":
         compare_databases_num = input('Text(0), Image(1), Video(3): ')
         compare_databases(compare_databases_num)

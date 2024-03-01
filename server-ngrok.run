@@ -1,1 +1,0 @@
-ngrok start --all
