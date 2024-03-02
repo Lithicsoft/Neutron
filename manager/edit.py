@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
+from library.database import Library_Edit_Data, Library_Get_Data_Count
 
 from search.safe import escape_special_characters
 
@@ -15,8 +16,7 @@ allowed_extensions = {"http", "https"}
 def content_exists(conn, link):
     with conn:
         cursor = conn.cursor()
-        cursor.execute('''SELECT COUNT(*) FROM information WHERE link = ?''', (link,))
-        count = cursor.fetchone()[0]
+        count = Library_Get_Data_Count(cursor, link)
         return count > 0
 
 def is_content_safe(link):
@@ -67,10 +67,7 @@ def edit_data(conn, site_id, link, title, text, description, keywords, shorttext
     with conn:
         cursor = conn.cursor()
         try:
-            cursor.execute('''UPDATE information 
-                              SET link=?, title=?, text=?, description=?, keywords=?, shorttext=?, added=?
-                              WHERE site_id=?''', 
-                           (link, title, text, description, keywords, shorttext, added, site_id))
+            Library_Edit_Data(cursor, link, title, text, description, keywords, shorttext, added, site_id)
             conn.commit()
             cursor.close()
             return "Data edited successfully."

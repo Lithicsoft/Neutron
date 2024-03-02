@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
+from library.database import Library_Get_Data_Count, Library_Get_Max_ID, Library_Insert_Data
 
 from search.safe import escape_special_characters
 
@@ -15,8 +16,7 @@ allowed_extensions = {"http", "https"}
 def content_exists(conn, link):
     with conn:
         cursor = conn.cursor()
-        cursor.execute('''SELECT COUNT(*) FROM information WHERE link = ?''', (link,))
-        count = cursor.fetchone()[0]
+        count = Library_Get_Data_Count(cursor, link)
         return count > 0
 
 def is_content_safe(link):
@@ -54,8 +54,7 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
     added = datetime.now()
 
     cursor = conn.cursor()
-    cursor.execute("SELECT MAX(site_id) FROM information")
-    max_site_id = cursor.fetchone()[0]
+    max_site_id = Library_Get_Max_ID(cursor)
     if max_site_id is None:
         site_id = 1
     else:
@@ -78,10 +77,7 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
     with conn:
         cursor = conn.cursor()
         try:
-            cursor.execute('''INSERT INTO information 
-                              (site_id, link, title, text, description, keywords, shorttext, added) 
-                              VALUES (?, ?, ?, ?, ?, ?, ?, ?)''', 
-                           (site_id, link, title, text, description, keywords, shorttext, added))
+            Library_Insert_Data(cursor, site_id, link, title, text, description, keywords, shorttext, added)
             conn.commit()
             cursor.close()
             return "Data inserted successfully."

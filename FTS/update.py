@@ -1,9 +1,8 @@
+from library.database import Library_Update_Virtual_Table
 from log.write import sys_log
 
 def Update_Virtual_Table(conn):
-    conn.execute('DELETE FROM information_fts')
-    conn.execute('''INSERT INTO information_fts(site_id, link, title, text, description, keywords, shorttext, added)
-                SELECT site_id, link, title, text, description, keywords, shorttext, added FROM information''')
+    Library_Update_Virtual_Table(conn)
 
     conn.commit()
 

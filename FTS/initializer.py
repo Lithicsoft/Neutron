@@ -1,12 +1,12 @@
 import sqlite3
+from library.database import Library_Create_Virtual_Table
 
 from log.write import sys_log
 
 def Initializer_Virtual_Table():
     conn = sqlite3.connect('./database/search-index0.db')
 
-    conn.execute('''CREATE VIRTUAL TABLE IF NOT EXISTS information_fts
-                 USING FTS5(site_id, link, title, text, description, keywords, shorttext, added)''')
+    Library_Create_Virtual_Table(conn)
     
     conn.close()
 
@@ -14,8 +14,7 @@ def Initializer_Virtual_Table():
 
     conn = sqlite3.connect('./database/search-index1.db')
 
-    conn.execute('''CREATE VIRTUAL TABLE IF NOT EXISTS information_fts
-                 USING FTS5(site_id, link, title, text, description, keywords, shorttext, added)''')
+    Library_Create_Virtual_Table(conn)
     
     conn.close()
 
@@ -23,8 +22,7 @@ def Initializer_Virtual_Table():
 
     conn = sqlite3.connect('./database/search-index2.db')
 
-    conn.execute('''CREATE VIRTUAL TABLE IF NOT EXISTS information_fts
-                 USING FTS5(site_id, link, title, text, description, keywords, shorttext, added)''')
+    Library_Create_Virtual_Table(conn)
     
     conn.close()
 

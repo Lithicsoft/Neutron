@@ -1,4 +1,5 @@
 from flask import Flask, request
+from library.database import Library_Exact_Search, Library_Full_Text_Search
 from safe import escape_special_characters
 
 import sys
@@ -34,20 +35,13 @@ def Search_Data():
 
         safe_keyword = escape_special_characters(keyword)
 
-        cursor.execute('''SELECT * FROM information
-                        WHERE title LIKE ? OR text LIKE ? OR description LIKE ? OR keywords LIKE ? OR shorttext LIKE ?''', 
-                        ('%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%'))
-
-        rows = cursor.fetchall()
+        rows = Library_Exact_Search(cursor, safe_keyword)
     else:
         cursor = conn.cursor()
 
         safe_keyword = escape_special_characters(keyword)
 
-        cursor.execute('''SELECT * FROM information_fts
-                        WHERE information_fts MATCH ?''', (safe_keyword,))
-
-        rows = cursor.fetchall()
+        rows = Library_Full_Text_Search(cursor, safe_keyword)
             
     if len(rows) == 0:
         return None
