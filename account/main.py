@@ -43,7 +43,7 @@ def add_user(email, username, password, confirm):
     conn.commit()
 
 def update_password(user_id, email, new_password):
-    password = hashlib.md5(hashlib.sha256(password.encode('utf-8')).hexdigest().encode()).hexdigest()
+    new_password = hashlib.md5(hashlib.sha256(new_password.encode('utf-8')).hexdigest().encode()).hexdigest()
     cursor.execute("UPDATE users SET password = %s WHERE id = %s", (new_password, user_id))
     sys_log("Changed User Password", "Username: " + username + " User ID: " + str(user_id) + " Email: " + email)
     conn.commit()
@@ -165,14 +165,11 @@ with st.form(key = 'Account_Form'):
 
         if submitted3:
             username = st.text_input('Username: ')
-            user_id = st.text_input('User ID: ')
 
             st.markdown('---')
 
-            if username and not user_id:
+            if username:
                 st.write("User ID:" + str(get_user_id(cursor, username)))
-            elif user_id and not username:
-                st.write("Username:" + get_username(cursor, user_id))
 
     else:
         open_button = st.form_submit_button('Open Form')

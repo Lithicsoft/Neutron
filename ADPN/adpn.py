@@ -1,3 +1,4 @@
+import getpass
 import platform
 import sys
 import os
@@ -196,7 +197,7 @@ def change_reliability_by_user_id(user_id, new_reliability):
     sys_log("Changed User Reliability", "Username: " + get_username(account_cursor, user_id) + " Reliability: " + str(new_reliability))
 
 username = input('Username: ')
-password = input('Password: ')
+password = getpass.getpass('Password: ')
 
 reliability = get_user_reliability(account_cursor, username, password)
 
@@ -238,7 +239,7 @@ while(True):
         else:
             yn = input('Do you want to start the server including: Search, Account [y/n]: ')
             if (yn != 'n'):
-                    #Initializer_Database()
+                    Initializer_Database()
                     Initializer_Virtual_Table()
 
                     vt_conn = database_loader(0)

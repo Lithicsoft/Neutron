@@ -11,7 +11,14 @@ def Library_Update_Virtual_Table(conn):
     cursor.execute('''INSERT INTO information_fts(link, title, text, description, keywords, shorttext)
                 SELECT link, title, text, description, keywords, shorttext FROM information''')
     cursor.close()
-    
+
+def Library_Check_Index_Exists(cursor, index_name):
+    cursor.execute(f'''SELECT COUNT(1) IndexIsThere 
+                    FROM INFORMATION_SCHEMA.STATISTICS
+                    WHERE table_schema=DATABASE() AND table_name='information' AND index_name='{index_name}';''')
+
+    return cursor.fetchone()[0] == 0
+
 def Library_Initializer_Database(cursor):
     cursor.execute('''CREATE TABLE IF NOT EXISTS information
                     (site_id INT, 
@@ -23,11 +30,16 @@ def Library_Initializer_Database(cursor):
                     shorttext TEXT, 
                     added TIMESTAMP) ENGINE=InnoDB''')
 
-    cursor.execute('''CREATE FULLTEXT INDEX idx_title ON information (title)''')
-    cursor.execute('''CREATE FULLTEXT INDEX idx_text ON information (text)''')
-    cursor.execute('''CREATE FULLTEXT INDEX idx_description ON information (description)''')
-    cursor.execute('''CREATE FULLTEXT INDEX idx_keywords ON information (keywords)''')
-    cursor.execute('''CREATE FULLTEXT INDEX idx_shorttext ON information (shorttext)''')
+    if Library_Check_Index_Exists(cursor, 'idx_title'):
+        cursor.execute('''CREATE FULLTEXT INDEX idx_title ON information (title)''')
+    if Library_Check_Index_Exists(cursor, 'idx_text'):
+        cursor.execute('''CREATE FULLTEXT INDEX idx_text ON information (text)''')
+    if Library_Check_Index_Exists(cursor, 'idx_description'):
+        cursor.execute('''CREATE FULLTEXT INDEX idx_description ON information (description)''')
+    if Library_Check_Index_Exists(cursor, 'idx_keywords'):
+        cursor.execute('''CREATE FULLTEXT INDEX idx_keywords ON information (keywords)''')
+    if Library_Check_Index_Exists(cursor, 'idx_shorttext'):
+        cursor.execute('''CREATE FULLTEXT INDEX idx_shorttext ON information (shorttext)''')
 
 def Library_Get_Data_Count(cursor, link):
     cursor.execute('''SELECT COUNT(*) FROM information WHERE link = %s''', (link,))
