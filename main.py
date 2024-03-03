@@ -32,7 +32,7 @@ def get_wikipedia_excerpt(keyword, language):
     except wikipedia.exceptions.WikipediaException as e:
         return None
 
-st.title('Neutron')
+st.markdown("![Neutron](https://i.imgur.com/W7bii3L.gif)")
 
 st.session_state.setdefault('form_state', True)
 Search_Result = []
