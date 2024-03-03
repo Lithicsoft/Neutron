@@ -38,18 +38,18 @@ def send_email(subject, from_email, to_email, content):
 
 def add_user(email, username, password, confirm):
     password = hashlib.md5(hashlib.sha256(password.encode('utf-8')).hexdigest().encode()).hexdigest()
-    cursor.execute('''INSERT INTO users (email, username, password, confirm) VALUES (?, ?, ?, ?)''', (email, username, password, confirm))
+    cursor.execute('''INSERT INTO users (email, username, password, confirm) VALUES (%s, %s, %s, %s)''', (email, username, password, confirm))
     sys_log("Created User Account", "Username: " + username + " Email: " + email)
     conn.commit()
 
 def update_password(user_id, email, new_password):
     password = hashlib.md5(hashlib.sha256(password.encode('utf-8')).hexdigest().encode()).hexdigest()
-    cursor.execute("UPDATE users SET password = ? WHERE id = ?", (new_password, user_id))
+    cursor.execute("UPDATE users SET password = %s WHERE id = %s", (new_password, user_id))
     sys_log("Changed User Password", "Username: " + username + " User ID: " + str(user_id) + " Email: " + email)
     conn.commit()
 
 def update_username(user_id, email, new_username):
-    cursor.execute("UPDATE users SET username = ? WHERE id = ?", (new_username, user_id))
+    cursor.execute("UPDATE users SET username = %s WHERE id = %s", (new_username, user_id))
     sys_log("Changed Username", "Username: " + username + " User ID: " + str(user_id) + " Email: " + email)
     conn.commit()
 
@@ -61,17 +61,17 @@ def verify_email(email):
         return True
 
 def check_existing_email(email):
-    cursor.execute("SELECT * FROM users WHERE email=?", (email,))
+    cursor.execute("SELECT * FROM users WHERE email=%s", (email,))
     return cursor.fetchone() is not None
 
 def check_existing_username(username):
-    cursor.execute("SELECT * FROM users WHERE username=?", (username,))
+    cursor.execute("SELECT * FROM users WHERE username=%s", (username,))
     return cursor.fetchone() is not None
 
 def verification(user_id, confirmation_code, confirm_value):
     if int(confirmation_code) == confirm_value:
-        cursor.execute("UPDATE users SET confirm = 0 WHERE id = ?", (user_id,))
-        cursor.execute("UPDATE users SET reliability = 0 WHERE id = ?", (user_id,))
+        cursor.execute("UPDATE users SET confirm = 0 WHERE id = %s", (user_id,))
+        cursor.execute("UPDATE users SET reliability = 0 WHERE id = %s", (user_id,))
         conn.commit()
         st.success('Your account has been successfully created.')
 

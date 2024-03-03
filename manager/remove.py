@@ -1,6 +1,5 @@
 from library.database import Library_Remove_Data
 
-
 def remove_data(conn, site_id):
     cursor = conn.cursor()
 

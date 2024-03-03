@@ -1,6 +1,4 @@
 import os
-import streamlit as st
-import sqlite3
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -76,11 +74,7 @@ def insert_data(conn, link, title, text, description, keywords, shorttext):
 
     with conn:
         cursor = conn.cursor()
-        try:
-            Library_Insert_Data(cursor, site_id, link, title, text, description, keywords, shorttext, added)
-            conn.commit()
-            cursor.close()
-            return "Data inserted successfully."
-        except sqlite3.Error as e:
-            cursor.close()
-            return "Error inserting data into the database:", e
+        Library_Insert_Data(cursor, site_id, link, title, text, description, keywords, shorttext, added)
+        conn.commit()
+        cursor.close()
+        return "Data inserted successfully."

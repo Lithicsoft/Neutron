@@ -1,60 +1,34 @@
-import sqlite3
+from library.cloner import clone_database
+from library.connector import connect_to_mysql
 from library.database import Library_Initializer_Database
 from log.write import sys_log
 
 from account.database import create_users_database
 
 def Initializer_Censorship_Database():
-    source_conn1 = sqlite3.connect('./database/search-index0.db')
+    clone_database('search_index0', 'censorship0')
+    clone_database('search_index1', 'censorship1')
+    clone_database('search_index2', 'censorship2')
 
-    destination_conn1 = sqlite3.connect('./database/censorship0.db')
-
-    source_conn1.backup(destination_conn1)
-
-    source_conn1.close()
-    destination_conn1.close()
-
-    source_conn2 = sqlite3.connect('./database/search-index1.db')
-
-    destination_conn2 = sqlite3.connect('./database/censorship1.db')
-
-    source_conn2.backup(destination_conn2)
-
-    source_conn2.close()
-    destination_conn2.close()
-
-    source_conn3 = sqlite3.connect('./database/search-index2.db')
-
-    destination_conn3 = sqlite3.connect('./database/censorship2.db')
-
-    source_conn3.backup(destination_conn3)
-
-    source_conn3.close()
-    destination_conn3.close()
 
 def Initializer_Database():
-    conn = sqlite3.connect('./database/search-index0.db')
+    conn = connect_to_mysql('search_index0')
     cursor = conn.cursor()
 
     Library_Initializer_Database(cursor)
 
     conn.commit()
 
-    conn1 = sqlite3.connect('./database/search-index1.db')
-    conn2 = sqlite3.connect('./database/search-index2.db')
-
-    conn.backup(conn1)
-    conn.backup(conn2)
+    clone_database('search_index0', 'search_index1')
+    clone_database('search_index0', 'search_index2')
 
     conn.close()
-    conn1.close()
-    conn2.close()
 
     Initializer_Censorship_Database()
     create_users_database()
 
-    sys_log("Initializer Database", "search-index0.db")
-    sys_log("Initializer Database", "search-index1.db")
-    sys_log("Initializer Database", "search-index2.db")
-    sys_log("Initializer Censorship Database", "censorship.db")
-    sys_log("Create Users Account Database", "users-account.db")
+    sys_log("Initializer Database", "search_index 0")
+    sys_log("Initializer Database", "search_index 1")
+    sys_log("Initializer Database", "search_index 2")
+    sys_log("Initializer Censorship Database", "censorship")
+    sys_log("Create Users Account Database", "users_account")

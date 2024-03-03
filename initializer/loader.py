@@ -1,30 +1,30 @@
-import sqlite3
+from library.connector import connect_to_mysql
 from log.write import sys_log
 
 def database_loader(num):
     if num == 0:
-        conn = sqlite3.connect('./database/search-index0.db', check_same_thread=False)
-        sys_log("Loaded", "search-index0.db")
+        conn = connect_to_mysql('search_index0')
+        sys_log("Loaded", "search_index0")
         return conn
     elif num == 1:
-        conn = sqlite3.connect('./database/search-index1.db', check_same_thread=False)
-        sys_log("Loaded", "search-index1.db")
+        conn = connect_to_mysql('search_index1')
+        sys_log("Loaded", "search_index1")
         return conn
     elif num == 2:
-        conn = sqlite3.connect('./database/search-index2.db', check_same_thread=False)
-        sys_log("Loaded", "search-index2.db")
+        conn = connect_to_mysql('search_index2')
+        sys_log("Loaded", "search_index2")
         return conn
 
 def censorship_database_loader(num):
     if num == 0:
-        conn = sqlite3.connect('./database/censorship0.db', check_same_thread=False)
-        sys_log("Loaded", "censorship0.db")
+        conn = connect_to_mysql('censorship0')
+        sys_log("Loaded", "censorship0")
         return conn
     if num == 1:
-        conn = sqlite3.connect('./database/censorship1.db', check_same_thread=False)
-        sys_log("Loaded", "censorship1.db")
+        conn = connect_to_mysql('censorship1')
+        sys_log("Loaded", "censorship1")
         return conn
     if num == 2:
-        conn = sqlite3.connect('./database/censorship2.db', check_same_thread=False)
-        sys_log("Loaded", "censorship2.db")
+        conn = connect_to_mysql('censorship2')
+        sys_log("Loaded", "censorship2")
         return conn

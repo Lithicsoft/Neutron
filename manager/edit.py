@@ -1,6 +1,4 @@
 import os
-import streamlit as st
-import sqlite3
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -66,11 +64,7 @@ def edit_data(conn, site_id, link, title, text, description, keywords, shorttext
 
     with conn:
         cursor = conn.cursor()
-        try:
-            Library_Edit_Data(cursor, link, title, text, description, keywords, shorttext, added, site_id)
-            conn.commit()
-            cursor.close()
-            return "Data edited successfully."
-        except sqlite3.Error as e:
-            cursor.close()
-            return "Error editing data in the database:", e
+        Library_Edit_Data(cursor, link, title, text, description, keywords, shorttext, added, site_id)
+        conn.commit()
+        cursor.close()
+        return "Data edited successfully."

@@ -2,11 +2,14 @@ import platform
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join('./')))
+from account.database import create_users_database
+from library.connector import connect_to_mysql
+from library.deleter import delete_database
+from library.cloner import clone_database
 from initializer.loader import database_loader
 from datetime import datetime
 import os
 import shutil
-import sqlite3
 import subprocess
 from FTS.initializer import Initializer_Virtual_Table
 from FTS.update import Update_Virtual_Table
@@ -22,8 +25,8 @@ print('Welcome to Neutron Administrator Panel')
 def compare_databases(num):
     if num == 0:
         try:
-            conn1 = sqlite3.connect("./database/search-index0.db")
-            conn2 = sqlite3.connect("./database/censorship0.db")
+            conn1 = connect_to_mysql("search-index0")
+            conn2 = connect_to_mysql("censorship0")
 
             cur1 = conn1.cursor()
             cur2 = conn2.cursor()
@@ -60,8 +63,8 @@ def compare_databases(num):
             return False
     elif num == 1:
         try:
-            conn1 = sqlite3.connect("./database/search-index1.db")
-            conn2 = sqlite3.connect("./database/censorship1.db")
+            conn1 = connect_to_mysql("search-index1")
+            conn2 = connect_to_mysql("censorship1")
 
             cur1 = conn1.cursor()
             cur2 = conn2.cursor()
@@ -98,8 +101,8 @@ def compare_databases(num):
             return False
     elif num == 2:
         try:
-            conn1 = sqlite3.connect("./database/search-index2.db")
-            conn2 = sqlite3.connect("./database/censorship2.db")
+            conn1 = connect_to_mysql("search-index2")
+            conn2 = connect_to_mysql("censorship2")
 
             cur1 = conn1.cursor()
             cur2 = conn2.cursor()
@@ -137,24 +140,24 @@ def compare_databases(num):
 
 def synchronization_databases():
     try:
-        if not compare_databases(0) and not compare_databases(1) and not compare_databases(2):
+        if not compare_databases(0) or not compare_databases(1) or not compare_databases(2):
             print("Databases cannot be synchronized when there are differences between them.")
             return
         else:
-            os.remove("./database/censorship0.db")
-            shutil.copy("./database/search-index0.db", "./database/censorship0.db")
-            print("Synchronization successful.")
+            delete_database("censorship0")
+            clone_database("search-index0", "censorship0")
 
-            os.remove("./database/censorship1.db")
-            shutil.copy("./database/search-index1.db", "./database/censorship1.db")
-            print("Synchronization successful.")
+            delete_database("censorship1")
+            clone_database("search-index1", "censorship1")
 
-            os.remove("./database/censorship2.db")
-            shutil.copy("./database/search-index2.db", "./database/censorship2.db")
+            delete_database("censorship2")
+            clone_database("search-index2", "censorship2")
             print("Synchronization successful.")
     except Exception as e:
         print("Error synchronizing databases:", str(e))
 
+
+create_users_database()
 account_conn = account_database_loader()
 account_cursor = account_conn.cursor()
 
@@ -163,6 +166,8 @@ def list_users_database():
 
     rows = account_cursor.fetchall()
 
+    user_amount = 0
+
     for row in rows:
         print("ID:", row[0])
         print("Email:", row[1])
@@ -170,9 +175,12 @@ def list_users_database():
         print("Password:", row[3])
         print("Reliability:", row[4])
         print("--------------------")
+        user_amount + 1
+    
+    print(user_amount)
 
 def get_reliability_from_id(user_id):
-    account_cursor.execute("SELECT reliability FROM users WHERE id = ?", (user_id,))
+    account_cursor.execute("SELECT reliability FROM users WHERE id = %s", (user_id,))
 
     rows = account_cursor.fetchall()
 
@@ -182,7 +190,7 @@ def get_reliability_from_id(user_id):
     return reliability
 
 def change_reliability_by_user_id(user_id, new_reliability):
-    account_cursor.execute("UPDATE users SET reliability = ? WHERE id = ?", (new_reliability, user_id))
+    account_cursor.execute("UPDATE users SET reliability = %s WHERE id = %s", (new_reliability, user_id))
     account_conn.commit()
 
     sys_log("Changed User Reliability", "Username: " + get_username(account_cursor, user_id) + " Reliability: " + str(new_reliability))
@@ -215,7 +223,6 @@ while(True):
             clear: Clear the terminal.
             start: Start the servers needed for MonoSearch.
             api-config: Add the necessary API KEY environment variables to the servers.
-            atmt: Start ATMT STRT with keywords.
             check: Lists the data that needs to be censored.
             sync: Synchronize the censored database and the parent database (requirement: no data that needs to be censored).
             sync-fts: Synchronize data in the root table with the virtual table.
@@ -226,12 +233,12 @@ while(True):
     elif command == "clear":
         subprocess.call("cls", shell=True)
     elif command == "start":
-        if os.environ.get('SG_API_KEY') is None or os.environ.get('GSB_API_KEY') is None:
+        if os.environ.get('SG_API_KEY') is None or os.environ.get('GSB_API_KEY') is None or os.environ.get('SQLUSERNAME') is None or os.environ.get('SQLPASSWORD') is None:
             print('The required API KEY to start the servers was not found, please use the "api-config" command to set the required environment API KEY variables.')
         else:
             yn = input('Do you want to start the server including: Search, Account [y/n]: ')
             if (yn != 'n'):
-                    Initializer_Database()
+                    #Initializer_Database()
                     Initializer_Virtual_Table()
 
                     vt_conn = database_loader(0)
@@ -261,15 +268,13 @@ while(True):
                     else:
                         print('The operating system you are using is not capable of executing this command.')
     elif command == "api-config":
+        SG_API = input('Sendgrid API KEY: ')
+        GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
         if os_name == 'Windows':
-            SG_API = input('Sendgrid API KEY: ')
-            GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
             subprocess.call('setx SG_API_KEY "' + SG_API + '" /M')
             subprocess.call('setx GSB_API_KEY "' + GSB_API + '" /M')
             print('Successfully created API environment variable.')
         elif os_name == 'Linux':
-            SG_API = input('Sendgrid API KEY: ')
-            GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
             subprocess.call('export SG_API_KEY=' + SG_API, shell=True)
             subprocess.call('export GSB_API_KEY=' + GSB_API, shel=True)
             print('Successfully created API environment variable.')

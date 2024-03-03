@@ -1,11 +1,11 @@
 from flask import Flask, request
-from library.database import Library_Exact_Search, Library_Full_Text_Search
 from safe import escape_special_characters
 
 import sys
 import os
 import re
 sys.path.append(os.path.abspath(os.path.join('./')))
+from library.database import Library_Exact_Search, Library_Full_Text_Search
 from initializer.loader import database_loader
 
 conn0 = database_loader(0)

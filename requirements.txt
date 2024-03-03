@@ -4,5 +4,6 @@ wikipedia
 streamlit
 sendgrid
 requests
+pymysql
 flask
 bs4
