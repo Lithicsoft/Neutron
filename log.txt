@@ -51,3 +51,110 @@ SYS: Database Connection: Successful
 SYS: Loaded: users_account
 User: Admin (ID:1)/(Reliability:4): Insert Data: Link: https://google.com Title: Google Text: G Description: G Keywords: G ShortText: G
 SYS: Update Virtual Table: search-index012.db
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Initializer Database: search_index 0
+SYS: Initializer Database: search_index 1
+SYS: Initializer Database: search_index 2
+SYS: Initializer Censorship Database: censorship
+SYS: Create Users Account Database: users_account
+SYS: Database Connection: Successful
+SYS: Initializer Virtual Table: search_index0
+SYS: Database Connection: Successful
+SYS: Initializer Virtual Table: search_index1
+SYS: Database Connection: Successful
+SYS: Initializer Virtual Table: search_index2
+SYS: Database Connection: Successful
+SYS: Loaded: search_index0
+SYS: Update Virtual Table: search-index012.db
+SYS: Database Connection: Successful
+SYS: Loaded: search_index1
+SYS: Update Virtual Table: search-index012.db
+SYS: Database Connection: Successful
+SYS: Loaded: search_index2
+SYS: Update Virtual Table: search-index012.db
+SYS: Start Server: 2024-03-04 19:07:16
+SYS: Database Connection: Successful
+SYS: Loaded: search_index0
+SYS: Database Connection: Successful
+SYS: Loaded: search_index1
+SYS: Database Connection: Successful
+SYS: Loaded: search_index2
+SYS: Database Connection: Successful
+SYS: Loaded: search_index0
+SYS: Database Connection: Successful
+SYS: Loaded: search_index1
+SYS: Database Connection: Successful
+SYS: Loaded: search_index2
+SYS: Database Connection: Successful
+SYS: Loaded: censorship0
+SYS: Database Connection: Successful
+SYS: Loaded: censorship1
+SYS: Database Connection: Successful
+SYS: Loaded: censorship2
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index0
+SYS: Database Connection: Successful
+SYS: Loaded: search_index1
+SYS: Database Connection: Successful
+SYS: Loaded: search_index2
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Initializer Database: search_index
+SYS: Initializer Censorship Database: censorship
+SYS: Create Users Account Database: users_account
+SYS: Database Connection: Successful
+SYS: Initializer Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Initializer Database: search_index
+SYS: Initializer Censorship Database: censorship
+SYS: Create Users Account Database: users_account
+SYS: Database Connection: Successful
+SYS: Initializer Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Start Server: 2024-03-05 16:51:10
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index

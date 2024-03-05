@@ -8,9 +8,7 @@ sys.path.append(os.path.abspath(os.path.join('./')))
 from library.database import Library_Exact_Search, Library_Full_Text_Search
 from initializer.loader import database_loader
 
-conn0 = database_loader(0)
-conn1 = database_loader(1)
-conn2 = database_loader(2)
+conn = database_loader()
 
 app = Flask(__name__)
 
@@ -21,13 +19,6 @@ def Search_Data():
     type = data['type']
     keyword = data['keyword']
 
-    if type == 0:
-        conn = conn0
-    elif type == 1:
-        conn = conn1
-    elif type == 2:
-        conn = conn2
-
     exact_match = re.findall(r'"(.*?)"', keyword)
 
     if exact_match:
@@ -35,13 +26,13 @@ def Search_Data():
 
         safe_keyword = escape_special_characters(keyword)
 
-        rows = Library_Exact_Search(cursor, safe_keyword)
+        rows = Library_Exact_Search(cursor, type, safe_keyword)
     else:
         cursor = conn.cursor()
 
         safe_keyword = escape_special_characters(keyword)
 
-        rows = Library_Full_Text_Search(cursor, safe_keyword)
+        rows = Library_Full_Text_Search(cursor, type, safe_keyword)
             
     if len(rows) == 0:
         return None

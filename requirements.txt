@@ -1,7 +1,6 @@
 mysql-connector-python
 langdetect
 wikipedia
-streamlit
 sendgrid
 requests
 pymysql

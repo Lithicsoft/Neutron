@@ -1,0 +1,11 @@
+Neutron Search
+
+<form action="/search" method="GET">
+    <input type="text" name="q" />
+    <button type="submit">🔎</button>
+</form>
+{% if processed_text %}
+<p id="text">{{ processed_text }}</p>
+{% endif %}
+
+{{ results }}

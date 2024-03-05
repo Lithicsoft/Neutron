@@ -38,24 +38,29 @@ st.session_state.setdefault('form_state', True)
 Search_Result = []
 
 with st.form('Input_Form'):
-    col1, col2, col3, col4, col5 = st.columns([3, 1.4, 1.1, 1.5, 1.2])
+    col1, col2, col3, col4, col5 = st.columns([4, 1.5, 1.5, 1.5, 1.5])
+    col1a, col2a, col3a = st.columns([1, 1, 1])
     AForm = st.session_state.form_state
 
     with col1:
         keyword = st.text_input('Try to search something!', placeholder='Try to search something!', label_visibility='collapsed')
     with col2:
-        submitted1 = st.form_submit_button('Search')
+        submitted1 = st.form_submit_button('🔎', help='Search')
+    with col3:
+        submitted2 = st.form_submit_button('➕', help='Insert')    
+    with col4:
+        submitted3 = st.form_submit_button('🖊️', help='Change')
+    with col5:
+        submitted4 = st.form_submit_button('❌', help='Remove')
+    
+    with col1a:
         options_types = ['Text', 'Image', 'Video']
         search_type = st.selectbox('Type:', options_types, index=0)
-    with col3:
-        submitted2 = st.form_submit_button('Insert')    
+    with col2a:
         options_language = ['all', 'af', 'ar', 'bg', 'bn', 'ca', 'cs', 'cy', 'da', 'de', 'el', 'en', 'es', 'et', 'fa', 'fi', 'fr', 'gu', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lt', 'lv', 'mk', 'ml', 'mr', 'ne', 'nl', 'no', 'pa', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'so', 'sq', 'sv', 'sw', 'ta', 'te', 'th', 'tl', 'tr', 'uk', 'ur', 'vi', 'zh-cn', 'zh-tw']
         search_language = st.selectbox('Language:', options_language)
-    with col4:
-        submitted3 = st.form_submit_button('Edit')
+    with col3a:
         search_time = st.date_input('Time', value=None)
-    with col5:
-        submitted4 = st.form_submit_button('Remove')
 
     if keyword and submitted1:
         if search_type == 'Text':

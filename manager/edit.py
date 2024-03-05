@@ -11,10 +11,10 @@ GOOGLE_SAFE_BROWSING_API_KEY = os.environ.get('GSB_API_KEY')
 
 allowed_extensions = {"http", "https"}
 
-def content_exists(conn, link):
+def content_exists(conn, table_name, link):
     with conn:
         cursor = conn.cursor()
-        count = Library_Get_Data_Count(cursor, link)
+        count = Library_Get_Data_Count(cursor, table_name, link)
         return count > 0
 
 def is_content_safe(link):
@@ -42,7 +42,7 @@ def is_content_safe(link):
             return False
     return True
 
-def edit_data(conn, site_id, link, title, text, description, keywords, shorttext):
+def edit_data(conn, table_name, site_id, link, title, text, description, keywords, shorttext):
     title = escape_special_characters(title)
     text = escape_special_characters(text)
     description = escape_special_characters(description)
@@ -64,7 +64,7 @@ def edit_data(conn, site_id, link, title, text, description, keywords, shorttext
 
     with conn:
         cursor = conn.cursor()
-        Library_Edit_Data(cursor, link, title, text, description, keywords, shorttext, added, site_id)
+        Library_Edit_Data(cursor, table_name, link, title, text, description, keywords, shorttext, added, site_id)
         conn.commit()
         cursor.close()
         return "Data edited successfully."

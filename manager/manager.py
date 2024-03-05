@@ -12,74 +12,43 @@ from insert import insert_data
 from remove import remove_data
 from FTS.update import Update_Virtual_Table
 
-conn0 = database_loader(0)
-conn1 = database_loader(1)
-conn2 = database_loader(2)
-censorship_conn0 = censorship_database_loader(0)
-censorship_conn1 = censorship_database_loader(1)
-censorship_conn2 = censorship_database_loader(2)
+conn = database_loader()
+censorship_conn = censorship_database_loader()
 
 account_conn = account_database_loader()
 cursor = account_conn.cursor()
 
 def manager_insert_data(type, username, password, link, title, text, description, keywords, shorttext):
-    if type == 'Text':
-        conn = conn0
-        censorship_conn = censorship_conn0
-    elif type == 'Image':
-        conn = conn1
-        censorship_conn = censorship_conn1
-    elif type == 'Video':
-        conn == conn2
-        censorship_conn - censorship_conn2
-
     reliability = get_user_reliability(cursor, username, password)
 
     if reliability == 0: 
-        insert_data(censorship_conn, link, title, text, description, keywords, shorttext)
+        insert_data(censorship_conn, type, link, title, text, description, keywords, shorttext)
         return "Your add request has been sent to the administrator."
     elif reliability >= 1:
         log(cursor, username, password, "Insert Data", "Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
         Update_Virtual_Table(conn)
-        return insert_data(conn, link, title, text, description, keywords, shorttext)
+        return insert_data(conn, type, link, title, text, description, keywords, shorttext)
     else: 
         return "The user's reliability cannot be determined."
 
 def manager_edit_data(type, username, password, site_id, link, title, text, description, keywords, shorttext):
-    if type == 'Text':
-        conn = conn0
-        censorship_conn = censorship_conn0
-    elif type == 'Image':
-        conn = conn1
-        censorship_conn = censorship_conn1
-    elif type == 'Video':
-        conn == conn2
-        censorship_conn = censorship_conn2
-
     reliability = get_user_reliability(cursor, username, password)
 
     if reliability == 0: 
-        edit_data(censorship_conn, site_id, link, title, text, description, keywords, shorttext)
+        edit_data(censorship_conn, type, site_id, link, title, text, description, keywords, shorttext)
         return "Your edit request has been sent to the administrator."
     elif reliability >= 2:
         log(cursor, username, password, "Edit Data", "Site ID: " + site_id + " Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
         Update_Virtual_Table(conn)
-        return edit_data(conn, site_id, link, title, text, description, keywords, shorttext)
+        return edit_data(conn, type, site_id, link, title, text, description, keywords, shorttext)
     else: 
         return "The user's reliability cannot be determined."
 
 def manager_remove_data(type, username, password, site_id):
-    if type == 'Text':
-        conn = conn0
-    elif type == 'Image':
-        conn = conn1
-    elif type == 'Video':
-        conn == conn2
-
     reliability = get_user_reliability(cursor, username, password)
 
     if reliability >= 3:
-        remove_data(conn, site_id)
+        remove_data(conn, type, site_id)
         log(cursor, username, password, "Remove Data", "Site ID: " + site_id)
         Update_Virtual_Table(conn)
         return "Data removed successfully."

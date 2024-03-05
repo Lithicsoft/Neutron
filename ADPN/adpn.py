@@ -242,13 +242,13 @@ while(True):
                     Initializer_Database()
                     Initializer_Virtual_Table()
 
-                    vt_conn = database_loader(0)
+                    vt_conn = database_loader()
                     Update_Virtual_Table(vt_conn)
                     vt_conn.close()
-                    vt_conn = database_loader(1)
+                    vt_conn = database_loader()
                     Update_Virtual_Table(vt_conn)
                     vt_conn.close()
-                    vt_conn = database_loader(2)
+                    vt_conn = database_loader()
                     Update_Virtual_Table(vt_conn)
                     vt_conn.close()
 
