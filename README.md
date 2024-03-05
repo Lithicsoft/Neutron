@@ -16,7 +16,7 @@ Neutron is a project dedicated to crafting a straightforward and user-friendly s
 A versatile Control Panel facilitating administrative commands execution and database management.
 
 #### FTS (Feature)
-Employs Sqlite3's Full-Text Search 5, enhancing search capabilities for improved results.
+Employs MySQL Full-Text Search, enhancing search capabilities for improved results.
 
 #### Account Manager (Server)
 Enables basic account management functionalities such as password changes, username alterations, account searches, and creation of accounts requiring confirmation codes via email. It upholds reliability features.
