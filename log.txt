@@ -158,3 +158,363 @@ SYS: Database Connection: Successful
 SYS: Loaded: users_account
 SYS: Database Connection: Successful
 SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: G Title: Google Text: G Description: G Keywords: G ShortText: Google is a search engine.
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: G Title: Google Text: G Description: G Keywords: G ShortText: Google is a search engine.
+SYS: Update Virtual Table: search_index
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: G Title: Google Text: G Description: G Keywords: G ShortText: Google is a search engine.
+SYS: Update Virtual Table: search_index
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: G Title: Github Text: G Description: G Keywords: G ShortText: Google is a search engine.
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: G Title: Github Text: G Description: G Keywords: G ShortText: Google is a search engine.
+SYS: Update Virtual Table: search_index
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: G Title: Github Text: G Description: G Keywords: G ShortText: Google is a search engine.
+SYS: Update Virtual Table: search_index
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: G Title: Github Text: G Description: G Keywords: G ShortText: Google is a search engine.
+SYS: Update Virtual Table: search_index
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: G Title: Github Text: G Description: G Keywords: G ShortText: Google is a search engine.
+SYS: Update Virtual Table: search_index
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: https://github.com Title: Github Text: G Description: G Keywords: G ShortText: Google is a search engine.
+SYS: Update Virtual Table: search_index
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: https://github.com Title: Github Text: G Description: G Keywords: G ShortText: Google is a search engine.
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: https://github.com Title: Github Text: G Description: G Keywords: G ShortText: Google is a search engine.
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: https://github.com Title: Github Text: G Description: G Keywords: G ShortText: Github is da best.
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: https://github.com Title: Github Text: G Description: G Keywords: G ShortText: Github is da best.
+SYS: Update Virtual Table: search_index
+User: Admin (ID:1)/(Reliability:4): Insert Data: Link: https://github.com Title: Github Text: G Description: G Keywords: G ShortText: Github is da best.
+SYS: Update Virtual Table: search_index
+User: Admin (ID:1)/(Reliability:4): Remove Data: Site ID: 1
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Created User Account: Username: Sang Email: tansangbuinguyen52@gmail.com
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Created User Account: Username: Sang Email: tansangbuinguyen52@gmail.com
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Created User Account: Username: Sang Email: tansangbuinguyen52@gmail.com
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Created User Account: Username: Sang Email: tansangbuinguyen52@gmail.com
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Created User Account: Username: Sang Email: tansangbuinguyen52@gmail.com
+SYS: Created User Account: Username: Sang Email: tansangbuinguyen52@gmail.com
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account

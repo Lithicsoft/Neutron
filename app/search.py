@@ -9,10 +9,14 @@ def index():
     return render_template(
         'index.html',
     )
+
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     keyword = request.args.get('q', '')
+    type = request.args.get('type', '')
+    if type == '':
+        type = 'Text'
     return render_template(
         'search/index.html',
-        results=Search_Data('Text', keyword)
+        results=Search_Data(type, keyword)
     )

@@ -3,19 +3,13 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
-from library.database import Library_Edit_Data, Library_Get_Data_Count
+from library.database import Library_Edit_Data
 
 from search.safe import escape_special_characters
 
 GOOGLE_SAFE_BROWSING_API_KEY = os.environ.get('GSB_API_KEY')
 
 allowed_extensions = {"http", "https"}
-
-def content_exists(conn, table_name, link):
-    with conn:
-        cursor = conn.cursor()
-        count = Library_Get_Data_Count(cursor, table_name, link)
-        return count > 0
 
 def is_content_safe(link):
     url = 'https://safebrowsing.googleapis.com/v4/threatMatches:find?key=' + GOOGLE_SAFE_BROWSING_API_KEY
@@ -56,15 +50,14 @@ def edit_data(conn, table_name, site_id, link, title, text, description, keyword
         response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
         text_content = "\n".join([p.text for p in soup.find_all('p')])
-    except requests.RequestException as e:
+    except requests.ConnectionError:
         return "Error accessing or parsing the website."
 
     if not is_content_safe(link):
         return "Unsafe content detected. Not editing the database."
 
-    with conn:
-        cursor = conn.cursor()
-        Library_Edit_Data(cursor, table_name, link, title, text, description, keywords, shorttext, added, site_id)
-        conn.commit()
-        cursor.close()
-        return "Data edited successfully."
+    cursor = conn.cursor()
+    Library_Edit_Data(cursor, table_name, link, title, text, description, keywords, shorttext, added, site_id)
+    conn.commit()
+    cursor.close()
+    return "Data edited successfully."

@@ -23,121 +23,42 @@ from account.reliability import get_user_reliability
 
 print('Welcome to Neutron Administrator Panel')
 
-def compare_databases(num):
-    if num == 0:
-        try:
-            conn1 = connect_to_mysql("search-index0")
-            conn2 = connect_to_mysql("censorship0")
+def compare_databases(table_name):
+    try:
+        conn1 = connect_to_mysql("search_index")
+        conn2 = connect_to_mysql("censorship")
 
-            cur1 = conn1.cursor()
-            cur2 = conn2.cursor()
+        cur1 = conn1.cursor()
+        cur2 = conn2.cursor()
 
-            table_name = "information"
+        cur1.execute(f"SELECT * FROM {table_name}")
+        cur2.execute(f"SELECT * FROM {table_name}")
 
-            cur1.execute(f"SELECT * FROM {table_name}")
-            cur2.execute(f"SELECT * FROM {table_name}")
+        data1 = cur1.fetchall()
+        data2 = cur2.fetchall()
 
-            data1 = cur1.fetchall()
-            data2 = cur2.fetchall()
+        set1 = set(data1)
+        set2 = set(data2)
 
-            set1 = set(data1)
-            set2 = set(data2)
+        different_list = list(set2 - set1)
 
-            different_list = list(set2 - set1)
+        result = {
+            "Censorship:": different_list,
+            "Search Index:": list(set1-set2)
+        }
 
-            result = {
-                "Censorship:": different_list,
-                "Search Index:": list(set1-set2)
-            }
+        print(result)
 
-            print(result)
+        conn1.close()
+        conn2.close()
 
-            conn1.close()
-            conn2.close()
-
-            if different_list:
-                return False
-            else:
-                return True
-        except Exception as e:
-            print("Error comparing databases:", str(e))
+        if different_list:
             return False
-    elif num == 1:
-        try:
-            conn1 = connect_to_mysql("search-index1")
-            conn2 = connect_to_mysql("censorship1")
-
-            cur1 = conn1.cursor()
-            cur2 = conn2.cursor()
-
-            table_name = "information"
-
-            cur1.execute(f"SELECT * FROM {table_name}")
-            cur2.execute(f"SELECT * FROM {table_name}")
-
-            data1 = cur1.fetchall()
-            data2 = cur2.fetchall()
-
-            set1 = set(data1)
-            set2 = set(data2)
-
-            different_list = list(set2 - set1)
-
-            result = {
-                "Censorship:": different_list,
-                "Search Index:": list(set1-set2)
-            }
-
-            print(result)
-
-            conn1.close()
-            conn2.close()
-
-            if different_list:
-                return False
-            else:
-                return True
-        except Exception as e:
-            print("Error comparing databases:", str(e))
-            return False
-    elif num == 2:
-        try:
-            conn1 = connect_to_mysql("search-index2")
-            conn2 = connect_to_mysql("censorship2")
-
-            cur1 = conn1.cursor()
-            cur2 = conn2.cursor()
-
-            table_name = "information"
-
-            cur1.execute(f"SELECT * FROM {table_name}")
-            cur2.execute(f"SELECT * FROM {table_name}")
-
-            data1 = cur1.fetchall()
-            data2 = cur2.fetchall()
-
-            set1 = set(data1)
-            set2 = set(data2)
-
-            different_list = list(set2 - set1)
-
-            result = {
-                "Censorship:": different_list,
-                "Search Index:": list(set1-set2)
-            }
-
-            print(result)
-
-            conn1.close()
-            conn2.close()
-
-            if different_list:
-                return False
-            else:
-                return True
-        except Exception as e:
-            print("Error comparing databases:", str(e))
-            return False
+        else:
+            return True
+    except Exception as e:
+        print("Error comparing databases:", str(e))
+        return False
 
 def synchronization_databases():
     try:
@@ -255,15 +176,13 @@ while(True):
                     if os_name == 'Windows':
                         subprocess.call("start python search/index.py", shell=True)
                         subprocess.call("start python manager/manager.py", shell=True)
-                        subprocess.call("start python -m streamlit run main.py", shell=True)
-                        subprocess.call("start python -m streamlit run account/main.py", shell=True)
+                        subprocess.call("start python run.py", shell=True)
                         print('The server has been started successfully.')
                         sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
                     elif os_name == 'Linux':
                         subprocess.call("xterm -e python search/index.py &", shell=True)
                         subprocess.call("xterm -e python manager/manager.py &", shell=True)
-                        subprocess.call("xterm -e python -m streamlit run main.py &", shell=True)
-                        subprocess.call("xterm -e python -m streamlit run account/main.py &", shell=True)
+                        subprocess.call("xterm -e python run.py &", shell=True)
                         print('The server has been started successfully.')
                         sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
                     else:
@@ -282,19 +201,13 @@ while(True):
         else:
             print('The operating system you are using is not capable of executing this command.')
     elif command == "check":
-        compare_databases_num = input('Text(0), Image(1), Video(3): ')
+        compare_databases_num = input('Text, Image, Video: ')
         compare_databases(compare_databases_num)
     elif command == "sync":
         synchronization_databases()
         print("Successful data synchronization.")
     elif command == "sync-fts":
-        vt_conn = database_loader(0)
-        Update_Virtual_Table(vt_conn)
-        vt_conn.close()
-        vt_conn = database_loader(1)
-        Update_Virtual_Table(vt_conn)
-        vt_conn.close()
-        vt_conn = database_loader(2)
+        vt_conn = database_loader()
         Update_Virtual_Table(vt_conn)
         vt_conn.close()
         print("Successful data synchronization.")

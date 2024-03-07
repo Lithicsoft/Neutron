@@ -1,0 +1,71 @@
+<form action="/contribute/insert" method="POST">
+    <select name="type">
+        <option value="Text">Text</option>
+        <option value="Image">Image</option>
+        <option value="Video">Video</option>
+    </select><br>
+
+    <label>Link: </label>
+    <input type="text" name="link"/><br>
+
+    <label>Title: </label>
+    <input type="text" name="title"/><br>
+
+    <label>Text: </label>
+    <input type="text" name="text"/><br>
+
+    <label>Description: </label>
+    <input type="text" name="description"/><br>
+
+    <label>Keywords: </label>
+    <input type="text" name="keywords"/><br>
+
+    <label>Shorttext: </label>
+    <input type="text" name="shorttext"/><br>
+    
+    <button type="submit" name="add_button" value="add_clicked">➕</button><br>
+</form>
+
+<form action="/contribute/change" method="POST">
+    <select name="type">
+        <option value="Text">Text</option>
+        <option value="Image">Image</option>
+        <option value="Video">Video</option>
+    </select><br>
+
+    <label>Site ID: </label>
+    <input type="text" name="site_id"/><br>
+
+    <label>Link: </label>
+    <input type="text" name="link"/><br>
+
+    <label>Title: </label>
+    <input type="text" name="title"/><br>
+
+    <label>Text: </label>
+    <input type="text" name="text"/><br>
+
+    <label>Description: </label>
+    <input type="text" name="description"/><br>
+
+    <label>Keywords: </label>
+    <input type="text" name="keywords"/><br>
+
+    <label>Shorttext: </label>
+    <input type="text" name="shorttext"/><br>
+    
+    <button type="submit" name="edit_button" value="edit_clicked">🖊️</button><br>
+</form>
+
+<form action="/contribute/remove" method="POST">
+    <select name="type">
+        <option value="Text">Text</option>
+        <option value="Image">Image</option>
+        <option value="Video">Video</option>
+    </select><br>
+
+    <label>Site ID: </label>
+    <input type="text" name="site_id"/><br>
+    
+    <button type="submit" name="remove_button" value="remove_clicked">❌</button><br>
+</form>

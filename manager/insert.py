@@ -12,10 +12,9 @@ GOOGLE_SAFE_BROWSING_API_KEY = os.environ.get('GSB_API_KEY')
 allowed_extensions = {"http", "https"}
 
 def content_exists(conn, table_name, link):
-    with conn:
-        cursor = conn.cursor()
-        count = Library_Get_Data_Count(cursor, table_name, link)
-        return count > 0
+    cursor = conn.cursor()
+    count = Library_Get_Data_Count(cursor, table_name, link)
+    return count > 0
 
 def is_content_safe(link):
     url = 'https://safebrowsing.googleapis.com/v4/threatMatches:find?key=' + str(GOOGLE_SAFE_BROWSING_API_KEY)
@@ -52,7 +51,7 @@ def insert_data(conn, table_name, link, title, text, description, keywords, shor
     added = datetime.now()
 
     cursor = conn.cursor()
-    max_site_id = Library_Get_Max_ID(cursor)
+    max_site_id = Library_Get_Max_ID(cursor, table_name)
     if max_site_id is None:
         site_id = 1
     else:
@@ -66,15 +65,14 @@ def insert_data(conn, table_name, link, title, text, description, keywords, shor
     except requests.RequestException as e:
         return "Error accessing or parsing the website."
 
-    if content_exists(conn, link):
+    if content_exists(conn, table_name, link):
         return "Content already exists in the database."
 
     if not is_content_safe(link):
         return "Unsafe content detected. Not inserting into the database."
 
-    with conn:
-        cursor = conn.cursor()
-        Library_Insert_Data(cursor, table_name, site_id, link, title, text, description, keywords, shorttext, added)
-        conn.commit()
-        cursor.close()
-        return "Data inserted successfully."
+    cursor = conn.cursor()
+    Library_Insert_Data(cursor, table_name, site_id, link, title, text, description, keywords, shorttext, added)
+    conn.commit()
+    cursor.close()
+    return "Data inserted successfully."

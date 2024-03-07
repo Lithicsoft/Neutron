@@ -4,8 +4,29 @@ Neutron Search
     <input type="text" name="q" />
     <button type="submit">🔎</button>
 </form>
-{% if processed_text %}
-<p id="text">{{ processed_text }}</p>
-{% endif %}
+
+<div id="tagList">
+  <button class="tag" data-type="Text">Text</button>
+  <button class="tag" data-type="Image">Image</button>
+  <button class="tag" data-type="video">Video</button>
+</div>
+
+<script>
+var tags = document.querySelectorAll('.tag');
+
+tags.forEach(function(tag) {
+  tag.addEventListener('click', function() {
+    var type = this.getAttribute('data-type');
+    
+    var params = new URLSearchParams(window.location.search);
+    
+    params.set('type', type);
+    
+    window.history.replaceState({}, '', '?' + params.toString());
+
+    window.location.reload();
+  });
+});
+</script>
 
 {{ results }}

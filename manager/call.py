@@ -9,14 +9,14 @@ def manager_insert_data(type, username, password, link, title, text, description
 
     response = requests.post(f'http://{local_ip}:8501/', json=data)
 
-    return response.text()
+    return response.text
 
 def manager_edit_data(type, username, password, site_id, link, title, text, description, keywords, shorttext):
     data = {'call': 'edit', 'type': type, 'username': username, 'password': password, 'site_id': site_id, 'link': link, 'title': title, 'text': text, 'description': description, 'keywords': keywords, 'shorttext': shorttext}
 
     response = requests.post(f'http://{local_ip}:8501/', json=data)
     
-    return response.text()
+    return response.text
 
 def manager_remove_data(type, username, password, site_id):
     link = None
@@ -29,4 +29,4 @@ def manager_remove_data(type, username, password, site_id):
 
     response = requests.post(f'http://{local_ip}:8501/', json=data)
     
-    return response.text()
+    return response.text

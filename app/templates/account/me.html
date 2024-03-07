@@ -1,0 +1,15 @@
+Hello, {{ username }}!
+
+<form action="/account/me" method="POST">
+    <label>Old password: </label>
+    <input type="password" name="oldpassword"/><br>
+
+    <label>New password: </label>
+    <input type="password" name="newpassword"/><br>
+
+    <button type="submit" name="login_button" value="login_clicked">Change my password</button><br>
+</form>
+
+<form action="/account/me/logout" method="POST">
+    <button type="submit" name="logout_button" value="logout_clicked">Logout</button>
+</form>
