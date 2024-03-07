@@ -1,32 +1,29 @@
-Neutron Search
+<!DOCTYPE html>
+<head>
+  <title>Neutron Search</title>
+</head>
+<body>
+  <ul>
+      <li><a href="https://lithicsoft.github.io/neutron">About</a></li>
+      <li><a href="/contribute">Contribute</a></li>
+      <li><a href="/account">Account</a></li>
+  </ul>
 
-<form action="/search" method="GET">
-    <input type="text" name="q" />
-    <button type="submit">🔎</button>
-</form>
+  <h1><a href="/"> Neutron Search </a></h1>
 
-<div id="tagList">
-  <button class="tag" data-type="Text">Text</button>
-  <button class="tag" data-type="Image">Image</button>
-  <button class="tag" data-type="video">Video</button>
-</div>
+  <form action="/search" method="GET">
+      <input type="text" name="q" />
+      <button type="submit">🔎</button>
+  </form>
 
-<script>
-var tags = document.querySelectorAll('.tag');
+  <div id="tagList">
+    <button class="tag" data-type="Text">Text</button>
+    <button class="tag" data-type="Image">Image</button>
+    <button class="tag" data-type="video">Video</button>
+  </div>
 
-tags.forEach(function(tag) {
-  tag.addEventListener('click', function() {
-    var type = this.getAttribute('data-type');
-    
-    var params = new URLSearchParams(window.location.search);
-    
-    params.set('type', type);
-    
-    window.history.replaceState({}, '', '?' + params.toString());
+  {{ results }}
 
-    window.location.reload();
-  });
-});
-</script>
+  <script src="script.js"></script>
 
-{{ results }}
+</body>

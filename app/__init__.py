@@ -2,4 +2,4 @@ from flask import Flask
 
 app = Flask(__name__)
 
-from app import search, contribute, account
+from app import ext, search, contribute, account

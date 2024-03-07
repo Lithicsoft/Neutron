@@ -1,24 +1,38 @@
-<form action="/account/register" method="POST">
-    <label>Email: </label>
-    <input type="text" name="email"/><br>
+<head>
+    <title>Neutron Search</title>
+</head>
+<body>
+    <ul>
+        <li><a href="https://lithicsoft.github.io/neutron">About</a></li>
+        <li><a href="/contribute">Contribute</a></li>
+        <li><a href="/account">Account</a></li>
+    </ul>
 
-    <label>Username: </label>
-    <input type="text" name="username"/><br>
+    <h1><a href="/"> Neutron Search </a></h1>
 
-    <label>Password: </label>
-    <input type="password" name="password"/><br>
+    <form action="/account/register" method="POST">
+        <label>Email: </label>
+        <input type="text" name="email"/><br>
 
-    <button type="submit" name="register_button" value="register_clicked">Register</button><br>
-</form>
+        <label>Username: </label>
+        <input type="text" name="username"/><br>
 
-<form action="/account/register" method="POST">
-    <label>User ID: </label>
-    <input type="text" name="userid"/><br>
+        <label>Password: </label>
+        <input type="password" name="password"/><br>
 
-    <label>Confirmation code: </label>
-    <input type="text" name="confirmcode"/><br>
+        <button type="submit" name="register_button" value="register_clicked">Register</button><br>
+    </form>
 
-    <button type="submit" name="submit_button" value="submit_clicked">Submit</button><br>
-</form>
+    <form action="/account/register" method="POST">
+        <label>User ID: </label>
+        <input type="text" name="userid"/><br>
 
-{{ message }}
+        <label>Confirmation code: </label>
+        <input type="text" name="confirmcode"/><br>
+
+        <button type="submit" name="submit_button" value="submit_clicked">Submit</button><br>
+    </form>
+
+    {{ message }}
+
+</body>

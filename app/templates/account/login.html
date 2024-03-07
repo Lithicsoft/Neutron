@@ -1,11 +1,25 @@
-<form action="/account/login" method="POST">
-    <label>Username: </label>
-    <input type="text" name="username"/><br>
+<head>
+    <title>Neutron Search</title>
+</head>
+<body>
+    <ul>
+        <li><a href="https://lithicsoft.github.io/neutron">About</a></li>
+        <li><a href="/contribute">Contribute</a></li>
+        <li><a href="/account">Account</a></li>
+    </ul>
 
-    <label>Password: </label>
-    <input type="password" name="password"/><br>
+    <h1><a href="/"> Neutron Search </a></h1>
 
-    <button type="submit" name="login_button" value="login_clicked">Login</button><br>
-</form>
+    <form action="/account/login" method="POST">
+        <label>Username: </label>
+        <input type="text" name="username"/><br>
 
-{{ message }}
+        <label>Password: </label>
+        <input type="password" name="password"/><br>
+
+        <button type="submit" name="login_button" value="login_clicked">Login</button><br>
+    </form>
+
+    {{ message }}
+
+</body>

@@ -1,15 +1,29 @@
-Hello, {{ username }}!
+<head>
+    <title>Neutron Search</title>
+</head>
+<body>
+    <ul>
+        <li><a href="https://lithicsoft.github.io/neutron">About</a></li>
+        <li><a href="/contribute">Contribute</a></li>
+        <li><a href="/account">Account</a></li>
+    </ul>
 
-<form action="/account/me" method="POST">
-    <label>Old password: </label>
-    <input type="password" name="oldpassword"/><br>
+    <h1><a href="/"> Neutron Search </a></h1>
 
-    <label>New password: </label>
-    <input type="password" name="newpassword"/><br>
+    <h1> Hello, {{ username }}! </h1>
 
-    <button type="submit" name="login_button" value="login_clicked">Change my password</button><br>
-</form>
+    <form action="/account/me" method="POST">
+        <label>Old password: </label>
+        <input type="password" name="oldpassword"/><br>
 
-<form action="/account/me/logout" method="POST">
-    <button type="submit" name="logout_button" value="logout_clicked">Logout</button>
-</form>
+        <label>New password: </label>
+        <input type="password" name="newpassword"/><br>
+
+        <button type="submit" name="login_button" value="login_clicked">Change my password</button><br>
+    </form>
+
+    <form action="/account/me/logout" method="POST">
+        <button type="submit" name="logout_button" value="logout_clicked">Logout</button>
+    </form>
+
+</body>
