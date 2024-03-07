@@ -37,10 +37,9 @@ def add_user(email, username, password, confirm):
     sys_log("Created User Account", "Username: " + username + " Email: " + email)
     conn.commit()
 
-def update_password(user_id, username, email, new_password):
+def update_password(user_id, new_password):
     new_password = hashlib.md5(hashlib.sha256(new_password.encode('utf-8')).hexdigest().encode()).hexdigest()
     cursor.execute("UPDATE users SET password = %s WHERE id = %s", (new_password, user_id))
-    sys_log("Changed User Password", "Username: " + username + " User ID: " + str(user_id) + " Email: " + email)
     conn.commit()
 
 def verify_email(email):
@@ -120,9 +119,19 @@ def account_register():
         )
 
     if request.method == 'GET':
-        return render_template(
-            '/account/register.html'
-        )
+        username = request.cookies.get('USERNAME')
+        password = request.cookies.get('PASSWORD')
+
+        login = get_user_reliability(cursor, username, password, False)
+
+        if username is None or password is None or login is None:
+            return render_template(
+                '/account/register.html'
+            )
+        else:
+            return redirect(
+                '/account/me'
+            )
     else:
         if request.form.get('register_button') == 'register_clicked':
             email = request.form.get('email')
@@ -172,6 +181,28 @@ def myaccount_form():
                 '/account/me.html',
                 username=username
             )
+    else:
+        if request.form.get('change_button') == 'change_clicked':
+            old_password = request.form.get('oldpassword')
+            new_password = request.form.get('newpassword')
+            username = request.form.get('username')
+
+            login = get_user_reliability(cursor, username, old_password)
+
+            if login is not None:
+                user_id = get_user_id(cursor, username)
+                update_password(user_id, new_password)
+                return render_template(
+                    '/account/me.html',
+                    message='Changed password successfully.'
+                )
+            else:
+                return render_template(
+                    '/account/me.html',
+                    username=request.cookies.get('USERNAME'),
+                    message='Password and username are incorrect, please try again.'
+                )
+
     
 @app.route('/account/me/logout', methods=['GET', 'POST'])
 def myaccount_logout():

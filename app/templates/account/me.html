@@ -19,8 +19,13 @@
         <label>New password: </label>
         <input type="password" name="newpassword"/><br>
 
-        <button type="submit" name="login_button" value="login_clicked">Change my password</button><br>
+        <label>Username: </label>
+        <input type="text" name="username"/><br>
+
+        <button type="submit" name="change_button" value="change_clicked">Change my password</button><br>
     </form>
+
+    {{ message }}
 
     <form action="/account/me/logout" method="POST">
         <button type="submit" name="logout_button" value="logout_clicked">Logout</button>
