@@ -3,3 +3,4 @@ database/**
 __pycache__/**
 API.API
 log.txt
+neutron-env/**
