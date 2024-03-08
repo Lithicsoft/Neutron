@@ -65,6 +65,10 @@ def Library_Remove_Data(cursor, table_name, site_id):
     cursor.execute(f"DELETE FROM {table_name} WHERE site_id = %s", (site_id,))
     cursor.execute(f"UPDATE {table_name} SET site_id = site_id - 1 WHERE site_id > %s", (site_id,))
 
+def Library_Get_ID(cursor, table_name, link):
+    cursor.execute(f"SELECT site_id FROM {table_name} WHERE link = %s", (link,))
+    return cursor.fetchone()[0]
+
 def Library_Exact_Search(cursor, table_name, safe_keyword):
     cursor.execute(f'''SELECT * FROM {table_name}
                         WHERE title LIKE %s OR text LIKE %s OR description LIKE %s OR keywords LIKE %s OR shorttext LIKE %s''', 

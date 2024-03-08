@@ -586,3 +586,296 @@ SYS: Database Connection: Successful
 SYS: Loaded: users_account
 SYS: Database Connection: Successful
 SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:None): Insert Data: Link:  Title:  Text:  Description:  Keywords:  ShortText: 
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:None): Insert Data: Link: https://google.com Title: Google Text: Search the world's information, including websites, images, videos and more. Google has many special features that help you find exactly what you're looking for... Description: Search the world's information, including websites, images, videos and more. Google has many special features that help you find exactly what you're looking for... Keywords: Google Search Engine ShortText: Search the world's information, including websites, images, videos and more. Google has many special features that help you find exactly what you're looking for...
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account

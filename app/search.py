@@ -7,7 +7,7 @@ from search.get import Search_Data
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     return render_template(
-        'index.html',
+        '/index.html',
     )
 
 @app.route('/search', methods=['GET', 'POST'])
@@ -16,7 +16,8 @@ def search():
     type = request.args.get('type', '')
     if type == '':
         type = 'Text'
+    print(Search_Data(type, keyword))
     return render_template(
-        'search/index.html',
+        '/search/index.html',
         results=Search_Data(type, keyword)
     )

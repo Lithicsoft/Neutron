@@ -192,10 +192,14 @@ def myaccount_form():
             if login is not None:
                 user_id = get_user_id(cursor, username)
                 update_password(user_id, new_password)
-                return render_template(
+
+                resp = make_response(render_template(
                     '/account/me.html',
                     message='Changed password successfully.'
-                )
+                ))
+                resp.set_cookie('PASSWORD', new_password)
+
+                return resp
             else:
                 return render_template(
                     '/account/me.html',

@@ -22,7 +22,12 @@
     <button class="tag" data-type="video">Video</button>
   </div>
 
-  {{ results }}
+  {% for row in results %}
+    <tr>
+        <td><a href="{{ row[0] }}">{{ row[1] }}</a></td><br>
+        <td>{{ row[2] }}</td><br>
+    </tr>
+  {% endfor %}
 
   <script src="script.js"></script>
 

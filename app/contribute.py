@@ -3,7 +3,7 @@ from account.reliability import get_user_reliability
 from app import app
 from flask import render_template, request
 
-from manager.call import manager_edit_data, manager_insert_data, manager_remove_data
+from manager.call import manager_edit_data, manager_get_id, manager_insert_data, manager_remove_data
 
 conn = account_database_loader()
 cursor = conn.cursor()
@@ -11,7 +11,7 @@ cursor = conn.cursor()
 @app.route('/contribute', methods=['GET', 'POST'])
 def contribute():
     return render_template(
-        'contribute/index.html',
+        '/contribute/index.html',
     )
 
 @app.route('/contribute/insert', methods=['GET', 'POST'])
@@ -25,16 +25,16 @@ def contribute_insert():
         if username is None or password is None or login is None:
             message_call = "Unable to verify user, looks like you are not logged in to your account, please log in to take any action on the database."
         else:
-            type = request.args.get('type', '')
-            link = request.args.get('link', '')
-            title = request.args.get('title', '')
-            text = request.args.get('text', '')
-            description = request.args.get('description', '')
-            keywords = request.args.get('keywords', '')
-            shorttext = request.args.get('shorttext', '')
+            type = request.form.get('type')
+            link = request.form.get('link')
+            title = request.form.get('title')
+            text = request.form.get('text')
+            description = request.form.get('description')
+            keywords = request.form.get('keywords')
+            shorttext = request.form.get('shorttext')
             message_call = manager_insert_data(type, username, password, link, title, text, description, keywords, shorttext)
         return render_template(
-            'contribute/index.html',
+            '/contribute/index.html',
             message=message_call
         )
 
@@ -49,17 +49,17 @@ def contribute_change():
         if username is None or password is None or login is None:
             message_call = "Unable to verify user, looks like you are not logged in to your account, please log in to take any action on the database."
         else:
-            site_id = request.args.get('site_id', '')
-            type = request.args.get('type', '')
-            link = request.args.get('link', '')
-            title = request.args.get('title', '')
-            text = request.args.get('text', '')
-            description = request.args.get('description', '')
-            keywords = request.args.get('keywords', '')
-            shorttext = request.args.get('shorttext', '')
+            site_id = request.form.get('site_id')
+            type = request.form.get('type')
+            link = request.form.get('link')
+            title = request.form.get('title')
+            text = request.form.get('text')
+            description = request.form.get('description')
+            keywords = request.form.get('keywords')
+            shorttext = request.form.get('shorttext')
             message_call = manager_edit_data(type, username, password, site_id, link, title, text, description, keywords, shorttext)
         return render_template(
-            'contribute/index.html',
+            '/contribute/index.html',
             message=message_call
         )
 
@@ -74,10 +74,21 @@ def contribute_remove():
         if username is None or password is None or login is None:
             message_call = "Unable to verify user, looks like you are not logged in to your account, please log in to take any action on the database."
         else:
-            site_id = request.args.get('site_id', '')
-            type = request.args.get('type', '')
+            site_id = request.form.get('site_id')
+            type = request.form.get('type')
             message_call = manager_remove_data(type, username, password, site_id)
         return render_template(
-            'contribute/index.html',
+            '/contribute/index.html',
+            message=message_call
+        )
+
+@app.route('/contribute/getid', methods=['GET', 'POST'])
+def contribute_getid():
+    if request.form.get('find_button') == 'find_clicked':
+        link = request.form.get('link')
+        type = request.form.get('type')
+        message_call=manager_get_id(type, link)
+        return render_template(
+            '/contribute/index.html',
             message=message_call
         )
