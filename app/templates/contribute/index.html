@@ -1,15 +1,15 @@
 <head>
     <title>Neutron Search</title>
     <link rel="stylesheet" href="/contribute/tab.css">
+    <link rel="stylesheet" href="/search.css">
 </head>
 <body>
-    <ul>
-        <li><a href="https://lithicsoft.github.io/neutron">About</a></li>
-        <li><a href="/contribute">Contribute</a></li>
-        <li><a href="/account">Account</a></li>
-    </ul>
-
-    <a href="/"><img src="https://i.imgur.com/lvUj8X0.png"></a>
+    <div class="topnav">
+        <a href="/account">Account</a>
+        <a href="/contribute">Contribute</a>
+        <a href="https://lithicsoft.github.io/neutron">About</a>
+    </div>
+    <a href="/"><img src="https://i.imgur.com/RXi2TRm.png" class="center"></a>
 
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'Insert')">Insert</button>
@@ -24,27 +24,27 @@
                 <option value="Text">Text</option>
                 <option value="Image">Image</option>
                 <option value="Video">Video</option>
-            </select><br>
+            </select><br><br>
 
             <label>Link: </label>
-            <input type="text" name="link"/><br>
+            <input type="url" name="link"/><br><br>
 
             <label>Title: </label>
-            <input type="text" name="title"/><br>
+            <input type="text" name="title"/><br><br>
 
             <label>Text: </label>
-            <input type="text" name="text"/><br>
+            <input type="text" name="text"/><br><br>
 
             <label>Description: </label>
-            <input type="text" name="description"/><br>
+            <input type="text" name="description"/><br><br>
 
             <label>Keywords: </label>
-            <input type="text" name="keywords"/><br>
+            <input type="text" name="keywords"/><br><br>
 
             <label>Shorttext: </label>
-            <input type="text" name="shorttext"/><br>
+            <input type="text" name="shorttext"/><br><br>
             
-            <button type="submit" name="add_button" value="add_clicked">➕</button><br>
+            <button type="submit" name="add_button" value="add_clicked">➕</button><br><br>
         </form>
     </div>
 
@@ -54,30 +54,30 @@
                 <option value="Text">Text</option>
                 <option value="Image">Image</option>
                 <option value="Video">Video</option>
-            </select><br>
+            </select><br><br>
 
             <label>Site ID: </label>
-            <input type="text" name="site_id"/><br>
+            <input type="number" name="site_id"/><br><br>
 
             <label>Link: </label>
-            <input type="text" name="link"/><br>
+            <input type="url" name="link"/><br><br>
 
             <label>Title: </label>
-            <input type="text" name="title"/><br>
+            <input type="text" name="title"/><br><br>
 
             <label>Text: </label>
-            <input type="text" name="text"/><br>
+            <input type="text" name="text"/><br><br>
 
             <label>Description: </label>
-            <input type="text" name="description"/><br>
+            <input type="text" name="description"/><br><br>
 
             <label>Keywords: </label>
-            <input type="text" name="keywords"/><br>
+            <input type="text" name="keywords"/><br><br>
 
             <label>Shorttext: </label>
-            <input type="text" name="shorttext"/><br>
+            <input type="text" name="shorttext"/><br><br>
             
-            <button type="submit" name="edit_button" value="edit_clicked">🖊️</button><br>
+            <button type="submit" name="edit_button" value="edit_clicked">🖊️</button><br><br>
         </form>
     </div>
 
@@ -87,12 +87,12 @@
                 <option value="Text">Text</option>
                 <option value="Image">Image</option>
                 <option value="Video">Video</option>
-            </select><br>
+            </select><br><br>
 
             <label>Site ID: </label>
-            <input type="text" name="site_id"/><br>
+            <input type="number" name="site_id"/><br><br>
             
-            <button type="submit" name="remove_button" value="remove_clicked">❌</button><br>
+            <button type="submit" name="remove_button" value="remove_clicked">❌</button><br><br>
         </form>
     </div>
 
@@ -102,12 +102,12 @@
                 <option value="Text">Text</option>
                 <option value="Image">Image</option>
                 <option value="Video">Video</option>
-            </select><br>
+            </select><br><br>
 
             <label>Link: </label>
-            <input type="text" name="link"/><br>
+            <input type="url" name="link"/><br><br>
 
-            <button type="submit" name="find_button" value="find_clicked">🔎</button><br>
+            <button type="submit" name="find_button" value="find_clicked">🔎</button><br><br>
         </form>
     </div>
 

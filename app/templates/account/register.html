@@ -1,38 +1,35 @@
 <head>
     <title>Neutron Search</title>
+    <link rel="stylesheet" href="/search.css">
 </head>
 <body>
-    <ul>
-        <li><a href="https://lithicsoft.github.io/neutron">About</a></li>
-        <li><a href="/contribute">Contribute</a></li>
-        <li><a href="/account">Account</a></li>
-    </ul>
+    <div class="topnav">
+        <a href="/account">Account</a>
+        <a href="/contribute">Contribute</a>
+        <a href="https://lithicsoft.github.io/neutron">About</a>
+    </div>
+    <a href="/"><img src="https://i.imgur.com/RXi2TRm.png" class="center"></a>
 
-    <a href="/"><img src="https://i.imgur.com/lvUj8X0.png"></a>
+    <div class="center">
+        <form action="/account/register" method="POST">
+            <input type="email" name="email" placeholder="Email"/><br><br>
 
-    <form action="/account/register" method="POST">
-        <label>Email: </label>
-        <input type="text" name="email"/><br>
+            <input type="text" name="username" placeholder="Username"/><br><br>
 
-        <label>Username: </label>
-        <input type="text" name="username"/><br>
+            <input type="password" name="password" placeholder="Password"/><br><br>
 
-        <label>Password: </label>
-        <input type="password" name="password"/><br>
+            <button type="submit" name="register_button" value="register_clicked">Register</button><br><br>
+        </form>
 
-        <button type="submit" name="register_button" value="register_clicked">Register</button><br>
-    </form>
+        <form action="/account/register" method="POST">
+            <input type="number" name="userid" placeholder="User ID"/><br><br>
 
-    <form action="/account/register" method="POST">
-        <label>User ID: </label>
-        <input type="text" name="userid"/><br>
+            <input type="number" name="confirmcode" placeholder="Code"/><br><br>
 
-        <label>Confirmation code: </label>
-        <input type="text" name="confirmcode"/><br>
+            <button type="submit" name="submit_button" value="submit_clicked">Submit</button><br><br>
+        </form>
 
-        <button type="submit" name="submit_button" value="submit_clicked">Submit</button><br>
-    </form>
-
-    {{ message }}
+        {{ message }}
+    </div>
 
 </body>

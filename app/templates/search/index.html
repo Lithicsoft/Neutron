@@ -1,26 +1,26 @@
-<!DOCTYPE html>
 <head>
   <title>Neutron Search</title>
+  <link rel="stylesheet" href="/search.css">
 </head>
 <body>
-  <ul>
-      <li><a href="https://lithicsoft.github.io/neutron">About</a></li>
-      <li><a href="/contribute">Contribute</a></li>
-      <li><a href="/account">Account</a></li>
-  </ul>
-
-  <a href="/"><img src="https://i.imgur.com/lvUj8X0.png"></a>
+  <div class="topnav">
+    <a href="/account">Account</a>
+    <a href="/contribute">Contribute</a>
+    <a href="https://lithicsoft.github.io/neutron">About</a>
+  </div>
+  <a href="/"><img src="https://i.imgur.com/RXi2TRm.png" class="center"></a>
 
   <form action="/search" method="GET">
-      <input type="text" name="q" />
-      <button type="submit">🔎</button>
+      <input type="search" value="{{ query }}" name="q" placeholder="Try to search something!" class="center"/>
   </form>
 
-  <div id="tagList">
-    <button class="tag" data-type="Text">Text</button>
-    <button class="tag" data-type="Image">Image</button>
-    <button class="tag" data-type="video">Video</button>
+  <div id="tagList" class="center">
+    <input id="TextTag" type="button" class="tag" value="Text" data-type="Text">
+    <input id="ImgTag" type="button" class="tag" value="Image" data-type="Image">
+    <input id="VidTag" type="button" class="tag" value="Video" data-type="video">
   </div>
+
+  {{ note }}
 
   {% for row in results %}
     <tr>
@@ -29,6 +29,6 @@
     </tr>
   {% endfor %}
 
-  <script src="script.js"></script>
+  <script src="/search/script.js"></script>
 
 </body>

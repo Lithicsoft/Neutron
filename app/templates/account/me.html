@@ -1,34 +1,33 @@
 <head>
     <title>Neutron Search</title>
+    <link rel="stylesheet" href="/search.css">
 </head>
 <body>
-    <ul>
-        <li><a href="https://lithicsoft.github.io/neutron">About</a></li>
-        <li><a href="/contribute">Contribute</a></li>
-        <li><a href="/account">Account</a></li>
-    </ul>
+    <div class="topnav">
+        <a href="/account">Account</a>
+        <a href="/contribute">Contribute</a>
+        <a href="https://lithicsoft.github.io/neutron">About</a>
+    </div>
+    <a href="/"><img src="https://i.imgur.com/RXi2TRm.png" class="center"></a>
 
-    <a href="/"><img src="https://i.imgur.com/lvUj8X0.png"></a>
+    <div class="center">
+        <h1> Hello, {{ username }}! </h1>
 
-    <h1> Hello, {{ username }}! </h1>
+        <form action="/account/me" method="POST">
+            <input type="password" name="oldpassword" placeholder="Old password"/><br><br>
 
-    <form action="/account/me" method="POST">
-        <label>Old password: </label>
-        <input type="password" name="oldpassword"/><br>
+            <input type="password" name="newpassword" placeholder="New password"/><br><br>
 
-        <label>New password: </label>
-        <input type="password" name="newpassword"/><br>
+            <input type="text" name="username" placeholder="Username"/><br><br>
 
-        <label>Username: </label>
-        <input type="text" name="username"/><br>
+            <button type="submit" name="change_button" value="change_clicked">Change my password</button><br>
+        </form><br>
 
-        <button type="submit" name="change_button" value="change_clicked">Change my password</button><br>
-    </form>
+        {{ message }}
 
-    {{ message }}
-
-    <form action="/account/me/logout" method="POST">
-        <button type="submit" name="logout_button" value="logout_clicked">Logout</button>
-    </form>
+        <form action="/account/me/logout" method="POST">
+            <button type="submit" name="logout_button" value="logout_clicked">Logout</button>
+        </form>
+    </div>
 
 </body>

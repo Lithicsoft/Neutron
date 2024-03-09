@@ -1,17 +1,17 @@
 <head>
     <title>Neutron Search</title>
+    <link rel="stylesheet" href="/search.css">
 </head>
-<body>
-    <ul>
-        <li><a href="https://lithicsoft.github.io/neutron">About</a></li>
-        <li><a href="/contribute">Contribute</a></li>
-        <li><a href="/account">Account</a></li>
-    </ul>
 
-    <a href="/"><img src="https://i.imgur.com/lvUj8X0.png"></a>
+<body>
+    <div class="topnav">
+        <a href="/account">Account</a>
+        <a href="/contribute">Contribute</a>
+        <a href="https://lithicsoft.github.io/neutron">About</a>
+    </div>
+    <a href="/"><img src="https://i.imgur.com/RXi2TRm.png" class="center"></a>
 
     <form action="/search" method="GET">
-        <input type="text" name="q" />
-        <button type="submit">🔎</button>
+        <input type="search" name="q" placeholder="Try to search something!" class="center"/>       
     </form>
 </body>

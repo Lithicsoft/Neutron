@@ -16,8 +16,17 @@ def search():
     type = request.args.get('type', '')
     if type == '':
         type = 'Text'
-    print(Search_Data(type, keyword))
-    return render_template(
-        '/search/index.html',
-        results=Search_Data(type, keyword)
-    )
+    
+    search_result = Search_Data(type, keyword)
+    if search_result is None:
+        return render_template(
+            '/search/index.html',
+            query=keyword,
+            note='No results found.'
+        )
+    else:
+        return render_template(
+            '/search/index.html',
+            query=keyword,
+            results=search_result
+        )

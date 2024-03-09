@@ -4,7 +4,13 @@ from flask import render_template
 @app.route('/search/script.js')
 def searcH_js():
     return render_template(
-        '/contribute/script.js'
+        '/search/script.js'
+    )
+
+@app.route('/search.css')
+def searcH_css():
+    return render_template(
+        '/search.css'
     )
 
 @app.route('/contribute/tab.css')
