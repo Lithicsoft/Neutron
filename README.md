@@ -19,7 +19,7 @@ A versatile Control Panel facilitating administrative commands execution and dat
 Employs MySQL Full-Text Search, enhancing search capabilities for improved results.
 
 #### Account Manager (Server)
-Enables basic account management functionalities such as password changes, username alterations, account searches, and creation of accounts requiring confirmation codes via email. It upholds reliability features.
+Enables basic account management functionalities such as password changes and creation of accounts requiring confirmation codes via email. It upholds reliability features.
 
 #### Manager (Server)
 Empowers users to interact with the database based on their reliability levels:
