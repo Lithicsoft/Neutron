@@ -11,3 +11,5 @@ def Search_Data(type, keyword):
     
     if response:
         return response.json()
+    else:
+        return None

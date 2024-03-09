@@ -18,7 +18,8 @@ def search():
         type = 'Text'
     
     search_result = Search_Data(type, keyword)
-    if search_result is None:
+    print(search_result)
+    if search_result == []:
         return render_template(
             '/search/index.html',
             query=keyword,

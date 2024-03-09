@@ -20,14 +20,18 @@
     <input id="VidTag" type="button" class="tag" value="Video" data-type="video">
   </div>
 
-  {{ note }}
+  <br><br><br>
+  
+  <div class="result">
+    {{ note }}
 
-  {% for row in results %}
-    <tr>
-        <td><a href="{{ row[0] }}">{{ row[1] }}</a></td><br>
-        <td>{{ row[2] }}</td><br>
-    </tr>
-  {% endfor %}
+    {% for row in results %}
+      <tr>
+          <td><a href="{{ row[0] }}">{{ row[1] }}</a></td><br>
+          <td>{{ row[2] }}</td><br>
+      </tr><br>
+    {% endfor %}
+  </div>
 
   <script src="/search/script.js"></script>
 

@@ -16,9 +16,9 @@
         <button class="tablinks" onclick="openTab(event, 'Change')">Change</button>
         <button class="tablinks" onclick="openTab(event, 'Remove')">Remove</button>
         <button class="tablinks" onclick="openTab(event, 'GetID')">Get ID</button>
-    </div>
+    </div><br>
     
-    <div id="Insert" class="tabcontent">
+    <div id="Insert" class="tabcontent"><br>
         <form action="/contribute/insert" method="POST">
             <select name="type">
                 <option value="Text">Text</option>
@@ -26,29 +26,23 @@
                 <option value="Video">Video</option>
             </select><br><br>
 
-            <label>Link: </label>
-            <input type="url" name="link"/><br><br>
+            <input type="url" name="link" placeholder="Link"/><br><br>
 
-            <label>Title: </label>
-            <input type="text" name="title"/><br><br>
+            <input type="text" name="title" placeholder="Title"/><br><br>
 
-            <label>Text: </label>
-            <input type="text" name="text"/><br><br>
+            <input type="text" name="text" placeholder="Text"/><br><br>
 
-            <label>Description: </label>
-            <input type="text" name="description"/><br><br>
+            <input type="text" name="description" placeholder="Description"/><br><br>
 
-            <label>Keywords: </label>
-            <input type="text" name="keywords"/><br><br>
+            <input type="text" name="keywords" placeholder="Keywords"/><br><br>
 
-            <label>Shorttext: </label>
-            <input type="text" name="shorttext"/><br><br>
+            <input type="text" name="shorttext" placeholder="Shorttext"/><br><br>
             
             <button type="submit" name="add_button" value="add_clicked">➕</button><br><br>
         </form>
     </div>
 
-    <div id="Change" class="tabcontent">
+    <div id="Change" class="tabcontent"><br>
         <form action="/contribute/change" method="POST">
             <select name="type">
                 <option value="Text">Text</option>
@@ -56,32 +50,25 @@
                 <option value="Video">Video</option>
             </select><br><br>
 
-            <label>Site ID: </label>
-            <input type="number" name="site_id"/><br><br>
+            <input type="number" name="site_id" placeholder="Site ID"/><br><br>
 
-            <label>Link: </label>
-            <input type="url" name="link"/><br><br>
+            <input type="url" name="link" placeholder="Link"/><br><br>
 
-            <label>Title: </label>
-            <input type="text" name="title"/><br><br>
+            <input type="text" name="title" placeholder="Title"/><br><br>
 
-            <label>Text: </label>
-            <input type="text" name="text"/><br><br>
+            <input type="text" name="text" placeholder="Text"/><br><br>
 
-            <label>Description: </label>
-            <input type="text" name="description"/><br><br>
+            <input type="text" name="description" placeholder="Description"/><br><br>
 
-            <label>Keywords: </label>
-            <input type="text" name="keywords"/><br><br>
+            <input type="text" name="keywords" placeholder="Keywords"/><br><br>
 
-            <label>Shorttext: </label>
-            <input type="text" name="shorttext"/><br><br>
+            <input type="text" name="shorttext" placeholder="Shorttext"/><br><br>
             
             <button type="submit" name="edit_button" value="edit_clicked">🖊️</button><br><br>
         </form>
     </div>
 
-    <div id="Remove" class="tabcontent">
+    <div id="Remove" class="tabcontent"><br>
         <form action="/contribute/remove" method="POST">
             <select name="type">
                 <option value="Text">Text</option>
@@ -89,14 +76,13 @@
                 <option value="Video">Video</option>
             </select><br><br>
 
-            <label>Site ID: </label>
-            <input type="number" name="site_id"/><br><br>
+            <input type="number" name="site_id" placeholder="Site ID"/><br><br>
             
             <button type="submit" name="remove_button" value="remove_clicked">❌</button><br><br>
         </form>
     </div>
 
-    <div id="GetID" class="tabcontent">
+    <div id="GetID" class="tabcontent"><br>
         <form action="/contribute/getid" method="POST">
             <select name="type">
                 <option value="Text">Text</option>
@@ -104,14 +90,13 @@
                 <option value="Video">Video</option>
             </select><br><br>
 
-            <label>Link: </label>
-            <input type="url" name="link"/><br><br>
+            <input type="url" name="link" placeholder="Link"/><br><br>
 
             <button type="submit" name="find_button" value="find_clicked">🔎</button><br><br>
         </form>
-    </div>
+    </div><br>
 
-    {{ message }}
+    <div class="result"> {{ message }} </div>
 
     <script src="/contribute/tab.js"></script>
 </body>

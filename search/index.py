@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, jsonify, request
 from safe import escape_special_characters
 
 import sys
@@ -35,7 +35,7 @@ def Search_Data():
         rows = Library_Full_Text_Search(cursor, type, safe_keyword)
             
     if len(rows) == 0:
-        return None
+        return jsonify([])
     else:
         return rows
 

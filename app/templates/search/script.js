@@ -13,3 +13,12 @@ tags.forEach(function(tag) {
     window.location.reload();
   });
 });
+
+window.onload = function() {
+  var resultDiv = document.querySelector('.result');
+  if (resultDiv.innerHTML.trim() === '') {
+      resultDiv.style.display = 'none';
+  } else {
+      resultDiv.style.display = 'block';
+  }
+};

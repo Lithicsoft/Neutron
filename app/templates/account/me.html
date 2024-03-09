@@ -11,23 +11,25 @@
     <a href="/"><img src="https://i.imgur.com/RXi2TRm.png" class="center"></a>
 
     <div class="center">
-        <h1> Hello, {{ username }}! </h1>
+        <div class="background_form"><br>
+            <label> Hello, {{ username }}! </label><br><br>
 
-        <form action="/account/me" method="POST">
-            <input type="password" name="oldpassword" placeholder="Old password"/><br><br>
+            <form action="/account/me" method="POST">
+                <input type="password" name="oldpassword" placeholder="Old password"/><br><br>
 
-            <input type="password" name="newpassword" placeholder="New password"/><br><br>
+                <input type="password" name="newpassword" placeholder="New password"/><br><br>
 
-            <input type="text" name="username" placeholder="Username"/><br><br>
+                <input type="text" name="username" placeholder="Username"/><br><br>
 
-            <button type="submit" name="change_button" value="change_clicked">Change my password</button><br>
-        </form><br>
+                <button type="submit" name="change_button" value="change_clicked">Change my password</button><br>
+            </form><br>
 
-        {{ message }}
+            <div class="result"> {{ message }} </div>
 
-        <form action="/account/me/logout" method="POST">
-            <button type="submit" name="logout_button" value="logout_clicked">Logout</button>
-        </form>
+            <form action="/account/me/logout" method="POST">
+                <button type="submit" name="logout_button" value="logout_clicked">Logout</button>
+            </form>
+        </div>
     </div>
 
 </body>

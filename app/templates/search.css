@@ -52,6 +52,20 @@ body {
     width: 25%;
 }
 
+.result {
+	display: none;
+	font-size: large;
+	border-radius: 1em;
+    margin-left: auto;
+    margin-right: auto;
+  	padding: 6px 12px;
+  	border: 1px solid #ffffff;
+  	background-color: #ffffff;
+  	border-top: none;
+  	width: 50%;
+  	margin: auto;
+}
+
 input[type=text] {
     width: 30em;
 	appearance: none;
@@ -66,6 +80,8 @@ input[type=text] {
 
 input[type=search] {
     width: 30em;
+	height: 3em;
+	font-size: large;
 	appearance: none;
 	border: none;
 	outline: none;
@@ -267,6 +283,7 @@ label[for=file] {
 
 label {
     color: #000000;
+	font-size: x-large;
 }
 
 input[type=date] {
@@ -299,4 +316,65 @@ input[type=number] {
 		opacity: 1;
 		background: red;
 	}
+}
+
+.background_form {
+	border-radius: 2em;
+  	padding: 6px 12px;
+  	border: 1px solid #ffffff;
+  	background-color: #ffffff;
+  	border-top: none;
+  	width: 110%;
+  	height: 45%;
+  	margin: auto;
+}
+
+select {
+	border-radius: 2em;
+	width: 30em;
+	height: 2em;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	outline: 0;
+	box-shadow: none;
+	border: 0 !important;
+	background: #000000;
+	background-image: none;
+}
+  
+.select {
+	position: relative;
+	display: flex;
+	width: 30em;
+	height: 5em;
+	line-height: 3;
+	background: #fff;
+	overflow: hidden;
+	border-radius: .25em;
+}
+select {
+	flex: 1;
+	padding: 0 .5em;
+	color: #fff;
+	cursor: pointer;
+}
+.select::after {
+	content: '\25BC';
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 1em;
+	background: DodgerBlue;
+	cursor: pointer;
+	pointer-events: none;
+	-webkit-transition: .25s all ease;
+	-o-transition: .25s all ease;
+	transition: .25s all ease;
+	color: white;
+}
+/* Transition */
+.select:hover::after {
+	color: Gainsboro;
 }

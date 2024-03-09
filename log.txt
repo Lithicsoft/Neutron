@@ -927,3 +927,239 @@ SYS: Database Connection: Successful
 SYS: Loaded: users_account
 SYS: Database Connection: Successful
 SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:None): Insert Data: Link: https://www.youtube.com Title: Youtube Text: Share your videos with friends, family and the world... Description: Share your videos with friends, family and the world... Keywords: Google Youtube ShortText: Share your videos with friends, family and the world...
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:None): Remove Data: Site ID: 1
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+User: Admin (ID:1)/(Reliability:None): Insert Data: Link: https://google.com Title: Google Text: Search the world's information, including websites, images, videos and more. Google has many special features that help you find exactly what you're looking for... Description: Search the world's information, including websites, images, videos and more. Google has many special features that help you find exactly what you're looking for... Keywords: Google Search Engine ShortText: Search the world's information, including websites, images, videos and more. Google has many special features that help you find exactly what you're looking for...
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:None): Insert Data: Link: https://i.imgur.com/SFIAa55.png Title: Lithicsoft Text: Lithicsoft Description: Lithicsoft Keywords: Lithicsoft ShortText: Lithicsoft Image
+User: Admin (ID:1)/(Reliability:None): Insert Data: Link: https://i.imgur.com/SFIAa55.png Title: Lithicsoft Text: Lithicsoft Description: Lithicsoft Keywords: Lithicsoft ShortText: Lithicsoft Image
+SYS: Update Virtual Table: search_index
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:None): Insert Data: Link: https://i.pinimg.com/736x/2c/d8/a7/2cd8a74b799243e32d4ee504771a82d0.jpg Title: Anime Text: Anime Description: Anime Keywords: Anime ShortText: Anime Image
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+User: Admin (ID:1)/(Reliability:None): Insert Data: Link: https://www.youtube.com/watch?v=S9RSKL5JB2o Title: hunggVN Text: hunggVN Description: hunggVN Keywords: hunggVN ShortText: hunggVN Video
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account

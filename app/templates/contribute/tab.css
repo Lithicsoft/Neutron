@@ -2,8 +2,9 @@
 .tab {
   overflow: hidden;
   border: 1px solid #ffffff;
+  border-radius: 2em;
   background-color: #ffffff;
-  width: 50%; /* Adjust the width as needed */
+  width: 20.3%; /* Adjust the width as needed */
   margin: auto; /* This will center the tab */
 }
 
@@ -27,15 +28,18 @@
 /* Create an active/current tablink class */
 .tab button.active {
   background-color: #000000;
+  color: #ffffff;
 }
 
 /* Style the tab content */
 .tabcontent {
+  border-radius: 2em;
   display: none;
   padding: 6px 12px;
   border: 1px solid #ffffff;
   background-color: #ffffff;
   border-top: none;
-  width: 48.4%;
+  width: 27.5%;
+  height: 63%;
   margin: auto;
 }
