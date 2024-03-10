@@ -2,6 +2,7 @@ mysql-connector-python
 langdetect
 wikipedia
 sendgrid
+gunicorn
 requests
 pymysql
 flask

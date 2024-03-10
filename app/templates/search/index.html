@@ -14,10 +14,19 @@
       <input type="search" value="{{ query }}" name="q" placeholder="Try to search something!" class="center"/>
   </form>
 
-  <div id="tagList" class="center">
-    <input id="TextTag" type="button" class="tag" value="Text" data-type="Text">
-    <input id="ImgTag" type="button" class="tag" value="Image" data-type="Image">
-    <input id="VidTag" type="button" class="tag" value="Video" data-type="video">
+  <div class="filter">
+    <div id="tagList">
+      <input id="TextTag" type="button" class="tag" value="Text" data-type="Text">
+      <input id="ImgTag" type="button" class="tag" value="Image" data-type="Image">
+      <input id="VidTag" type="button" class="tag" value="Video" data-type="video">
+    </div><br>
+    <div id="languageList">
+      <select id="languageSelect" name="language">
+        {% for language in languages %}
+            <option value="{{ language }}" result-language="{{ language }}"> {{ language }} </option>
+        {% endfor %}
+      </select>     
+    </div> 
   </div>
 
   <br><br><br>

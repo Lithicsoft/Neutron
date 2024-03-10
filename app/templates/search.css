@@ -66,6 +66,19 @@ body {
   	margin: auto;
 }
 
+.filter {
+	font-size: large;
+	border-radius: 1em;
+    margin-left: auto;
+    margin-right: auto;
+  	padding: 6px 12px;
+  	border: 1px solid #ffffff;
+  	background-color: #ffffff;
+  	border-top: none;
+  	width: 30%;
+  	margin: auto;
+}
+
 input[type=text] {
     width: 30em;
 	appearance: none;
@@ -291,12 +304,12 @@ input[type=date] {
 	padding: .8em .9em;
 	border-radius: 2em;
 	color: #000000;
-	// &::-webkit-datetime-edit { padding: 1em; }
-	// &::-webkit-datetime-edit-fields-wrapper { background: rgba(#000000, .2); }
+	&::-webkit-datetime-edit { padding: 1em; }
+	&::-webkit-datetime-edit-fields-wrapper { background: rgba(#000000, .2); }
 	&::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
-	// &::-webkit-datetime-edit-month-field { color: #000000; }
-	// &::-webkit-datetime-edit-day-field { color: #000000; }
-	// &::-webkit-datetime-edit-year-field { color: #000000; }
+	&::-webkit-datetime-edit-month-field { color: #000000; }
+	&::-webkit-datetime-edit-day-field { color: #000000; }
+	&::-webkit-datetime-edit-year-field { color: #000000; }
 	&::-webkit-inner-spin-button { display: none; }
 	&::-webkit-calendar-picker-indicator {
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'/%3E%3Cline x1='16' y1='2' x2='16' y2='6'/%3E%3Cline x1='8' y1='2' x2='8' y2='6'/%3E%3Cline x1='3' y1='10' x2='21' y2='10'/%3E%3C/svg%3E"); 
