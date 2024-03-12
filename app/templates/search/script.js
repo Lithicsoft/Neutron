@@ -6,7 +6,7 @@ tags.forEach(function(tag) {
     
     var params = new URLSearchParams(window.location.search);
     
-    params.set('type', type);
+    params.set('tp', type);
     
     window.history.replaceState({}, '', '?' + params.toString());
 
@@ -25,18 +25,13 @@ if (hl) {
 languageSelect.addEventListener('change', function() {
   var lang = this.options[this.selectedIndex].getAttribute('result-language');
   
-  params.set('hl', lang);
-  
-  window.history.replaceState({}, '', '?' + params.toString());
+  if (lang == 'all') {
+    params.delete('hl');
+    window.history.replaceState({}, '', '?' + params.toString());
+  } else {
+    params.set('hl', lang);
+    window.history.replaceState({}, '', '?' + params.toString());
+  }
 
   window.location.reload();
 });
-
-window.onload = function() {
-  var resultDiv = document.querySelector('.result');
-  if (resultDiv.innerHTML.trim() === '') {
-      resultDiv.style.display = 'none';
-  } else {
-      resultDiv.style.display = 'block';
-  }
-};

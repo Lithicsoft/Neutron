@@ -1,6 +1,12 @@
 from app import app
 from flask import render_template
 
+@app.route('/result.js')
+def result_js():
+    return render_template(
+        '/result.js'
+    )
+
 @app.route('/search/script.js')
 def searcH_js():
     return render_template(

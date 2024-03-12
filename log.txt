@@ -1324,3 +1324,281 @@ SYS: Database Connection: Successful
 SYS: Loaded: users_account
 SYS: Database Connection: Successful
 SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Initializer Database: search_index
+SYS: Initializer Censorship Database: censorship
+SYS: Create Users Account Database: users_account
+SYS: Database Connection: Successful
+SYS: Initializer Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Start Server: 2024-03-11 18:26:31
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Initializer Database: search_index
+SYS: Initializer Censorship Database: censorship
+SYS: Create Users Account Database: users_account
+SYS: Database Connection: Successful
+SYS: Initializer Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Start Server: 2024-03-12 21:08:56
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Database Connection: Successful
+SYS: Created: users_account
+SYS: Initializer Database: search_index
+SYS: Initializer Censorship Database: censorship
+SYS: Create Users Account Database: users_account
+SYS: Database Connection: Successful
+SYS: Initializer Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Update Virtual Table: search_index
+SYS: Start Server: 2024-03-12 21:27:41
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: search_index
+SYS: Database Connection: Successful
+SYS: Loaded: censorship
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
+SYS: Database Connection: Successful
+SYS: Loaded: users_account
