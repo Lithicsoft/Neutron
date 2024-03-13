@@ -38,7 +38,6 @@ Offers a user-friendly interface with the following features:
 - Support for search filters including:
   - Search type (Text, Image, Video).
   - Language of search results (supports up to 55 languages).
-  - Time range (websites from a previous time point to present).
 
 ## How to Contribute
 
