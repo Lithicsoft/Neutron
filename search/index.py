@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, request
-from safe import escape_special_characters
 
 import sys
 import os
@@ -18,22 +17,19 @@ def Search_Data():
 
     type = data['type']
     keyword = data['keyword']
+    page = int(data['page'])
 
     exact_match = re.findall(r'"(.*?)"', keyword)
 
     if exact_match:
         cursor = conn.cursor()
 
-        safe_keyword = escape_special_characters(keyword)
-
-        rows = Library_Exact_Search(cursor, type, safe_keyword)
+        rows = Library_Exact_Search(cursor, type, keyword, page)
     else:
         cursor = conn.cursor()
 
-        safe_keyword = escape_special_characters(keyword)
-
-        rows = Library_Full_Text_Search(cursor, type, safe_keyword)
-            
+        rows = Library_Full_Text_Search(cursor, type, keyword, page)
+    
     if len(rows) == 0:
         return jsonify([])
     else:

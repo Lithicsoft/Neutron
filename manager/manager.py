@@ -11,7 +11,6 @@ from initializer.loader import censorship_database_loader, database_loader
 from edit import edit_data
 from insert import insert_data
 from remove import remove_data
-from FTS.update import Update_Virtual_Table
 
 conn = database_loader()
 censorship_conn = censorship_database_loader()
@@ -31,7 +30,6 @@ def manager_insert_data(type, username, password, link, title, text, description
     elif reliability >= 1:
         log(cursor, username, password, "Insert Data", "Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
         insert_data_message = insert_data(conn, type, link, title, text, description, keywords, shorttext)
-        Update_Virtual_Table(conn)
         return insert_data_message
     else: 
         return "The user's reliability cannot be determined."
@@ -48,7 +46,6 @@ def manager_edit_data(type, username, password, site_id, link, title, text, desc
     elif reliability >= 2:
         log(cursor, username, password, "Edit Data", "Site ID: " + site_id + " Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
         edit_data_message = edit_data(conn, type, site_id, link, title, text, description, keywords, shorttext)
-        Update_Virtual_Table(conn)
         return edit_data_message
     else: 
         return "The user's reliability cannot be determined."
@@ -62,7 +59,6 @@ def manager_remove_data(type, username, password, site_id):
     if reliability >= 3:
         remove_data(conn, type, site_id)
         log(cursor, username, password, "Remove Data", "Site ID: " + site_id)
-        Update_Virtual_Table(conn)
         return "Data removed successfully."
     else: 
         return "The user's reliability cannot be determined."
@@ -86,7 +82,6 @@ def manager():
 
     if call == 'insert':
         return_result = manager_insert_data(type, username, password, link, title, text, description, keywords, shorttext)
-        print(return_result)
         return return_result
     elif call == 'edit':
         return_result = manager_edit_data(type, username, password, site_id, link, title, text, description, keywords, shorttext)

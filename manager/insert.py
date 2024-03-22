@@ -3,18 +3,11 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
-from library.database import Library_Get_Data_Count, Library_Get_Max_ID, Library_Insert_Data
-
-from search.safe import escape_special_characters
+from library.database import Library_Get_Data_Count, Library_Get_Max_ID, Library_Insert_Data, content_exists
 
 GOOGLE_SAFE_BROWSING_API_KEY = os.environ.get('GSB_API_KEY')
 
 allowed_extensions = {"http", "https"}
-
-def content_exists(conn, table_name, link):
-    cursor = conn.cursor()
-    count = Library_Get_Data_Count(cursor, table_name, link)
-    return count > 0
 
 def is_content_safe(link):
     url = 'https://safebrowsing.googleapis.com/v4/threatMatches:find?key=' + str(GOOGLE_SAFE_BROWSING_API_KEY)
@@ -41,17 +34,11 @@ def is_content_safe(link):
             return False
     return True
 
-def insert_data(conn, table_name, link, title, text, description, keywords, shorttext):
-    title = escape_special_characters(title)
-    text = escape_special_characters(text)
-    description = escape_special_characters(description)
-    keywords = escape_special_characters(keywords)
-    shorttext = escape_special_characters(shorttext)
-
+def insert_data(conn, type, link, title, text, description, keywords, shorttext):
     added = datetime.now()
 
     cursor = conn.cursor()
-    max_site_id = Library_Get_Max_ID(cursor, table_name)
+    max_site_id = Library_Get_Max_ID(cursor)
     if max_site_id is None:
         site_id = 1
     else:
@@ -65,14 +52,14 @@ def insert_data(conn, table_name, link, title, text, description, keywords, shor
     except requests.RequestException as e:
         return "Error accessing or parsing the website."
 
-    if content_exists(conn, table_name, link):
+    if content_exists(conn, type, link):
         return "Content already exists in the database."
 
     if not is_content_safe(link):
         return "Unsafe content detected. Not inserting into the database."
 
     cursor = conn.cursor()
-    Library_Insert_Data(cursor, table_name, site_id, link, title, text, description, keywords, shorttext, added)
+    Library_Insert_Data(cursor, type, site_id, link, title, text, description, keywords, shorttext, added)
     conn.commit()
     cursor.close()
     return "Data inserted successfully."

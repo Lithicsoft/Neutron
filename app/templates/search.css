@@ -1,6 +1,5 @@
-:root {
-    --background-gradient-1: rgb(238, 174, 202);
-    --background-gradient-2: rgb(148, 187, 233);
+body {
+	background-color: #59595b;
 }
 
 .logo {
@@ -19,22 +18,9 @@
 	text-shadow: 0px 2px 3px rgba(0,0,0,0.5);
 }
 
-body {
-    background: radial-gradient(circle, var(--background-gradient-1) 0%, var(--background-gradient-2) 100%);
-    background-size: 400% 400%;
-    animation: gradient 30s ease infinite;
-    height: 100vh;
-}
-
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #333;
+    background-color: #3f3f3f36;
     overflow: hidden;
     border-radius: 1em;
 }
@@ -74,6 +60,11 @@ body {
 	width: 10%;
 }
 
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .result {
 	display: none;
 	font-size: large;
@@ -104,6 +95,7 @@ body {
 	font-size: large;
 	border-radius: 1em;
     margin-left: auto;
+	float: right;
   	padding: 6px 12px;
   	border: 1px solid #ffffff;
   	background-color: #ffffff;
@@ -389,7 +381,7 @@ input[type=number] {
 }
 
 .background_form {
-	border-radius: 2em;
+	border-radius: 1em;
   	padding: 6px 12px;
   	border: 1px solid #ffffff;
   	background-color: #ffffff;
@@ -400,7 +392,7 @@ input[type=number] {
 }
 
 select {
-	border-radius: 2em;
+	border-radius: 1em;
 	width: 30em;
 	height: 2em;
 	-webkit-appearance: none;

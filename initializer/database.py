@@ -13,9 +13,7 @@ def Initializer_Database():
     conn = connect_to_mysql('search_index')
     cursor = conn.cursor()
 
-    Library_Initializer_Database(cursor, 'Text')
-    Library_Initializer_Database(cursor, 'Image')
-    Library_Initializer_Database(cursor, 'Video')
+    Library_Initializer_Database(cursor)
 
     conn.commit()
 

@@ -12,8 +12,6 @@ from datetime import datetime
 import os
 import shutil
 import subprocess
-from FTS.initializer import Initializer_Virtual_Table
-from FTS.update import Update_Virtual_Table
 from account.username import get_username
 from initializer.database import Initializer_Database
 from initializer.loader import database_loader
@@ -161,17 +159,6 @@ while(True):
             yn = input('Do you want to start the server including: Search, Account [y/n]: ')
             if (yn != 'n'):
                     Initializer_Database()
-                    Initializer_Virtual_Table()
-
-                    vt_conn = database_loader()
-                    Update_Virtual_Table(vt_conn)
-                    vt_conn.close()
-                    vt_conn = database_loader()
-                    Update_Virtual_Table(vt_conn)
-                    vt_conn.close()
-                    vt_conn = database_loader()
-                    Update_Virtual_Table(vt_conn)
-                    vt_conn.close()
 
                     if os_name == 'Windows':
                         subprocess.call("start python search/index.py", shell=True)
@@ -205,11 +192,6 @@ while(True):
         compare_databases(compare_databases_num)
     elif command == "sync":
         synchronization_databases()
-        print("Successful data synchronization.")
-    elif command == "sync-fts":
-        vt_conn = database_loader()
-        Update_Virtual_Table(vt_conn)
-        vt_conn.close()
         print("Successful data synchronization.")
     elif command == "log":
         with open('log.txt', 'r') as file:

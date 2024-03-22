@@ -35,3 +35,34 @@ languageSelect.addEventListener('change', function() {
 
   window.location.reload();
 });
+
+var timeSelect = document.querySelector('#timeSelect');
+
+var params = new URLSearchParams(window.location.search);
+var hl = params.get('tm');
+if (hl) {
+  timeSelect.value = hl;
+}
+
+timeSelect.addEventListener('change', function() {
+  var tm = this.options[this.selectedIndex].getAttribute('result-time');
+  
+  if (tm == 'all') {
+    params.delete('tm');
+    window.history.replaceState({}, '', '?' + params.toString());
+  } else {
+    params.set('tm', tm);
+    window.history.replaceState({}, '', '?' + params.toString());
+  }
+
+  window.location.reload();
+});
+
+function changePage(pageNumber) {
+  if (!isNaN(pageNumber)) {
+    var url = new URL(window.location.href);
+    url.searchParams.set('pg', pageNumber);
+    window.history.pushState({}, '', url.toString());
+    window.location.reload();
+  }
+}

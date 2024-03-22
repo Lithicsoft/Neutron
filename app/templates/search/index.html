@@ -27,27 +27,39 @@
             <option value="{{ language }}" result-language="{{ language }}"> {{ language }} </option>
         {% endfor %}
       </select>     
-    </div> 
+    </div><br>
+    <div id="timeList">
+      <select id="timeSelect" name="time">
+        {% for tm in time %}
+            <option value="{{ tm }}" result-time="{{ tm }}"> {{ tm }} </option>
+        {% endfor %}
+      </select>    
+    </div>
   </div>
 
   <br><br><br>
   
-  <div class="searchresult">
-    {{ note }}
+  <div class="container">
+    <div class="searchresult">
+      {{ note }}
 
-    {% for row in results %}
-      <tr>
-          <td>{{ row[0] }}</td><br>
-          <td><a href="{{ row[0] }}">{{ row[1] }}</a></td><br>
-          <td>{{ row[5] }}</td><br>
-      </tr><br><br>
-    {% endfor %}
-  </div>
+      {% for row in results %}
+        <tr>
+            <td>{{ row[1] }}</td><br>
+            <td><a href="{{ row[1] }}">{{ row[2] }}</a></td><br>
+            <td>{{ row[6] }}</td><br>
+        </tr><br><br>
+      {% endfor %}
 
-  <div class="wikipedia">
-    <h3>{{ wikipedia_title }}</h3>
-    <img class="wikipediaimage" src="{{ wikipedia_image }}"><br>
-    <label>{{ wikipedia_summary }}</label> <label><a href="{{ wikipedia_link }}">Wikipedia</a></label>
+      <br><br><a href="javascript:changePage({{ prev_page }})">Prev page</a>
+      <br><a href="javascript:changePage({{ next_page }})">Next page</a>
+    </div>
+
+    <div class="wikipedia">
+      <h3>{{ wikipedia_title }}</h3>
+      <img class="wikipediaimage" src="{{ wikipedia_image }}"><br>
+      <label>{{ wikipedia_summary }}</label> <label><a href="{{ wikipedia_link }}">Wikipedia</a></label>
+    </div>
   </div>
 
   <script src="/result.js"></script>
