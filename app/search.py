@@ -1,6 +1,4 @@
 from datetime import datetime
-from bs4 import BeautifulSoup
-import requests
 from app import app
 from langdetect import detect
 from flask import render_template, request

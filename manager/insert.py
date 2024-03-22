@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
-from library.database import Library_Get_Data_Count, Library_Get_Max_ID, Library_Insert_Data, content_exists
+from library.database import Library_Get_Max_ID, Library_Insert_Data, content_exists
 
 GOOGLE_SAFE_BROWSING_API_KEY = os.environ.get('GSB_API_KEY')
 
