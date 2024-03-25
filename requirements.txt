@@ -1,7 +1,9 @@
 mysql-connector-python
+google-generativeai
 langdetect
 wikipedia
 sendgrid
+markdown
 gunicorn
 requests
 pymysql

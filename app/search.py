@@ -1,10 +1,30 @@
 from datetime import datetime
+import os
 from app import app
 from langdetect import detect
 from flask import render_template, request
 import wikipedia
 from search.get import Search_Data
 import wikipedia
+import google.generativeai as genai
+from bs4 import BeautifulSoup
+from markdown import markdown
+
+def get_AI_answer(question):
+    try:
+        GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
+        genai.configure(api_key=GOOGLE_API_KEY)
+
+        model = genai.GenerativeModel('gemini-pro')
+
+        response = model.generate_content(question + ' (Please summarize your answer)')
+
+        pre_text = markdown(response.text)
+        text = ''.join(BeautifulSoup(pre_text).findAll(text=True))
+
+        return text
+    except:
+        return ''
 
 def get_wikipedia_info(key, language=''):
     try:
@@ -41,6 +61,20 @@ def search():
     time = request.args.get('tm', '')
     page = request.args.get('pg', '')
 
+    ai_answer = request.args.get('ai', '')
+    if ai_answer == '':
+        ai_answer = get_AI_answer(keyword)
+    
+    wt = request.args.get('wt', '')
+    wi = request.args.get('wi', '')
+    ws = request.args.get('ws', '')
+    wl = request.args.get('wl', '')
+
+    if wt == '' or wi == '' or ws == '' or wl == '':
+        wikipedia_info = get_wikipedia_info(keyword, language_hl)
+    else:
+        wikipedia_info = wt, wl, ws, wi
+    
     if page == '' or page is None:
         page = 1
     else:
@@ -85,8 +119,6 @@ def search():
     language_list =  ['all', 'af', 'ar', 'bg', 'bn', 'ca', 'cs', 'cy', 'da', 'de', 'el', 'en', 'es', 'et', 'fa', 'fi', 'fr', 'gu', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lt', 'lv', 'mk', 'ml', 'mr', 'ne', 'nl', 'no', 'pa', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'so', 'sq', 'sv', 'sw', 'ta', 'te', 'th', 'tl', 'tr', 'uk', 'ur', 'vi', 'zh-cn', 'zh-tw']
     time_list = ['all', '2022', '2023', '2024']
 
-    wikipedia_info = get_wikipedia_info(keyword, language_hl)
-
     if search_result == []:
         return render_template(
             '/search/index.html',
@@ -100,6 +132,7 @@ def search():
             note='No results found.',
             prev_page = prev_page_num,
             next_page=next_page_num,
+            Gemini=ai_answer,
             results=search_result
         )
     else:
@@ -114,5 +147,6 @@ def search():
             wikipedia_image = wikipedia_info[3],
             prev_page=prev_page_num,
             next_page=next_page_num,
+            Gemini=ai_answer,
             results=search_result
         )

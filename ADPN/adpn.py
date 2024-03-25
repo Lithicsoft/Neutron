@@ -150,7 +150,7 @@ while(True):
     elif command == "clear":
         subprocess.call("cls", shell=True)
     elif command == "start":
-        if os.environ.get('SG_API_KEY') is None or os.environ.get('GSB_API_KEY') is None or os.environ.get('SQLUSERNAME') is None or os.environ.get('SQLPASSWORD') is None:
+        if os.environ.get('SG_API_KEY') is None or os.environ.get('GSB_API_KEY') is None or os.environ.get('GOOGLE_API_KEY') is None or os.environ.get('SQLUSERNAME') is None or os.environ.get('SQLPASSWORD') is None:
             print('The required API KEY to start the servers was not found, please use the "api-config" command to set the required environment API KEY variables.')
         else:
             yn = input('Do you want to start the server including: Search, Account [y/n]: ')
@@ -172,15 +172,18 @@ while(True):
                     else:
                         print('The operating system you are using is not capable of executing this command.')
     elif command == "api-config":
-        SG_API = input('Sendgrid API KEY: ')
+        SG_API = input('SENDGRID API KEY: ')
         GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
+        GOOGLE_API = input('GOOGLE GEMINI API KEY: ')
         if os_name == 'Windows':
             subprocess.call('setx SG_API_KEY "' + SG_API + '" /M')
             subprocess.call('setx GSB_API_KEY "' + GSB_API + '" /M')
+            subprocess.call('setx GOOGLE_API_KEY "' + GOOGLE_API + '" /M')
             print('Successfully created API environment variable.')
         elif os_name == 'Linux':
             subprocess.call('export SG_API_KEY=' + SG_API, shell=True)
             subprocess.call('export GSB_API_KEY=' + GSB_API, shel=True)
+            subprocess.call('export GOOGLE_API_KEY=' + GOOGLE_API, shell=True)
             print('Successfully created API environment variable.')
         else:
             print('The operating system you are using is not capable of executing this command.')

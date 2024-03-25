@@ -14,31 +14,6 @@ def summarize_text(text, max_length=174):
         last_space_index = text.rfind(' ', 0, max_length)
         return text[:last_space_index] + '...'
 
-def classify_website(url):
-    video_sites = ['youtube', 'vimeo', 'dailymotion']
-    image_sites = ['instagram', 'flickr', 'pinterest']
-    text_sites = ['wikipedia', 'medium', 'news']
-
-    for site in video_sites:
-        if site in url:
-            return 'video'
-    for site in image_sites:
-        if site in url:
-            return 'image'
-    for site in text_sites:
-        if site in url:
-            return 'text'
-
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-
-    if soup.find_all('video'):
-        return 'video'
-    elif soup.find_all('img'):
-        return 'image'
-    else:
-        return 'text'
-
 def get_website_info(url, headers):
     try:
         response = requests.get(url, headers=headers)
@@ -82,7 +57,7 @@ while investigation_list:
     website_info = get_website_info(url, headers)
     if website_info is not None:
         print("Title: ", website_info["title"])
-        type = classify_website(url)
+        type = "Text"
         result = manager_insert_data(type, username, password, url, website_info["title"], website_info["text_content"], website_info["description"], website_info["keywords"], summarize_text(website_info["text_content"]))
         if result == "Content already exists in the database.":
             site_id = manager_get_id(type, url)
@@ -100,7 +75,7 @@ while investigation_list:
                 if new_url not in investigation_list:
                     investigation_list.append(new_url)
     else:
-        type = classify_website(url)
+        type = "Text"
         site_id = manager_get_id(type, url)
         if site_id is not None:
             print(manager_remove_data(type, username, password, site_id))

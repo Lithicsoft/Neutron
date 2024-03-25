@@ -1,6 +1,32 @@
 <head>
   <title>Neutron Search</title>
   <link rel="stylesheet" href="/search.css">
+  <script type="text/javascript">
+    var Gemini = "{{ Gemini }}";
+    var Wikipedia_Title = "{{ wikipedia_title }}";
+    var Wikipedia_Image = "{{ wikipedia_image }}";
+    var Wikipedia_Summary = "{{ wikipedia_summary }}";
+    var Wikipedia_Link = "{{ wikipedia_link }}";
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var url = new URL(window.location.href);
+
+      url.searchParams.set('ai', Gemini);
+      window.history.pushState({}, '', url.toString());
+
+      url.searchParams.set('wt', Wikipedia_Title);
+      window.history.pushState({}, '', url.toString());
+
+      url.searchParams.set('wi', Wikipedia_Image);
+      window.history.pushState({}, '', url.toString());
+
+      url.searchParams.set('ws', Wikipedia_Summary);
+      window.history.pushState({}, '', url.toString());
+
+      url.searchParams.set('wl', Wikipedia_Link);
+      window.history.pushState({}, '', url.toString());
+    })
+  </script>
 </head>
 <body>
   <div class="topnav">
@@ -21,6 +47,7 @@
       <input id="ImgTag" type="button" class="tag" value="Image" data-type="Image">
       <input id="VidTag" type="button" class="tag" value="Video" data-type="video">
     </div><br>
+    Language:
     <div id="languageList">
       <select id="languageSelect" name="language">
         {% for language in languages %}
@@ -28,6 +55,7 @@
         {% endfor %}
       </select>     
     </div><br>
+    Time:
     <div id="timeList">
       <select id="timeSelect" name="time">
         {% for tm in time %}
@@ -42,7 +70,7 @@
   <div class="container">
     <div class="searchresult">
       {{ note }}
-
+      
       {% for row in results %}
         <tr>
             <td>{{ row[1] }}</td><br>
@@ -55,10 +83,16 @@
       <br><a href="javascript:changePage({{ next_page }})">Next page</a>
     </div>
 
-    <div class="wikipedia">
-      <h3>{{ wikipedia_title }}</h3>
-      <img class="wikipediaimage" src="{{ wikipedia_image }}"><br>
-      <label>{{ wikipedia_summary }}</label> <label><a href="{{ wikipedia_link }}">Wikipedia</a></label>
+    <div class="extent">
+      <div class="ai_display">
+        <h3>Gemini</h3>
+        <label>{{ Gemini }}</label>
+      </div><br><br>
+      <div class="wikipedia">
+        <h3>{{ wikipedia_title }}</h3>
+        <img class="wikipediaimage" src="{{ wikipedia_image }}"><br>
+        <label>{{ wikipedia_summary }}</label> <label><a href="{{ wikipedia_link }}">Wikipedia</a></label>
+      </div>
     </div>
   </div>
 

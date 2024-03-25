@@ -12,24 +12,25 @@
     <div class="logo">Neutron</div>
 
     <div class="center">
-        <form action="/account/register" method="POST">
-            <input type="email" name="email" placeholder="Email"/><br><br>
+        <div class="background_form"><br>
+            <form action="/account/register" method="POST">
+                <input type="email" name="email" placeholder="Email"/><br><br>
 
-            <input type="text" name="username" placeholder="Username"/><br><br>
+                <input type="text" name="username" placeholder="Username"/><br><br>
 
-            <input type="password" name="password" placeholder="Password"/><br><br>
+                <input type="password" name="password" placeholder="Password"/><br><br>
 
-            <button type="submit" name="register_button" value="register_clicked">Register</button><br><br>
-        </form>
+                <button type="submit" name="register_button" value="register_clicked">Register</button><br><br>
+            </form>
 
-        <form action="/account/register" method="POST">
-            <input type="number" name="userid" placeholder="User ID"/><br><br>
+            <form action="/account/register" method="POST">
+                <input type="number" name="userid" placeholder="User ID"/><br><br>
 
-            <input type="number" name="confirmcode" placeholder="Code"/><br><br>
+                <input type="number" name="confirmcode" placeholder="Code"/><br><br>
 
-            <button type="submit" name="submit_button" value="submit_clicked">Submit</button><br><br>
-        </form>
-
+                <button type="submit" name="submit_button" value="submit_clicked">Submit</button><br><br>
+            </form>
+        </div>
         <div class="result"> {{ message }} </div>
     </div>
 
