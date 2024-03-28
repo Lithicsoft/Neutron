@@ -66,3 +66,12 @@ function changePage(pageNumber) {
     window.location.reload();
   }
 }
+
+function showFilter() {
+  var x = document.getElementById("Dropdown");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}

@@ -35,28 +35,31 @@
     <a href="/contribute">Contribute</a>
     <a href="https://lithicsoft.github.io/neutron">About</a>
   </div>
-  <div class="minilogo">Neutron</div>
+  <div class="logo">Neutron</div>
 
   <form action="/search" method="GET">
       <input type="search" value="{{ query }}" name="q" placeholder="Try to search something!" class="left"/>
   </form>
 
-  <div class="filter">
+  <div class="navbar">
     <div id="tagList">
       <input id="TextTag" type="button" class="tag" value="Text" data-type="Text">
       <input id="ImgTag" type="button" class="tag" value="Image" data-type="Image">
       <input id="VidTag" type="button" class="tag" value="Video" data-type="video">
-    </div><br>
-    Language:
+    </div>
+    <button onclick="showFilter()" class="dropButton">Options</button>
+  </div><br>
+  <div id="Dropdown" class="filter">
     <div id="languageList">
+      <label for="languageList">Language:</label> 
       <select id="languageSelect" name="language">
         {% for language in languages %}
             <option value="{{ language }}" result-language="{{ language }}"> {{ language }} </option>
         {% endfor %}
       </select>     
-    </div><br>
-    Time:
+    </div>
     <div id="timeList">
+      <label for="timeList">Time:</label>
       <select id="timeSelect" name="time">
         {% for tm in time %}
             <option value="{{ tm }}" result-time="{{ tm }}"> {{ tm }} </option>
@@ -64,7 +67,6 @@
       </select>    
     </div>
   </div>
-
   <br><br><br>
   
   <div class="container">
@@ -90,7 +92,7 @@
       </div><br><br>
       <div class="wikipedia">
         <h3>{{ wikipedia_title }}</h3>
-        <img class="wikipediaimage" src="{{ wikipedia_image }}"><br>
+        <img class="wikipedia_image" src="{{ wikipedia_image }}"><br>
         <label>{{ wikipedia_summary }}</label> <label><a href="{{ wikipedia_link }}">Wikipedia</a></label>
       </div>
     </div>

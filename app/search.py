@@ -1,4 +1,5 @@
 from datetime import datetime
+import time
 import os
 from app import app
 from langdetect import detect
@@ -58,7 +59,7 @@ def search():
     keyword = request.args.get('q', '')
     type = request.args.get('tp', '')
     language_hl = request.args.get('hl', '')
-    time = request.args.get('tm', '')
+    time_sr = request.args.get('tm', '')
     page = request.args.get('pg', '')
 
     ai_answer = request.args.get('ai', '')
@@ -87,12 +88,11 @@ def search():
 
     next_page_num = page + 1
 
-    search_result = []
+    search_result = Search_Data(type, keyword, page)
 
     if type == '':
         type = 'Text'
     if language_hl != '':
-        search_result = Search_Data(type, keyword, page)
         filtered_data = []
         for item in search_result:
             try:
@@ -107,12 +107,12 @@ def search():
     else:
         search_result = Search_Data(type, keyword, page) 
 
-    if time != '':
-        time = int(time)
+    if time_sr != '':
+        time_sr = int(time_sr)
         filtered_data = []
         for item in search_result:
             item_time = datetime.strptime(item[7], '%a, %d %b %Y %H:%M:%S %Z')
-            if item_time.year == time:
+            if item_time.year == time_sr:
                 filtered_data.append(item)
         search_result = filtered_data
 
@@ -124,7 +124,7 @@ def search():
             '/search/index.html',
             query=keyword,
             languages = language_list,
-            time = time_list,
+            time=time_list,
             wikipedia_title = wikipedia_info[0],
             wikipedia_link = wikipedia_info[1],
             wikipedia_summary = wikipedia_info[2],
@@ -148,5 +148,5 @@ def search():
             prev_page=prev_page_num,
             next_page=next_page_num,
             Gemini=ai_answer,
-            results=search_result
+            results=search_result,
         )

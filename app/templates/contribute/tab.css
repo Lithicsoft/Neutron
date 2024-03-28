@@ -1,17 +1,16 @@
 /* Style the tab */
 .tab {
   overflow: hidden;
-  border: 1px solid #ffffff;
-  border-radius: 2em;
+  border: 1px solid #000000;
   background-color: #ffffff;
-  width: 20.3%; /* Adjust the width as needed */
+  width: 21%; /* Adjust the width as needed */
   margin: auto; /* This will center the tab */
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
   background-color: inherit;
-  float: left;
+  float: center;
   border: none;
   outline: none;
   cursor: pointer;
@@ -23,6 +22,8 @@
 /* Change background color of buttons on hover */
 .tab button:hover {
   background-color: #000000;
+  color: #ffffff;
+  border-radius: 0%;
 }
 
 /* Create an active/current tablink class */
@@ -33,13 +34,10 @@
 
 /* Style the tab content */
 .tabcontent {
-  border-radius: 2em;
   display: none;
+  width: 70%;
   padding: 6px 12px;
-  border: 1px solid #ffffff;
-  background-color: #ffffff;
-  border-top: none;
-  width: 27.5%;
+  border: 1px solid #000000;
   height: auto;
   margin: auto;
 }
