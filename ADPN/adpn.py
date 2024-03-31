@@ -18,7 +18,7 @@ from account.reliability import get_user_reliability
 
 print('Welcome to Neutron Administrator Panel')
 
-def compare_databases(table_name):
+def compare_databases():
     try:
         conn1 = connect_to_mysql("search_index")
         conn2 = connect_to_mysql("censorship")
@@ -26,8 +26,8 @@ def compare_databases(table_name):
         cur1 = conn1.cursor()
         cur2 = conn2.cursor()
 
-        cur1.execute(f"SELECT * FROM {table_name}")
-        cur2.execute(f"SELECT * FROM {table_name}")
+        cur1.execute(f"SELECT * FROM information")
+        cur2.execute(f"SELECT * FROM information")
 
         data1 = cur1.fetchall()
         data2 = cur2.fetchall()
@@ -57,18 +57,13 @@ def compare_databases(table_name):
 
 def synchronization_databases():
     try:
-        if not compare_databases(0) or not compare_databases(1) or not compare_databases(2):
+        if not compare_databases():
             print("Databases cannot be synchronized when there are differences between them.")
             return
         else:
-            delete_database("censorship0")
-            clone_database("search-index0", "censorship0")
+            delete_database("censorship")
+            clone_database("search-index", "censorship")
 
-            delete_database("censorship1")
-            clone_database("search-index1", "censorship1")
-
-            delete_database("censorship2")
-            clone_database("search-index2", "censorship2")
             print("Synchronization successful.")
     except Exception as e:
         print("Error synchronizing databases:", str(e))
@@ -142,7 +137,6 @@ while(True):
             api-config: Add the necessary API KEY environment variables to the servers.
             check: Lists the data that needs to be censored.
             sync: Synchronize the censored database and the parent database (requirement: no data that needs to be censored).
-            sync-fts: Synchronize data in the root table with the virtual table.
             log: Prints the server log.
             users-list: Lists the list of users.
             users-rel: Changes user reliability through their user id.
@@ -188,13 +182,12 @@ while(True):
         else:
             print('The operating system you are using is not capable of executing this command.')
     elif command == "check":
-        compare_databases_num = input('Text, Image, Video: ')
-        compare_databases(compare_databases_num)
+        compare_databases()
     elif command == "sync":
         synchronization_databases()
         print("Successful data synchronization.")
     elif command == "log":
-        with open('log.txt', 'r') as file:
+        with open('log.txt', 'r', encoding='utf-8') as file:
             for line in file:
                 print(line.strip())
     elif command == "users-list":
