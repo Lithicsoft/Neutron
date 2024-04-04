@@ -56,6 +56,7 @@ We value your feedback! If you have any suggestions, encounter issues, or need a
 
 - [MySQL](https://www.mysql.com/) - Database
 - [Langdetect](https://pypi.org/project/langdetect/) - Language Detection Library
+- [Gemini](https://gemini.google.com/) - Google Gemini AI
 - [Wikipedia](https://pypi.org/project/wikipedia/) - Wikipedia API for Python
 - [SendGrid](https://sendgrid.com/) - Email Delivery Service
 - [Gunicorn](https://gunicorn.org/) - WSGI HTTP Server
