@@ -1,3 +1,32 @@
+window.onload = function() {
+  var url = new URL(window.location.href);
+
+  function setBorderBottom(id, value) {
+    document.getElementById(id).style.borderBottom = value;
+  }
+
+  var CurrentType = url.searchParams.get('tp');
+  if (CurrentType == null) {
+    setBorderBottom("TextTag", "0.2em solid rgb(23, 74, 228)");
+  } else if (CurrentType == "Text") {
+    setBorderBottom("TextTag", "0.2em solid rgb(23, 74, 228)");
+  } else if (CurrentType == 'Image') {
+    setBorderBottom("ImgTag", "0.2em solid rgb(23, 74, 228)");
+  } else if (CurrentType == 'Video') {
+    setBorderBottom("VidTag", "0.2em solid rgb(23, 74, 228)");
+  }
+
+  var wikipediaDiv = document.querySelector('.wikipedia');
+  if (wikipediaDiv) {
+      var titleElement = wikipediaDiv.querySelector('h3');
+      if (titleElement && titleElement.innerHTML.trim() === '') {
+          wikipediaDiv.style.display = 'none';
+      } else {
+          wikipediaDiv.style.display = 'block';
+      }
+  }
+}
+
 var tags = document.querySelectorAll('.tag');
 
 tags.forEach(function(tag) {

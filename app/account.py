@@ -78,9 +78,14 @@ def login_form():
 
             login = get_user_reliability(cursor, username, password)
 
+            User = request.cookies.get('USERNAME')
+            if User is None:
+                User = 'Account'
+
             if login is not None:
                 resp = make_response(render_template(
                     '/account/login.html',
+                    User=User,
                     message='Logged in successfully.',
                     redirect='/account/me'
                 ))
@@ -91,6 +96,7 @@ def login_form():
             else:
                 return render_template(
                     '/account/login.html',
+                    User=User,
                     message='Account does not exist.'
                 )
     else:
@@ -105,16 +111,23 @@ def login_form():
             )
         else:
             return render_template(
-                '/account/login.html'
+                '/account/login.html',
+                User="Account"
             )
     
 @app.route('/account/register', methods=['GET', 'POST'])
 def account_register():
     confirmcode = request.form.get('confirmcode')
     user_id = request.form.get('userid')
+
+    User = request.cookies.get('USERNAME')
+    if User is None:
+        User = 'Account'
+
     if confirmcode is not None:
         return render_template(
             'account/register.html',
+            User=User,
             message=verification(int(user_id), int(confirmcode))
         )
 
@@ -126,11 +139,12 @@ def account_register():
 
         if username is None or password is None or login is None:
             return render_template(
-                '/account/register.html'
+                '/account/register.html',
+                User=User,
             )
         else:
             return redirect(
-                '/account/me'
+                '/account/me',
             )
     else:
         if request.form.get('register_button') == 'register_clicked':
@@ -141,16 +155,19 @@ def account_register():
             if check_existing_email(email):
                 return render_template(
                     '/account/register.html',
+                    User=User,
                     message='This email is already registered. Please use a different email.'
                 )
             elif verify_email(email):
                 return render_template(
                     '/account/register.html',
+                    User=User,
                     message='This email is invalid, please check again.'
                 )
             elif check_existing_username(username):
                 return render_template(
                     '/account/register.html',
+                    User=User,
                     message='This user name already in use. Please use another username.'
                 )
             else:
@@ -161,6 +178,7 @@ def account_register():
                 send_email('Neutron Verification', 'lithicsoft@gmail.com', email, 'Hello ' + username + ', Your Neutron confirmation code is: ' + str(confirm_code) + ' and your id is: ' + str(user_id) + '.')
                 return render_template(
                     '/account/register.html',
+                    User=User,
                     message='An email containing a confirmation code and user id has been sent to your account.'
                 )
 
@@ -179,6 +197,7 @@ def myaccount_form():
         else:
             return render_template(
                 '/account/me.html',
+                User=username,
                 username=username
             )
     else:
@@ -193,8 +212,13 @@ def myaccount_form():
                 user_id = get_user_id(cursor, username)
                 update_password(user_id, new_password)
 
+                User = request.cookies.get('USERNAME')
+                if User is None:
+                    User = 'Account'
+
                 resp = make_response(render_template(
                     '/account/me.html',
+                    User=User,
                     message='Changed password successfully.'
                 ))
                 resp.set_cookie('PASSWORD', new_password)
@@ -203,7 +227,8 @@ def myaccount_form():
             else:
                 return render_template(
                     '/account/me.html',
-                    username=request.cookies.get('USERNAME'),
+                    User=User,
+                    username=User,
                     message='Password and username are incorrect, please try again.'
                 )
 
@@ -212,6 +237,10 @@ def myaccount_form():
 def myaccount_logout():
     username = request.cookies.get('USERNAME')
     password = request.cookies.get('PASSWORD')
+
+    User = request.cookies.get('USERNAME')
+    if User is None:
+        User = 'Account'
 
     if username is None or password is None:
         return redirect(

@@ -10,8 +10,13 @@ cursor = conn.cursor()
 
 @app.route('/contribute', methods=['GET', 'POST'])
 def contribute():
+    User = request.cookies.get('USERNAME')
+    if User is None:
+        User = 'Account'
+
     return render_template(
         '/contribute/index.html',
+        User=User
     )
 
 @app.route('/contribute/insert', methods=['GET', 'POST'])
@@ -33,8 +38,14 @@ def contribute_insert():
             keywords = request.form.get('keywords')
             shorttext = request.form.get('shorttext')
             message_call = manager_insert_data(type, username, password, link, title, text, description, keywords, shorttext)
+        
+        User = request.cookies.get('USERNAME')
+        if User is None:
+            User = 'Account'
+
         return render_template(
             '/contribute/index.html',
+            User=User,
             message=message_call
         )
 
@@ -58,8 +69,14 @@ def contribute_change():
             keywords = request.form.get('keywords')
             shorttext = request.form.get('shorttext')
             message_call = manager_edit_data(type, username, password, site_id, link, title, text, description, keywords, shorttext)
+        
+        User = request.cookies.get('USERNAME')
+        if User is None:
+            User = 'Account'
+
         return render_template(
             '/contribute/index.html',
+            User=User,
             message=message_call
         )
 
@@ -77,8 +94,14 @@ def contribute_remove():
             site_id = request.form.get('site_id')
             type = request.form.get('type')
             message_call = manager_remove_data(type, username, password, site_id)
+
+        User = request.cookies.get('USERNAME')
+        if User is None:
+            User = 'Account'
+
         return render_template(
             '/contribute/index.html',
+            User=User,
             message=message_call
         )
 
@@ -88,7 +111,13 @@ def contribute_getid():
         link = request.form.get('link')
         type = request.form.get('type')
         message_call=manager_get_id(type, link)
+
+        User = request.cookies.get('USERNAME')
+        if User is None:
+            User = 'Account'
+
         return render_template(
             '/contribute/index.html',
+            User=User,
             message=message_call
         )

@@ -11,6 +11,13 @@ import google.generativeai as genai
 from bs4 import BeautifulSoup
 from markdown import markdown
 
+def summarize_text(text, max_length=174):
+    if len(text) <= max_length:
+        return text
+    else:
+        last_space_index = text.rfind(' ', 0, max_length)
+        return text[:last_space_index] + '...'
+
 def get_AI_answer(question):
     try:
         GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
@@ -18,12 +25,12 @@ def get_AI_answer(question):
 
         model = genai.GenerativeModel('gemini-pro')
 
-        response = model.generate_content(question + ' (Please summarize your answer)')
+        response = model.generate_content(question + ' (Tóm tắc câu trả lời)')
 
         pre_text = markdown(response.text)
         text = ''.join(BeautifulSoup(pre_text).findAll(text=True))
 
-        return text
+        return summarize_text(text)
     except:
         return ''
 
@@ -50,8 +57,14 @@ def get_wikipedia_info(key, language=''):
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
+
+    User = request.cookies.get('USERNAME')
+    if User is None:
+        User = 'Account'
+
     return render_template(
         '/index.html',
+        User=User
     )
 
 @app.route('/search', methods=['GET', 'POST'])
@@ -119,9 +132,14 @@ def search():
     language_list =  ['all', 'af', 'ar', 'bg', 'bn', 'ca', 'cs', 'cy', 'da', 'de', 'el', 'en', 'es', 'et', 'fa', 'fi', 'fr', 'gu', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lt', 'lv', 'mk', 'ml', 'mr', 'ne', 'nl', 'no', 'pa', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'so', 'sq', 'sv', 'sw', 'ta', 'te', 'th', 'tl', 'tr', 'uk', 'ur', 'vi', 'zh-cn', 'zh-tw']
     time_list = ['all', '2022', '2023', '2024']
 
+    User = request.cookies.get('USERNAME')
+    if User is None:
+        User = 'Account'
+
     if search_result == []:
         return render_template(
             '/search/index.html',
+            User=User,
             query=keyword,
             languages = language_list,
             time=time_list,
@@ -138,6 +156,7 @@ def search():
     else:
         return render_template(
             '/search/index.html',
+            User=User,
             query=keyword,
             languages = language_list,
             time = time_list,

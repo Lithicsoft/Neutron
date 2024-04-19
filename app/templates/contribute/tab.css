@@ -1,7 +1,6 @@
 /* Style the tab */
 .tab {
   overflow: hidden;
-  border: 1px solid #000000;
   background-color: #ffffff;
   width: 21%; /* Adjust the width as needed */
   margin: auto; /* This will center the tab */
@@ -37,7 +36,6 @@
   display: none;
   width: 70%;
   padding: 6px 12px;
-  border: 1px solid #000000;
   height: auto;
   margin: auto;
 }

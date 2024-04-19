@@ -1,18 +1,77 @@
 <head>
     <title>Neutron Search</title>
     <link rel="stylesheet" href="/search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="topnav">
-        <a href="/">Search</a>
-        <a href="/account">Account</a>
-        <a href="/contribute">Contribute</a>
-        <a href="https://lithicsoft.github.io/neutron" target="_blank">About</a>
-    </div>
-    <div class="logo">Neutron</div>
+    <script>
+        function loadBackground() {
+            fetch('https://source.unsplash.com/random?night sky')
+                .then((response) => {
+                    if (response.ok) {
+                        document.body.style.backgroundImage = 'url(' + response.url + ')';
+                    } else {
+                        console.log('Error code: ' + response.status);
+                    }
+                })
+                .catch((error) => {
+                    console.log('Error: ' + error);
+                });
+        }
 
-    <form action="/search" method="GET">
-        <input type="search" name="q" placeholder="Try to search something!" class="center"/>
+        window.onload = loadBackground;
+
+        var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        var button = document.getElementById('voice-button');
+        var input = document.getElementById('search-input');
+
+        button.addEventListener('click', function() {
+            recognition.start();
+        });
+
+        recognition.addEventListener('result', function(event) {
+            input.value = event.results[0][0].transcript;
+        });
+    </script>
+    <div class="topnav">
+        <div>
+            <img style="float: left;" src="https://avatars.githubusercontent.com/u/104414044?s=400&u=1ed30317ef805a1b447c1c7194b5fcad6c9f3888&v=4" width="50" height="50">
+            <a style="color: white; font-size: larger;" href="/">Lithicsoft Neutron</a>
+        </div>
+        <a style="float: right; color: white;" href="/account">{{ User }}</a>
+    </div>
+
+    <br><br><br><form action="/search" method="GET">
+        <div class="search-bar-main">
+            <input type="search" id="search-input" value="{{ query }}" name="q" placeholder="Search something...">
+            <div class="icon-container">
+                <input type="submit" id="search-button" value="&#xF002;" style="font-family:FontAwesome;">
+                <input type="button" id="voice-button" value="&#xf130;" style="font-family:FontAwesome;">
+            </div>
+        </div>
     </form>
+    
 </body>
+<br><br><br>
+<footer>
+    <p style="float: right; color: white;">&copy; 2024 Lithicsoft Organization&nbsp;</p>
+    <p style="float: left; color: white;">
+      &nbsp;&nbsp;&nbsp;
+      <a style="color: lightgray;" href="https://lithicsoft.github.io/neutron/touap/" target="_blank">Policy & Terms of Use</a> and <a style="color: lightgray;" href="https://lithicsoft.github.io/neutron/pp/" target="_blank">Privacy Policy</a>
+      &nbsp;&nbsp;&nbsp;
+      <a style="color: lightgray;" href="/contribute" target="_blank">Contribute</a>
+      &nbsp;&nbsp;&nbsp;
+      <a style="color: lightgray;" href="https://lithicsoft.github.io/neutron" target="_blank">About</a>
+    </p>
+</footer>

@@ -89,7 +89,7 @@ def list_users_database():
         print("--------------------")
         user_amount + 1
     
-    print(user_amount)
+    print("User Amount: ", user_amount)
 
 def get_reliability_from_id(user_id):
     account_cursor.execute("SELECT reliability FROM users WHERE id = %s", (user_id,))

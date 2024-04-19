@@ -1,6 +1,7 @@
 <head>
   <title>Neutron Search</title>
   <link rel="stylesheet" href="/search.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script type="text/javascript">
     var Gemini = "{{ Gemini }}";
     var Wikipedia_Title = "{{ wikipedia_title }}";
@@ -30,28 +31,33 @@
 </head>
 <body>
   <div class="topnav">
-    <a href="/">Search</a>
-    <a href="/account">Account</a>
-    <a href="/contribute">Contribute</a>
-    <a href="https://lithicsoft.github.io/neutron" target="_blank">About</a>
+    <div>
+      <img style="float: left; margin-top: 1%;" src="https://avatars.githubusercontent.com/u/104414044?s=400&u=1ed30317ef805a1b447c1c7194b5fcad6c9f3888&v=4" width="50" height="50">
+      <a style="color: rgb(0, 0, 0); font-size: larger; margin-top: 1%;" href="/">Lithicsoft Neutron</a>
+    </div>
+    <a style="float: right; margin-top: 1%;" href="/account">{{ User }}</a>
+    <form action="/search" method="GET">
+      <div class="search-bar-result">
+        <input style="float: left;" type="search" id="search-input" value="{{ query }}" name="q" placeholder="Search something...">
+        <div class="icon-container">
+            <input type="button" id="search-button" value="&#xF002;" style="font-family:FontAwesome;">
+            <input type="button" id="voice-button" value="&#xf130;" style="font-family:FontAwesome;">
+        </div>
+      </div>
+    </form>
   </div>
-  <div class="logo">Neutron</div>
-
-  <form action="/search" method="GET">
-      <input type="search" value="{{ query }}" name="q" placeholder="Try to search something!" class="left"/>
-  </form>
-
+  <br>
   <div class="navbar">
     <div id="tagList">
-      <input id="TextTag" type="button" class="tag" value="Text" data-type="Text">
-      <input id="ImgTag" type="button" class="tag" value="Image" data-type="Image">
-      <input id="VidTag" type="button" class="tag" value="Video" data-type="video">
+      <input style="border-bottom: none;" id="TextTag" type="button" class="tag" value="Text" data-type="Text">
+      <input style="border-bottom: none;" id="ImgTag" type="button" class="tag" value="Image" data-type="Image">
+      <input style="border-bottom: none;" id="VidTag" type="button" class="tag" value="Video" data-type="Video">
     </div>
     <button onclick="showFilter()" class="dropButton">Options</button>
   </div><br>
   <div id="Dropdown" class="filter">
     <div id="languageList">
-      <label for="languageList">Language:</label> 
+      <label for="languageList">🌐</label> 
       <select id="languageSelect" name="language">
         {% for language in languages %}
             <option value="{{ language }}" result-language="{{ language }}"> {{ language }} </option>
@@ -59,7 +65,7 @@
       </select>     
     </div>
     <div id="timeList">
-      <label for="timeList">Time:</label>
+      <label for="timeList">🕒</label>
       <select id="timeSelect" name="time">
         {% for tm in time %}
             <option value="{{ tm }}" result-time="{{ tm }}"> {{ tm }} </option>
@@ -67,7 +73,7 @@
       </select>    
     </div>
   </div>
-  <br><br><br>
+  <br>
   
   <div class="container">
     <div class="searchresult">
@@ -75,14 +81,15 @@
       
       {% for row in results %}
         <tr>
-            <td>{{ row[1] }}</td><br>
-            <td><a href="{{ row[1] }}">{{ row[2] }}</a></td><br>
-            <td>{{ row[6] }}</td><br>
+            <td style="font-size:  x-small;">{{ row[1] }}</td><br>
+            <td><a style="font-size: x-large;" href="{{ row[1] }}">{{ row[2] }}</a></td><br>
+            <td style="font-size: x-small;">{{ row[6] }}</td><br>
         </tr><br><br>
       {% endfor %}
 
-      <br><br><a href="javascript:changePage({{ prev_page }})">Prev page</a>
-      <br><a href="javascript:changePage({{ next_page }})">Next page</a>
+      <a href="javascript:changePage({{ prev_page }})" style="font-size: x-large; float: left;">&LeftArrow;</a>
+      <a href="javascript:changePage({{ next_page }})" style="font-size: x-large; float: right;">&RightArrow;</a>
+      <br><br>
     </div>
 
     <div class="extent">
@@ -98,6 +105,35 @@
     </div>
   </div>
 
+  <script>
+    var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    var button = document.getElementById('voice-button');
+    var input = document.getElementById('search-input');
+
+    button.addEventListener('click', function() {
+        recognition.start();
+    });
+
+    recognition.addEventListener('result', function(event) {
+        input.value = event.results[0][0].transcript;
+    });
+  </script>
   <script src="/result.js"></script>
   <script src="/search/script.js"></script>
 </body>
+<br><br><br>
+<footer>
+  <p style="float: right;">&copy; 2024 Lithicsoft Organization&nbsp;</p>
+  <p style="float: left;">
+    &nbsp;&nbsp;&nbsp;
+    <a href="https://lithicsoft.github.io/neutron/touap/" target="_blank">Policy & Terms of Use</a> and <a href="https://lithicsoft.github.io/neutron/pp/" target="_blank">Privacy Policy</a>
+    &nbsp;&nbsp;&nbsp;
+    <a href="/contribute" target="_blank">Contribute</a>
+    &nbsp;&nbsp;&nbsp;
+    <a href="https://lithicsoft.github.io/neutron" target="_blank">About</a>
+  </p>
+</footer>
