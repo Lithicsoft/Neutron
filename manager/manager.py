@@ -1,6 +1,9 @@
 from flask import Flask, request
+from waitress import serve
+
 import sys
 import os
+
 sys.path.append(os.path.abspath(os.path.join('./')))
 from getid import Get_ID
 from initializer.loader import database_loader
@@ -94,4 +97,4 @@ def manager():
         return str(return_result)
     
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8501)
+    serve(app, host='0.0.0.0', port=8501)

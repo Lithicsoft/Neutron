@@ -1,8 +1,10 @@
 from flask import Flask, jsonify, request
+from waitress import serve
 
 import sys
 import os
 import re
+
 sys.path.append(os.path.abspath(os.path.join('./')))
 from library.database import Library_Exact_Search, Library_Full_Text_Search
 from initializer.loader import database_loader
@@ -36,4 +38,4 @@ def Search_Data():
         return rows
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8500)
+    serve(app, host='0.0.0.0', port=8500)

@@ -1,6 +1,9 @@
 from datetime import datetime
+import json
 import time
 import os
+
+import requests
 from app import app
 from langdetect import detect
 from flask import render_template, request
@@ -19,6 +22,13 @@ def summarize_text(text, max_length=174):
         last_space_index = text.rfind(' ', 0, max_length)
         return text[:last_space_index] + '...'
 
+def get_locale():
+    LANGUAGES = {
+        'en': 'English',
+        'vi': 'Vietnamese'
+    }
+    return request.accept_languages.best_match(LANGUAGES.keys())
+
 def get_AI_answer(question):
     try:
         GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
@@ -26,7 +36,12 @@ def get_AI_answer(question):
 
         model = genai.GenerativeModel('gemini-pro')
 
-        response = model.generate_content(question + ' (Tóm tắc câu trả lời)')
+        prompt = ' (Please summarize the answer)'
+
+        if get_locale() == 'vi':
+            prompt = ' (Hãy tóm tắt câu trả lời)'
+
+        response = model.generate_content(question + prompt)
 
         pre_text = markdown(response.text)
         text = ''.join(BeautifulSoup(pre_text).findAll(text=True))
@@ -34,6 +49,21 @@ def get_AI_answer(question):
         return summarize_text(text)
     except:
         return ''
+
+WIKI_REQUEST = 'http://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles='
+
+def get_wiki_image(search_term):
+    try:
+        result = wikipedia.search(search_term, results = 1)
+        wikipedia.set_lang('en')
+        wkpage = wikipedia.WikipediaPage(title = result[0])
+        title = wkpage.title
+        response  = requests.get(WIKI_REQUEST+title)
+        json_data = json.loads(response.text)
+        img_link = list(json_data['query']['pages'].values())[0]['original']['source']
+        return img_link        
+    except:
+        return None
 
 def get_wikipedia_info(key, language=''):
     try:
@@ -47,9 +77,7 @@ def get_wikipedia_info(key, language=''):
         link = page.url
         summary = wikipedia.summary(key, sentences=2)
 
-        image = ''
-        if page.images:
-            image = page.images[0]
+        image = get_wiki_image(key)
             
         return title, link, summary, image
     except:
@@ -86,7 +114,7 @@ def search():
     wl = request.args.get('wl', '')
 
     if wt == '' or wi == '' or ws == '' or wl == '':
-        wikipedia_info = get_wikipedia_info(keyword, language_hl)
+        wikipedia_info = get_wikipedia_info(keyword, get_locale())
     else:
         wikipedia_info = wt, wl, ws, wi
     
