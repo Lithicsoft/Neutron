@@ -44,7 +44,7 @@ def get_AI_answer(question):
         response = model.generate_content(question + prompt)
 
         pre_text = markdown(response.text)
-        text = ''.join(BeautifulSoup(pre_text).findAll(text=True))
+        text = ''.join(BeautifulSoup(pre_text, features="html.parser").findAll(text=True))
 
         return summarize_text(text)
     except:

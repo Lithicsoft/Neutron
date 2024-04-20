@@ -5,15 +5,30 @@ window.onload = function() {
     document.getElementById(id).style.borderBottom = value;
   }
 
+  function removeDisplay(id) {
+    var element = document.getElementById(id);
+    if (element) {
+      element.remove();
+    }
+  }
+
   var CurrentType = url.searchParams.get('tp');
   if (CurrentType == null) {
     setBorderBottom("TextTag", "0.2em solid rgb(23, 74, 228)");
+    removeDisplay("image_display");
+    removeDisplay("video_display");
   } else if (CurrentType == "Text") {
     setBorderBottom("TextTag", "0.2em solid rgb(23, 74, 228)");
+    removeDisplay("image_display");
+    removeDisplay("video_display");
   } else if (CurrentType == 'Image') {
     setBorderBottom("ImgTag", "0.2em solid rgb(23, 74, 228)");
+    removeDisplay("text_display");
+    removeDisplay("video_display");
   } else if (CurrentType == 'Video') {
     setBorderBottom("VidTag", "0.2em solid rgb(23, 74, 228)");
+    removeDisplay("text_display");
+    removeDisplay("image_display");
   }
 
   var wikipediaDiv = document.querySelector('.wikipedia');

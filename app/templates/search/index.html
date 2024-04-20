@@ -80,13 +80,33 @@
     <div class="searchresult">
       <p>{{ note }}</p>
       
-      {% for row in results %}
-        <tr>
-            <td style="font-size:  x-small;">{{ row[1] }}</td><br>
-            <td><a style="font-size: x-large;" href="{{ row[1] }}">{{ row[2] }}</a></td><br>
-            <td style="font-size: x-small;">{{ row[6] }}</td><br>
-        </tr><br><br>
-      {% endfor %}
+      <div id="text_display">
+        {% for row in results %}
+          <tr>
+              <td style="font-size:  x-small;">{{ row[1] }}</td><br>
+              <td><a style="font-size: x-large;" href="{{ row[1] }}">{{ row[2] }}</a></td><br>
+              <td style="font-size: x-small;">{{ row[6] }}</td><br>
+          </tr><br><br>
+        {% endfor %}
+      </div>
+
+      <div id="image_display">
+        {% for row in results %}
+          <div>
+            <img src="{{ row[1] }}" width="560" height="315">
+            <p><a style="font-size: x-large;" href="{{ row[1] }}">{{ row[2] }}</a></p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div id="video_display">
+        {% for row in results %}
+          <div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ row[1] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p><a style="font-size: x-large;" href="https://www.youtube.com/{{ row[1] }}">{{ row[2] }}</a></p>
+          </div>
+        {% endfor %}
+      </div>
 
       <a href="javascript:changePage({{ prev_page }})" style="font-size: x-large; float: left;">&LeftArrow;</a>
       <a href="javascript:changePage({{ next_page }})" style="font-size: x-large; float: right;">&RightArrow;</a>
