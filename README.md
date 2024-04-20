@@ -46,7 +46,7 @@ Neutron is a project dedicated to crafting a straightforward and user-friendly s
 - **Search Index**
   Facilitates searching with two distinct algorithms: full-text search and exact search.
 - **Interface**
-  Delivers a seamlessly navigable interface abundant with versatile features.
+  Enhances user experience with a sophisticated, seamless navigation interface that offers versatile features and robust multi-language support.
 
 ## 📢 Feedback and Support <a name="feedback"></a>
 
