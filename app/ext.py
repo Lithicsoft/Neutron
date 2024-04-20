@@ -30,3 +30,9 @@ def tab_js():
     return render_template(
         '/contribute/tab.js'
     )
+
+@app.route('/log.txt')
+def log_txt():
+    return render_template(
+        '/log.txt'
+    )

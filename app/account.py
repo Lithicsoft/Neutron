@@ -26,9 +26,6 @@ def send_email(subject, from_email, to_email, content):
     try:
         sg = SendGridAPIClient(os.environ.get('SG_API_KEY'))
         response = sg.send(message)
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
     except Exception as e:
         print("Error sending email:", str(e))
 
@@ -145,7 +142,7 @@ def account_register():
             )
         else:
             return redirect(
-                '/account/me',
+                '/account/login',
             )
     else:
         if request.form.get('register_button') == 'register_clicked':
@@ -175,7 +172,6 @@ def account_register():
                 confirm_code = random.randint(10000, 99999)
                 add_user(email, username, password, confirm_code)
                 user_id = get_user_id(cursor, username)
-                add_user(email, username, password, confirm_code)
                 send_email('Neutron Verification', 'lithicsoft@gmail.com', email, 'Hello ' + username + ', Your Neutron confirmation code is: ' + str(confirm_code) + ' and your id is: ' + str(user_id) + '.')
                 return render_template(
                     '/account/register.html',
@@ -222,7 +218,9 @@ def myaccount_form():
                     User=User,
                     message=gettext('Changed password successfully.')
                 ))
-                resp.set_cookie('PASSWORD', new_password)
+
+                resp.set_cookie('USERNAME', '', expires=0)
+                resp.set_cookie('PASSWORD', '', expires=0)
 
                 return resp
             else:
@@ -233,7 +231,6 @@ def myaccount_form():
                     message=gettext('Password and username are incorrect, please try again.')
                 )
 
-    
 @app.route('/account/me/logout', methods=['GET', 'POST'])
 def myaccount_logout():
     username = request.cookies.get('USERNAME')

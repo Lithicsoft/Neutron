@@ -135,9 +135,9 @@ input[type="search"]::-webkit-search-results-decoration {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	padding: 5px;
-	width: 300px;
+	width: 325px;
     height: 300px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* AI DISPLAY */

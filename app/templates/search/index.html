@@ -10,23 +10,24 @@
     var Wikipedia_Summary = "{{ wikipedia_summary }}";
     var Wikipedia_Link = "{{ wikipedia_link }}";
 
+    function CheckWikipediaMedia(url) {
+      return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       var url = new URL(window.location.href);
 
       url.searchParams.set('ai', Gemini);
-      window.history.pushState({}, '', url.toString());
-
       url.searchParams.set('wt', Wikipedia_Title);
-      window.history.pushState({}, '', url.toString());
-
       url.searchParams.set('wi', Wikipedia_Image);
-      window.history.pushState({}, '', url.toString());
-
       url.searchParams.set('ws', Wikipedia_Summary);
+      url.searchParams.set('wl', Wikipedia_Link);
+
       window.history.pushState({}, '', url.toString());
 
-      url.searchParams.set('wl', Wikipedia_Link);
-      window.history.pushState({}, '', url.toString());
+      if (CheckWikipediaMedia(Wikipedia_Image) == false) {
+        document.getElementById("wikipedia_image").remove();
+      }
     })
   </script>
 </head>
@@ -93,8 +94,8 @@
       <div id="image_display">
         {% for row in results %}
           <div>
-            <img src="{{ row[1] }}" width="560" height="315">
-            <p><a style="font-size: x-large;" href="{{ row[1] }}">{{ row[2] }}</a></p>
+            <img style="object-fit: cover;" src="{{ row[1] }}" width="200" height="200">
+            <p style="width: 200;"><a style="font-size: x-large;" href="{{ row[1] }}">{{ row[2] }}</a></p>
           </div>
         {% endfor %}
       </div>
@@ -102,9 +103,9 @@
       <div id="video_display">
         {% for row in results %}
           <div>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ row[1] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <p><a style="font-size: x-large;" href="https://www.youtube.com/{{ row[1] }}">{{ row[2] }}</a></p>
-          </div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ row[3] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p style="width: 560;"><a style="font-size: x-large;" href="{{ row[1] }}">{{ row[2] }}</a></p>
+          </div><br><br>
         {% endfor %}
       </div>
 
@@ -120,7 +121,7 @@
       </div><br><br>
       <div class="wikipedia">
         <h3>{{ wikipedia_title }}</h3>
-        <img class="wikipedia_image" src="{{ wikipedia_image }}"><br>
+        <img id="wikipedia_image" class="wikipedia_image" src="{{ wikipedia_image }}"><br>
         <label>{{ wikipedia_summary }}</label> <label><a href="{{ wikipedia_link }}">Wikipedia</a></label>
       </div>
     </div>

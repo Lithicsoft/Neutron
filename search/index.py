@@ -4,12 +4,12 @@ import re
 from library.database import Library_Exact_Search, Library_Full_Text_Search
 from initializer.loader import database_loader
 
-conn = database_loader()
-
 app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def Search_Data():
+    conn = database_loader()
+    
     data = request.get_json()
 
     type = data['type']

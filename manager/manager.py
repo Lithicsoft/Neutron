@@ -3,7 +3,7 @@ from waitress import serve
 
 from .getid import Get_ID
 from initializer.loader import database_loader
-from log.write import log
+from log.write import db_log, log
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability
 from initializer.loader import censorship_database_loader, database_loader
@@ -27,7 +27,7 @@ def manager_insert_data(type, username, password, link, title, text, description
         insert_data(censorship_conn, type, link, title, text, description, keywords, shorttext)
         return "Your add request has been sent to the administrator."
     elif reliability >= 1:
-        log(cursor, username, password, "Insert Data", "Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
+        db_log(log(cursor, username, password, "Insert Data", "Link: " + link + " Title: " + title + " ShortText: " + shorttext))
         insert_data_message = insert_data(conn, type, link, title, text, description, keywords, shorttext)
         return insert_data_message
     else: 
@@ -43,7 +43,7 @@ def manager_edit_data(type, username, password, site_id, link, title, text, desc
         edit_data(censorship_conn, type, site_id, link, title, text, description, keywords, shorttext)
         return "Your edit request has been sent to the administrator."
     elif reliability >= 2:
-        log(cursor, username, password, "Edit Data", "Site ID: " + site_id + " Link: " + link + " Title: " + title + " Text: " + text + " Description: " + description + " Keywords: " + keywords + " ShortText: " + shorttext)
+        db_log(log(cursor, username, password, "Edit Data", "Site ID: " + site_id + " Link: " + link + " Title: " + title + " ShortText: " + shorttext))
         edit_data_message = edit_data(conn, type, site_id, link, title, text, description, keywords, shorttext)
         return edit_data_message
     else: 
@@ -57,7 +57,7 @@ def manager_remove_data(type, username, password, site_id):
     
     if reliability >= 3:
         remove_data(conn, type, site_id)
-        log(cursor, username, password, "Remove Data", "Site ID: " + site_id)
+        db_log(log(cursor, username, password, "Remove Data", "Site ID: " + site_id))
         return "Data removed successfully."
     else: 
         return "The user's reliability cannot be determined."

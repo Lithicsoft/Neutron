@@ -112,6 +112,9 @@ msgstr "Tên người dùng này đã được đăng kí. Vui lòng sử dụng
 msgid "An email containing a confirmation code and user id has been sent to your account."
 msgstr "Một email chứa mã xác nhận và id người dùng đã được gửi đến tài khoản của bạn."
 
+msgid "Your account has been successfully created."
+msgstr "Tài khoản của bạn đã được tạo thành công."
+
 msgid "Changed password successfully."
 msgstr "Thay đổi mật khẩu thành công."
 
