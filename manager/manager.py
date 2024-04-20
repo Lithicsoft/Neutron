@@ -1,19 +1,15 @@
 from flask import Flask, request
 from waitress import serve
 
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join('./')))
-from getid import Get_ID
+from .getid import Get_ID
 from initializer.loader import database_loader
 from log.write import log
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability
 from initializer.loader import censorship_database_loader, database_loader
-from edit import edit_data
-from insert import insert_data
-from remove import remove_data
+from .edit import edit_data
+from .insert import insert_data
+from .remove import remove_data
 
 conn = database_loader()
 censorship_conn = censorship_database_loader()
@@ -96,5 +92,8 @@ def manager():
         return_result = Get_ID(conn, type, link)
         return str(return_result)
     
-if __name__ == '__main__':
+def main():
     serve(app, host='0.0.0.0', port=8501)
+
+if __name__ == '__main__':
+    main()

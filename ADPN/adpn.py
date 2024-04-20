@@ -1,14 +1,15 @@
 import getpass
 import platform
-import sys
+import threading
 import os
+import sys
 sys.path.append(os.path.abspath(os.path.join('./')))
 from account.database import create_users_database
 from library.connector import connect_to_mysql
 from library.deleter import delete_database
 from library.cloner import clone_database
 from datetime import datetime
-import os
+import run
 import subprocess
 from account.username import get_username
 from initializer.database import Initializer_Database
@@ -150,21 +151,10 @@ while(True):
             yn = input('Do you want to start the server including: Search, Account [y/n]: ')
             if (yn != 'n'):
                     Initializer_Database()
-
-                    if os_name == 'Windows':
-                        subprocess.call("start python search/index.py", shell=True)
-                        subprocess.call("start python manager/manager.py", shell=True)
-                        subprocess.call("start python run.py", shell=True)
-                        print('The server has been started successfully.')
-                        sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-                    elif os_name == 'Linux':
-                        subprocess.call("xterm -e python search/index.py &", shell=True)
-                        subprocess.call("xterm -e python manager/manager.py &", shell=True)
-                        subprocess.call("xterm -e python run.py &", shell=True)
-                        print('The server has been started successfully.')
-                        sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-                    else:
-                        print('The operating system you are using is not capable of executing this command.')
+                    thread = threading.Thread(target=run.start_server)
+                    thread.start()
+                    print('The server has been started successfully.')
+                    sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
     elif command == "api-config":
         SG_API = input('SENDGRID API KEY: ')
         GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
