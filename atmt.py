@@ -1,5 +1,6 @@
 import getpass
 import hashlib
+from urllib import response
 import requests
 from bs4 import BeautifulSoup
 from collections import deque
@@ -17,27 +18,23 @@ def summarize_text(text, max_length=174):
 def get_website_info(url, headers):
     try:
         response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
 
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.content, 'html.parser')
+        title = soup.title.string.strip() if soup.title else ''
 
-            title = soup.title.string.strip() if soup.title else ''
+        tags_to_extract = ['p', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'strong', 'em', 'blockquote', 'cite', 'q', 'dfn', 'abbr', 'time', 'code', 'var', 'samp', 'kbd', 'sub', 'sup', 'i', 'b', 'u', 'mark', 'small', 'del', 'ins', 's']
+        text_content = ' '.join([tag.get_text().strip() for tag in soup.find_all() if tag.name in tags_to_extract])
 
-            tags_to_extract = ['p', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'strong', 'em', 'blockquote', 'cite', 'q', 'dfn', 'abbr', 'time', 'code', 'var', 'samp', 'kbd', 'sub', 'sup', 'i', 'b', 'u', 'mark', 'small', 'del', 'ins', 's']
-            text_content = ' '.join([tag.get_text().strip() for tag in soup.find_all(tags_to_extract)])
+        description = soup.select_one('meta[name="description"]')['content'] if soup.select_one('meta[name="description"]') else ''
+        keywords = soup.select_one('meta[name="keywords"]')['content'] if soup.select_one('meta[name="keywords"]') else ''
 
-            description = soup.select_one('meta[name="description"]')['content'] if soup.select_one('meta[name="description"]') else ''
-
-            keywords = soup.select_one('meta[name="keywords"]')['content'] if soup.select_one('meta[name="keywords"]') else ''
-
-            return {
-                "title": title,
-                "text_content": text_content,
-                "description": description,
-                "keywords": keywords
-            }
-        else:
-            return None
+        return {
+            "title": title,
+            "text_content": text_content,
+            "description": description,
+            "keywords": keywords
+        }
     except Exception as e:
         print(f"Error when getting website info from {url}: {e}")
         return None
@@ -50,9 +47,11 @@ link_to_crawl = input('Url: ')
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107 Safari/537.36'
 headers = {'User-Agent': user_agent}
 investigation_list = deque([link_to_crawl])
+checked_urls = set()
 
 while investigation_list:
     url = investigation_list.popleft()
+    checked_urls.add(url)
     print("Investigating url: ", url)
     website_info = get_website_info(url, headers)
     if website_info is not None:
@@ -66,14 +65,12 @@ while investigation_list:
             print(result)
         print("---------")
 
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            search_results = soup.select('a[href]')
-            for link in search_results:
-                new_url = urljoin(url, link.get('href'))
-                if new_url not in investigation_list:
-                    investigation_list.append(new_url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        search_results = soup.select('a[href]')
+        for link in search_results:
+            new_url = urljoin(url, link.get('href'))
+            if new_url not in investigation_list and new_url not in checked_urls:
+                investigation_list.append(new_url)
     else:
         type = "Text"
         site_id = manager_get_id(type, url)
