@@ -9,6 +9,7 @@ from sendgrid.helpers.mail import Mail
 from account.userid import get_user_id
 from app import app
 from flask import make_response, redirect, render_template, request
+from flask_babel import gettext
 
 from log.write import sys_log
 
@@ -80,13 +81,13 @@ def login_form():
 
             User = request.cookies.get('USERNAME')
             if User is None:
-                User = 'Account'
+                User = gettext('Account')
 
             if login is not None:
                 resp = make_response(render_template(
                     '/account/login.html',
                     User=User,
-                    message='Logged in successfully.',
+                    message=gettext('Logged in successfully.'),
                     redirect='/account/me'
                 ))
                 password = hashlib.md5(hashlib.sha256(password.encode('utf-8')).hexdigest().encode()).hexdigest()
@@ -97,7 +98,7 @@ def login_form():
                 return render_template(
                     '/account/login.html',
                     User=User,
-                    message='Account does not exist.'
+                    message=gettext('Account does not exist.')
                 )
     else:
         username = request.cookies.get('USERNAME')
@@ -112,7 +113,7 @@ def login_form():
         else:
             return render_template(
                 '/account/login.html',
-                User="Account"
+                User=gettext("Account")
             )
     
 @app.route('/account/register', methods=['GET', 'POST'])
@@ -122,13 +123,13 @@ def account_register():
 
     User = request.cookies.get('USERNAME')
     if User is None:
-        User = 'Account'
+        User = gettext('Account')
 
     if confirmcode is not None:
         return render_template(
             'account/register.html',
             User=User,
-            message=verification(int(user_id), int(confirmcode))
+            message=gettext(verification(int(user_id), int(confirmcode)))
         )
 
     if request.method == 'GET':
@@ -156,19 +157,19 @@ def account_register():
                 return render_template(
                     '/account/register.html',
                     User=User,
-                    message='This email is already registered. Please use a different email.'
+                    message=gettext('This email is already registered. Please use a different email.')
                 )
             elif verify_email(email):
                 return render_template(
                     '/account/register.html',
                     User=User,
-                    message='This email is invalid, please check again.'
+                    message=gettext('This email is invalid, please check again.')
                 )
             elif check_existing_username(username):
                 return render_template(
                     '/account/register.html',
                     User=User,
-                    message='This user name already in use. Please use another username.'
+                    message=gettext('This user name already in use. Please use another username.')
                 )
             else:
                 confirm_code = random.randint(10000, 99999)
@@ -179,7 +180,7 @@ def account_register():
                 return render_template(
                     '/account/register.html',
                     User=User,
-                    message='An email containing a confirmation code and user id has been sent to your account.'
+                    message=gettext('An email containing a confirmation code and user id has been sent to your account.')
                 )
 
 @app.route('/account/me', methods=['GET', 'POST'])
@@ -214,12 +215,12 @@ def myaccount_form():
 
                 User = request.cookies.get('USERNAME')
                 if User is None:
-                    User = 'Account'
+                    User = gettext('Account')
 
                 resp = make_response(render_template(
                     '/account/me.html',
                     User=User,
-                    message='Changed password successfully.'
+                    message=gettext('Changed password successfully.')
                 ))
                 resp.set_cookie('PASSWORD', new_password)
 
@@ -229,7 +230,7 @@ def myaccount_form():
                     '/account/me.html',
                     User=User,
                     username=User,
-                    message='Password and username are incorrect, please try again.'
+                    message=gettext('Password and username are incorrect, please try again.')
                 )
 
     
@@ -240,7 +241,7 @@ def myaccount_logout():
 
     User = request.cookies.get('USERNAME')
     if User is None:
-        User = 'Account'
+        User = gettext('Account')
 
     if username is None or password is None:
         return redirect(

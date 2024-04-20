@@ -1,5 +1,6 @@
 mysql-connector-python
 google-generativeai
+Flask-Babel
 langdetect
 wikipedia
 sendgrid

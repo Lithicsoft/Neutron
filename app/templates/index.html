@@ -54,7 +54,7 @@
 
     <br><br><br><form action="/search" method="GET">
         <div class="search-bar-main">
-            <input type="search" id="search-input" value="{{ query }}" name="q" placeholder="Search something...">
+            <input type="search" id="search-input" value="{{ query }}" name="q" placeholder="{% trans %}Search something...{% endtrans %}">
             <div class="icon-container">
                 <input type="submit" id="search-button" value="&#xF002;" style="font-family:FontAwesome;">
                 <input type="button" id="voice-button" value="&#xf130;" style="font-family:FontAwesome;">
@@ -68,10 +68,10 @@
     <p style="float: right; color: white;">&copy; 2024 Lithicsoft Organization&nbsp;</p>
     <p style="float: left; color: white;">
       &nbsp;&nbsp;&nbsp;
-      <a style="color: lightgray;" href="https://lithicsoft.github.io/neutron/touap/" target="_blank">Policy & Terms of Use</a> and <a style="color: lightgray;" href="https://lithicsoft.github.io/neutron/pp/" target="_blank">Privacy Policy</a>
+      <a style="color: lightgray;" href="https://lithicsoft.github.io/neutron/touap/" target="_blank">{% trans %}Policy & Terms of Use{% endtrans %}</a> {% trans %}and{% endtrans %} <a style="color: lightgray;" href="https://lithicsoft.github.io/neutron/pp/" target="_blank">{% trans %}Privacy Policy{% endtrans %}</a>
       &nbsp;&nbsp;&nbsp;
-      <a style="color: lightgray;" href="/contribute" target="_blank">Contribute</a>
+      <a style="color: lightgray;" href="/contribute" target="_blank">{% trans %}Contribute{% endtrans %}</a>
       &nbsp;&nbsp;&nbsp;
-      <a style="color: lightgray;" href="https://lithicsoft.github.io/neutron" target="_blank">About</a>
+      <a style="color: lightgray;" href="https://lithicsoft.github.io/neutron" target="_blank">{% trans %}About{% endtrans %}</a>
     </p>
 </footer>

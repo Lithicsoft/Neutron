@@ -16,22 +16,22 @@
             <form action="/account/register" method="POST">
                 <input type="email" name="email" placeholder="Email"/><br><br>
 
-                <input type="text" name="username" placeholder="Username"/><br><br>
+                <input type="text" name="username" placeholder="{% trans %}Username{% endtrans %}"/><br><br>
 
-                <input type="password" name="password" placeholder="Password"/><br><br>
+                <input type="password" name="password" placeholder="{% trans %}Password{% endtrans %}"/><br><br>
 
-                <button type="submit" name="register_button" value="register_clicked">Register</button><br><br>
+                <button type="submit" name="register_button" value="register_clicked">{% trans %}Register{% endtrans %}</button><br><br>
             </form>
 
             <form action="/account/register" method="POST">
-                <input type="number" name="userid" placeholder="User ID"/><br><br>
+                <input type="number" name="userid" placeholder="{% trans %}User ID{% endtrans %}"/><br><br>
 
-                <input type="number" name="confirmcode" placeholder="Code"/><br><br>
+                <input type="number" name="confirmcode" placeholder="{% trans %}Code{% endtrans %}"/><br><br>
 
-                <button type="submit" name="submit_button" value="submit_clicked">Submit</button><br><br>
+                <button type="submit" name="submit_button" value="submit_clicked">{% trans %}Submit{% endtrans %}</button><br><br>
             </form>
 
-            <p>By creating an account, you agree to our <a href="https://lithicsoft.github.io/neutron/touap/" target="_blank">Policy & Terms of Use</a> and <a href="https://lithicsoft.github.io/neutron/pp/" target="_blank">Privacy Policy.</a></p>
+            <p>{% trans %}By creating an account, you agree to{% endtrans %} <a href="https://lithicsoft.github.io/neutron/touap/" target="_blank">{% trans %}Policy & Terms of Use{% endtrans %}</a> {% trans %}and{% endtrans %} <a href="https://lithicsoft.github.io/neutron/pp/" target="_blank">{% trans %}Privacy Policy{% endtrans %}.</a></p>
         </div><br><br>
         <div class="result"> {{ message }} </div>
     </div>
@@ -43,10 +43,10 @@
     <p style="float: right;">&copy; 2024 Lithicsoft Organization&nbsp;</p>
     <p style="float: left;">
       &nbsp;&nbsp;&nbsp;
-      <a href="https://lithicsoft.github.io/neutron/touap/" target="_blank">Policy & Terms of Use</a> and <a href="https://lithicsoft.github.io/neutron/pp/" target="_blank">Privacy Policy</a>
+      <a href="https://lithicsoft.github.io/neutron/touap/" target="_blank">{% trans %}Policy & Terms of Use{% endtrans %}</a> {% trans %}and{% endtrans %} <a href="https://lithicsoft.github.io/neutron/pp/" target="_blank">{% trans %}Privacy Policy{% endtrans %}</a>
       &nbsp;&nbsp;&nbsp;
-      <a href="/contribute" target="_blank">Contribute</a>
+      <a href="/contribute" target="_blank">{% trans %}Contribute{% endtrans %}</a>
       &nbsp;&nbsp;&nbsp;
-      <a href="https://lithicsoft.github.io/neutron" target="_blank">About</a>
+      <a href="https://lithicsoft.github.io/neutron" target="_blank">{% trans %}About{% endtrans %}</a>
     </p>
 </footer>

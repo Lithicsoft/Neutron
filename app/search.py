@@ -4,6 +4,7 @@ import os
 from app import app
 from langdetect import detect
 from flask import render_template, request
+from flask_babel import gettext
 import wikipedia
 from search.get import Search_Data
 import wikipedia
@@ -60,7 +61,7 @@ def index():
 
     User = request.cookies.get('USERNAME')
     if User is None:
-        User = 'Account'
+        User = gettext('Account')
 
     return render_template(
         '/index.html',
@@ -134,7 +135,7 @@ def search():
 
     User = request.cookies.get('USERNAME')
     if User is None:
-        User = 'Account'
+        User = gettext('Account')
 
     if search_result == []:
         return render_template(
@@ -147,7 +148,7 @@ def search():
             wikipedia_link = wikipedia_info[1],
             wikipedia_summary = wikipedia_info[2],
             wikipedia_image = wikipedia_info[3],
-            note='No results found.',
+            note=gettext('No results found.'),
             prev_page = prev_page_num,
             next_page=next_page_num,
             Gemini=ai_answer,

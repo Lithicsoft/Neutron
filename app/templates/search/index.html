@@ -38,7 +38,7 @@
     <a style="float: right; margin-top: 1%;" href="/account">{{ User }}</a>
     <form action="/search" method="GET">
       <div class="search-bar-result">
-        <input style="float: left;" type="search" id="search-input" value="{{ query }}" name="q" placeholder="Search something...">
+        <input style="float: left;" type="search" id="search-input" value="{{ query }}" name="q" placeholder="{% trans %}Search something...{% endtrans %}">
         <div class="icon-container">
             <input type="button" id="search-button" value="&#xF002;" style="font-family:FontAwesome;">
             <input type="button" id="voice-button" value="&#xf130;" style="font-family:FontAwesome;">
@@ -49,11 +49,11 @@
   <br>
   <div class="navbar">
     <div id="tagList">
-      <input style="border-bottom: none;" id="TextTag" type="button" class="tag" value="Text" data-type="Text">
-      <input style="border-bottom: none;" id="ImgTag" type="button" class="tag" value="Image" data-type="Image">
-      <input style="border-bottom: none;" id="VidTag" type="button" class="tag" value="Video" data-type="Video">
+      <input style="border-bottom: none;" id="TextTag" type="button" class="tag" value="{% trans %}Text{% endtrans %}" data-type="Text">
+      <input style="border-bottom: none;" id="ImgTag" type="button" class="tag" value="{% trans %}Image{% endtrans %}" data-type="Image">
+      <input style="border-bottom: none;" id="VidTag" type="button" class="tag" value="{% trans %}Video{% endtrans %}" data-type="Video">
     </div>
-    <button onclick="showFilter()" class="dropButton">Options</button>
+    <button onclick="showFilter()" class="dropButton">{% trans %}Options{% endtrans %}</button>
   </div><br>
   <div id="Dropdown" class="filter">
     <div id="languageList">
@@ -130,10 +130,10 @@
   <p style="float: right;">&copy; 2024 Lithicsoft Organization&nbsp;</p>
   <p style="float: left;">
     &nbsp;&nbsp;&nbsp;
-    <a href="https://lithicsoft.github.io/neutron/touap/" target="_blank">Policy & Terms of Use</a> and <a href="https://lithicsoft.github.io/neutron/pp/" target="_blank">Privacy Policy</a>
+    <a href="https://lithicsoft.github.io/neutron/touap/" target="_blank">{% trans %}Policy & Terms of Use{% endtrans %}</a> {% trans %}and{% endtrans %} <a href="https://lithicsoft.github.io/neutron/pp/" target="_blank">{% trans %}Privacy Policy{% endtrans %}</a>
     &nbsp;&nbsp;&nbsp;
-    <a href="/contribute" target="_blank">Contribute</a>
+    <a href="/contribute" target="_blank">{% trans %}Contribute{% endtrans %}</a>
     &nbsp;&nbsp;&nbsp;
-    <a href="https://lithicsoft.github.io/neutron" target="_blank">About</a>
+    <a href="https://lithicsoft.github.io/neutron" target="_blank">{% trans %}About{% endtrans %}</a>
   </p>
 </footer>

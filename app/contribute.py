@@ -2,6 +2,7 @@ from account.loader import account_database_loader
 from account.reliability import get_user_reliability
 from app import app
 from flask import render_template, request
+from flask_babel import gettext
 
 from manager.call import manager_edit_data, manager_get_id, manager_insert_data, manager_remove_data
 
@@ -12,7 +13,7 @@ cursor = conn.cursor()
 def contribute():
     User = request.cookies.get('USERNAME')
     if User is None:
-        User = 'Account'
+        User = gettext('Account')
 
     return render_template(
         '/contribute/index.html',
@@ -41,12 +42,12 @@ def contribute_insert():
         
         User = request.cookies.get('USERNAME')
         if User is None:
-            User = 'Account'
+            User = gettext('Account')
 
         return render_template(
             '/contribute/index.html',
             User=User,
-            message=message_call
+            message=gettext(message_call)
         )
 
 @app.route('/contribute/change', methods=['GET', 'POST'])
@@ -72,12 +73,12 @@ def contribute_change():
         
         User = request.cookies.get('USERNAME')
         if User is None:
-            User = 'Account'
+            User = gettext('Account')
 
         return render_template(
             '/contribute/index.html',
             User=User,
-            message=message_call
+            message=gettext(message_call)
         )
 
 @app.route('/contribute/remove', methods=['GET', 'POST'])
@@ -97,12 +98,12 @@ def contribute_remove():
 
         User = request.cookies.get('USERNAME')
         if User is None:
-            User = 'Account'
+            User = gettext('Account')
 
         return render_template(
             '/contribute/index.html',
             User=User,
-            message=message_call
+            message=gettext(message_call)
         )
 
 @app.route('/contribute/getid', methods=['GET', 'POST'])
@@ -114,10 +115,10 @@ def contribute_getid():
 
         User = request.cookies.get('USERNAME')
         if User is None:
-            User = 'Account'
+            User = gettext('Account')
 
         return render_template(
             '/contribute/index.html',
             User=User,
-            message=message_call
+            message=gettext(message_call)
         )
