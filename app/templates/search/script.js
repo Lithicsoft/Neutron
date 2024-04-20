@@ -40,6 +40,8 @@ window.onload = function() {
           wikipediaDiv.style.display = 'block';
       }
   }
+
+  document.body.style.display = "block";
 }
 
 var tags = document.querySelectorAll('.tag');
