@@ -2,7 +2,7 @@ from datetime import datetime
 import json
 import time
 import os
-
+from app import language
 import requests
 from app import app
 from langdetect import detect
@@ -22,13 +22,6 @@ def summarize_text(text, max_length=174):
         last_space_index = text.rfind(' ', 0, max_length)
         return text[:last_space_index] + '...'
 
-def get_locale():
-    LANGUAGES = {
-        'en': 'English',
-        'vi': 'Vietnamese'
-    }
-    return request.accept_languages.best_match(LANGUAGES.keys())
-
 def get_AI_answer(question):
     try:
         GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
@@ -36,10 +29,7 @@ def get_AI_answer(question):
 
         model = genai.GenerativeModel('gemini-pro')
 
-        prompt = ' (Please summarize the answer)'
-
-        if get_locale() == 'vi':
-            prompt = ' (Hãy tóm tắt câu trả lời)'
+        prompt = language.prompt()
 
         response = model.generate_content(question + prompt)
 
@@ -114,7 +104,7 @@ def search():
     wl = request.args.get('wl', '')
 
     if wt == '' or wi == '' or ws == '' or wl == '':
-        wikipedia_info = get_wikipedia_info(keyword, get_locale())
+        wikipedia_info = get_wikipedia_info(keyword, language.get_locale())
     else:
         wikipedia_info = wt, wl, ws, wi
     

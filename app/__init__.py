@@ -1,15 +1,8 @@
-from flask import Flask, request
+from flask import Flask
 from flask_babel import Babel
-
-def get_locale():
-    return request.accept_languages.best_match(LANGUAGES.keys())
+from app import language
 
 app = Flask(__name__)
-babel = Babel(app, locale_selector=get_locale)
-
-LANGUAGES = {
-    'en': 'English',
-    'vi': 'Vietnamese'
-}
+babel = Babel(app, locale_selector=language.get_locale)
 
 from app import ext, search, contribute, account
