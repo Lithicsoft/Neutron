@@ -13,6 +13,7 @@
 - [About Neutron](#about)
 - [Highlights](#highlights)
 - [Features Overview](#features)
+- [Screenshot](#screenshot)
 - [Feedback and Support](#feedback)
 - [Built Using](#built_using)
 - [Authors](#authors)
@@ -47,6 +48,9 @@ Neutron is a project dedicated to crafting a straightforward and user-friendly s
   Facilitates searching with two distinct algorithms: full-text search and exact search.
 - **Interface**
   Enhances user experience with a sophisticated, seamless navigation interface that offers versatile features and robust multi-language support.
+
+## 📷 Screenshot <a name="screenshot"></a>
+![Screenshot](https://i.imgur.com/JZHGRR2.png)
 
 ## 📢 Feedback and Support <a name="feedback"></a>
 
