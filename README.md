@@ -13,6 +13,7 @@
 - [About Neutron](#about)
 - [Highlights](#highlights)
 - [Features Overview](#features)
+- [Screenshot](#screenshot)
 - [Feedback and Support](#feedback)
 - [Built Using](#built_using)
 - [Authors](#authors)
@@ -32,21 +33,24 @@ Neutron is a project dedicated to crafting a straightforward and user-friendly s
 
 - **ADPN (Admin Panel)**
   A versatile Control Panel facilitating administrative commands execution and database management.
-- **FTS (Feature)**
+- **FTS**
   Employs MySQL Full-Text Search, enhancing search capabilities for improved results.
 - **Account Manager (Server)**
   Enhance basic account management functionalities, including password modifications and the creation of accounts necessitating confirmation codes via email. This system prioritizes reliability, ensuring seamless operation.
-- **Manager (Server)**
+- **Manager**
   Empowers users to interact with the database based on their reliability levels:
   + 0: All edits undergo administrator review.
   + 1: Allows direct addition of websites to the database documents without administrative intervention.
   + 2: Grants permission for direct website editing.
   + 3: Enables website deletion.
   + 4: Administrator privileges.
-- **Search Index (Server)**
+- **Search Index**
   Facilitates searching with two distinct algorithms: full-text search and exact search.
-- **Interface (Server)**
-  Delivers a seamlessly navigable interface abundant with versatile features.
+- **Interface**
+  Enhances user experience with a sophisticated, seamless navigation interface that offers versatile features and robust multi-language support.
+
+## 📷 Screenshot <a name="screenshot"></a>
+![Screenshot](https://i.imgur.com/JZHGRR2.png)
 
 ## 📢 Feedback and Support <a name="feedback"></a>
 
@@ -54,15 +58,17 @@ We value your feedback! If you have any suggestions, encounter issues, or need a
 
 ## ⛏️ Built Using <a name="built_using"></a>
 
-- [MySQL](https://www.mysql.com/) - Database
-- [Langdetect](https://pypi.org/project/langdetect/) - Language Detection Library
-- [Gemini](https://gemini.google.com/) - Google Gemini AI
-- [Wikipedia](https://pypi.org/project/wikipedia/) - Wikipedia API for Python
-- [SendGrid](https://sendgrid.com/) - Email Delivery Service
-- [Gunicorn](https://gunicorn.org/) - WSGI HTTP Server
-- [Requests](https://docs.python-requests.org/en/latest/) - HTTP library for Python
-- [Flask](https://flask.palletsprojects.com/en/2.1.x/) - Web Framework
-- [Beautiful Soup 4 (bs4)](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) - Web Scraping Library
+- [MySQL](https://www.mysql.com/): Database system.
+- [Langdetect](https://pypi.org/project/langdetect/): Library for language detection.
+- [Gemini](https://gemini.google.com/): Google's Gemini AI platform.
+- [Wikipedia](https://pypi.org/project/wikipedia/): Python library for accessing Wikipedia API.
+- [SendGrid](https://sendgrid.com/): Email delivery service.
+- [Gunicorn](https://gunicorn.org/): WSGI HTTP server for hosting Python web applications.
+- [Requests](https://docs.python-requests.org/en/latest/): HTTP library for making requests in Python.
+- [Flask](https://flask.palletsprojects.com/en/2.1.x/): Micro web framework for Python.
+- [Beautiful Soup 4 (bs4)](https://www.crummy.com/software/BeautifulSoup/bs4/doc/): Library for web scraping in Python.
+- [Flask-Babel](https://github.com/python-babel/flask-babel): Flask extension for internationalization and localization support.
+- [Waitress](https://github.com/Pylons/waitress): WSGI server for serving Flask applications.
 
 ## ✍️ Authors <a name="authors"></a>
 
