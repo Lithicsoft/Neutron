@@ -1,1 +1,0 @@
-python manager/manager.py
