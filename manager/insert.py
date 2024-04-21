@@ -1,11 +1,13 @@
 import os
+from dotenv import load_dotenv
 import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
 from library.database import Library_Get_Max_ID, Library_Insert_Data, content_exists
 
-GOOGLE_SAFE_BROWSING_API_KEY = os.environ.get('GSB_API_KEY')
+load_dotenv()
+GOOGLE_SAFE_BROWSING_API_KEY = os.getenv('GSB_API_KEY')
 
 allowed_extensions = {"http", "https"}
 

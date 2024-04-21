@@ -2,6 +2,8 @@ import hashlib
 import os
 import random
 import re
+
+from dotenv import load_dotenv
 from account.loader import account_database_loader
 from account.reliability import get_user_reliability
 from sendgrid import SendGridAPIClient
@@ -23,8 +25,10 @@ def send_email(subject, from_email, to_email, content):
         subject=subject,
         html_content=content)
 
-    try:
-        sg = SendGridAPIClient(os.environ.get('SG_API_KEY'))
+    load_dotenv()
+
+    try: 
+        sg = SendGridAPIClient(os.getenv('SG_API_KEY'))
         response = sg.send(message)
     except Exception as e:
         print("Error sending email:", str(e))

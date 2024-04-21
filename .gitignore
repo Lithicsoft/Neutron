@@ -1,6 +1,7 @@
 database/**
 **/__pycache__/**
 __pycache__/**
+Neutron/**
 API.API
 log.txt
-Neutron/**
+config

@@ -1,6 +1,6 @@
 import getpass
-import platform
 import threading
+import dotenv
 import os
 import sys
 sys.path.append(os.path.abspath(os.path.join('./')))
@@ -10,7 +10,6 @@ from library.deleter import delete_database
 from library.cloner import clone_database
 from datetime import datetime
 import run
-import subprocess
 from account.username import get_username
 from initializer.database import Initializer_Database
 from log.write import sys_log
@@ -122,7 +121,7 @@ else:
     print('You do not have sufficient rights to access the panel.')
     exit()
 
-os_name = platform.system()
+dotenv.load_dotenv()
 
 while(True):
     command = input('>>> ')
@@ -143,9 +142,9 @@ while(True):
             users-rel: Changes user reliability through their user id.
         ''')
     elif command == "clear":
-        subprocess.call("cls", shell=True)
+        os.system('cls' if os.name == 'nt' else 'clear')
     elif command == "start":
-        if os.environ.get('SG_API_KEY') is None or os.environ.get('GSB_API_KEY') is None or os.environ.get('GOOGLE_API_KEY') is None or os.environ.get('SQLUSERNAME') is None or os.environ.get('SQLPASSWORD') is None:
+        if os.getenv('SG_API_KEY') is None or os.getenv('GSB_API_KEY') is None or os.getenv('GOOGLE_API_KEY') is None or os.getenv('SQLUSERNAME') is None or os.getenv('SQLPASSWORD') is None:
             print('The required API KEY to start the servers was not found, please use the "api-config" command to set the required environment API KEY variables.')
         else:
             yn = input('Do you want to start the server including: Search, Account [y/n]: ')
@@ -159,18 +158,11 @@ while(True):
         SG_API = input('SENDGRID API KEY: ')
         GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
         GOOGLE_API = input('GOOGLE GEMINI API KEY: ')
-        if os_name == 'Windows':
-            subprocess.call('setx SG_API_KEY "' + SG_API + '" /M')
-            subprocess.call('setx GSB_API_KEY "' + GSB_API + '" /M')
-            subprocess.call('setx GOOGLE_API_KEY "' + GOOGLE_API + '" /M')
-            print('Successfully created API environment variable.')
-        elif os_name == 'Linux':
-            subprocess.call('export SG_API_KEY=' + SG_API, shell=True)
-            subprocess.call('export GSB_API_KEY=' + GSB_API, shel=True)
-            subprocess.call('export GOOGLE_API_KEY=' + GOOGLE_API, shell=True)
-            print('Successfully created API environment variable.')
-        else:
-            print('The operating system you are using is not capable of executing this command.')
+        config_path = "./config"
+        dotenv.set_key(config_path, "SG_API_KEY", SG_API)
+        dotenv.set_key(config_path, "GSB_API_KEY", GSB_API)
+        dotenv.set_key(config_path, "GOOGLE_API_KEY", GOOGLE_API)
+        dotenv.load_dotenv()
     elif command == "check":
         compare_databases()
     elif command == "sync":

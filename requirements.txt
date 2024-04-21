@@ -1,5 +1,6 @@
 mysql-connector-python
 google-generativeai
+python-dotenv
 Flask-Babel
 langdetect
 wikipedia

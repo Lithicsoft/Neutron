@@ -2,6 +2,8 @@ from datetime import datetime
 import json
 import time
 import os
+
+from dotenv import load_dotenv
 from app import language
 import requests
 from app import app
@@ -24,8 +26,10 @@ def summarize_text(text, max_length=174):
         return text[:last_space_index] + '...'
 
 def get_AI_answer(question):
+    load_dotenv()
+    
     try:
-        GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
+        GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
         genai.configure(api_key=GOOGLE_API_KEY)
 
         model = genai.GenerativeModel('gemini-pro')
