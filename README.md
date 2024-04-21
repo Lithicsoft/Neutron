@@ -58,15 +58,17 @@ We value your feedback! If you have any suggestions, encounter issues, or need a
 
 ## ⛏️ Built Using <a name="built_using"></a>
 
-- [MySQL](https://www.mysql.com/) - Database
-- [Langdetect](https://pypi.org/project/langdetect/) - Language Detection Library
-- [Gemini](https://gemini.google.com/) - Google Gemini AI
-- [Wikipedia](https://pypi.org/project/wikipedia/) - Wikipedia API for Python
-- [SendGrid](https://sendgrid.com/) - Email Delivery Service
-- [Gunicorn](https://gunicorn.org/) - WSGI HTTP Server
-- [Requests](https://docs.python-requests.org/en/latest/) - HTTP library for Python
-- [Flask](https://flask.palletsprojects.com/en/2.1.x/) - Web Framework
-- [Beautiful Soup 4 (bs4)](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) - Web Scraping Library
+- [MySQL](https://www.mysql.com/): Database system.
+- [Langdetect](https://pypi.org/project/langdetect/): Library for language detection.
+- [Gemini](https://gemini.google.com/): Google's Gemini AI platform.
+- [Wikipedia](https://pypi.org/project/wikipedia/): Python library for accessing Wikipedia API.
+- [SendGrid](https://sendgrid.com/): Email delivery service.
+- [Gunicorn](https://gunicorn.org/): WSGI HTTP server for hosting Python web applications.
+- [Requests](https://docs.python-requests.org/en/latest/): HTTP library for making requests in Python.
+- [Flask](https://flask.palletsprojects.com/en/2.1.x/): Micro web framework for Python.
+- [Beautiful Soup 4 (bs4)](https://www.crummy.com/software/BeautifulSoup/bs4/doc/): Library for web scraping in Python.
+- [Flask-Babel](https://github.com/python-babel/flask-babel): Flask extension for internationalization and localization support.
+- [Waitress](https://github.com/Pylons/waitress): WSGI server for serving Flask applications.
 
 ## ✍️ Authors <a name="authors"></a>
 
