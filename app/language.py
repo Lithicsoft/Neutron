@@ -4,7 +4,7 @@ LANGUAGES = {
     'en': 'English',
     'vi': 'Vietnamese'
 }
-prompt_list = [' (Please summarize the answer)', ' (Hãy tóm tắt câu trả lời)']
+prompt_list = [' (Please summarize your answer)', ' (Vui lòng tóm tắt câu trả lời của bạn)']
 
 def get_locale():
     return request.accept_languages.best_match(LANGUAGES.keys())

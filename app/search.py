@@ -16,6 +16,7 @@ from bs4 import BeautifulSoup
 from markdown import markdown
 
 def summarize_text(text, max_length=174):
+    text = text.replace("\n", " ")
     if len(text) <= max_length:
         return text
     else:
