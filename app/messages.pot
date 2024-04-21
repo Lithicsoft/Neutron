@@ -1,0 +1,152 @@
+msgid "Account"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Register"
+msgstr ""
+
+msgid "Policy & Terms of Use"
+msgstr "&"
+
+msgid "and"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Contribute"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Old password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
+
+msgid "Change my password"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "User ID"
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "By creating an account, you agree to"
+msgstr ","
+
+msgid "Text"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Insert"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Get ID"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Keywords"
+msgstr ""
+
+msgid "Shorttext"
+msgstr ""
+
+msgid "Site ID"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Search something..."
+msgstr "..."
+
+msgid "Logged in successfully."
+msgstr "."
+
+msgid "Account does not exist."
+msgstr "."
+
+msgid "This email is already registered. Please use a different email."
+msgstr "."
+
+msgid "This email is invalid, please check again."
+msgstr "."
+
+msgid "This user name already in use. Please use another username."
+msgstr "."
+
+msgid "An email containing a confirmation code and user id has been sent to your account."
+msgstr "."
+
+msgid "Your account has been successfully created."
+msgstr "."
+
+msgid "Changed password successfully."
+msgstr "."
+
+msgid "Password and username are incorrect, please try again."
+msgstr "."
+
+msgid "No results found."
+msgstr "."
+
+msgid "Error accessing or parsing the website."
+msgstr "."
+
+msgid "Unsafe content detected. Not editing the database."
+msgstr "."
+
+msgid "Data edited successfully."
+msgstr "."
+
+msgid "Content already exists in the database."
+msgstr "."
+
+msgid "Data inserted successfully."
+msgstr "."
+
+msgid "Your add request has been sent to the administrator."
+msgstr "."
+
+msgid "Your edit request has been sent to the administrator."
+msgstr "."
+
+msgid "The user's reliability cannot be determined."
+msgstr "."
+
+msgid "Data removed successfully."
+msgstr "."
