@@ -8,7 +8,6 @@ from account.database import create_users_database
 def Initializer_Censorship_Database():
     clone_database('search_index', 'censorship')
 
-
 def Initializer_Database():
     conn = connect_to_mysql('search_index')
     cursor = conn.cursor()

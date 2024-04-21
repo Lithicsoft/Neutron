@@ -26,7 +26,7 @@ def summarize_text(text, max_length=174):
         return text[:last_space_index] + '...'
 
 def get_AI_answer(question):
-    load_dotenv()
+    load_dotenv("./config")
     
     try:
         GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')

@@ -1,12 +1,16 @@
 import os
+from dotenv import load_dotenv
 import mysql.connector
 from log.write import sys_log
 
 def connect_to_mysql(database_name):
+    load_dotenv("./config")
+
     config = {
-        'user': os.environ.get('SQLUSERNAME'),
-        'password': os.environ.get('SQLPASSWORD'),
-        'host': 'localhost',
+        'user': os.getenv('SQLUSERNAME'),
+        'password': os.getenv('SQLPASSWORD'),
+        'host': os.getenv('SQLHOSTNAME'),
+        'port': os.getenv('SQLPORT'),
         'raise_on_warnings': True
     }
 

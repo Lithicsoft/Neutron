@@ -134,7 +134,7 @@ while(True):
             help: This command.
             clear: Clear the terminal.
             start: Start the servers needed for MonoSearch.
-            api-config: Add the necessary API KEY environment variables to the servers.
+            config: Add the necessary API KEY environment variables to the servers, setup for MySQL and prepair the database.
             check: Lists the data that needs to be censored.
             sync: Synchronize the censored database and the parent database (requirement: no data that needs to be censored).
             log: Prints the server log.
@@ -143,26 +143,26 @@ while(True):
         ''')
     elif command == "clear":
         os.system('cls' if os.name == 'nt' else 'clear')
-    elif command == "start":
-        if os.getenv('SG_API_KEY') is None or os.getenv('GSB_API_KEY') is None or os.getenv('GOOGLE_API_KEY') is None or os.getenv('SQLUSERNAME') is None or os.getenv('SQLPASSWORD') is None:
-            print('The required API KEY to start the servers was not found, please use the "api-config" command to set the required environment API KEY variables.')
-        else:
-            yn = input('Do you want to start the server including: Search, Account [y/n]: ')
-            if (yn != 'n'):
-                    Initializer_Database()
-                    thread = threading.Thread(target=run.start_server)
-                    thread.start()
-                    print('The server has been started successfully.')
-                    sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-    elif command == "api-config":
+    elif command == "config":
         SG_API = input('SENDGRID API KEY: ')
         GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
         GOOGLE_API = input('GOOGLE GEMINI API KEY: ')
+        SQLUSERNAME = input('SQL USERNAME: ')
+        SQLPASSWORD = getpass.getpass('SQL PASSWORD: ')
+        SQLHOSTNAME = input('SQL HOSTNAME: ')
+        SQLPORT = input('SQL PORT: ')
+
         config_path = "./config"
         dotenv.set_key(config_path, "SG_API_KEY", SG_API)
         dotenv.set_key(config_path, "GSB_API_KEY", GSB_API)
         dotenv.set_key(config_path, "GOOGLE_API_KEY", GOOGLE_API)
+        dotenv.set_key(config_path, "SQLUSERNAME", SQLUSERNAME)
+        dotenv.set_key(config_path, "SQLPASSWORD", SQLPASSWORD)
+        dotenv.set_key(config_path, "SQLHOSTNAME", SQLHOSTNAME)
+        dotenv.set_key(config_path, "SQLPORT", SQLPORT)
         dotenv.load_dotenv()
+        
+        Initializer_Database()
     elif command == "check":
         compare_databases()
     elif command == "sync":

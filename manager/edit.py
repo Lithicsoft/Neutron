@@ -6,7 +6,7 @@ import json
 from datetime import datetime
 from library.database import Library_Edit_Data
 
-load_dotenv()
+load_dotenv("./config")
 GOOGLE_SAFE_BROWSING_API_KEY = os.getenv('GSB_API_KEY')
 
 allowed_extensions = {"http", "https"}
