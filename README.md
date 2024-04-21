@@ -69,6 +69,7 @@ We value your feedback! If you have any suggestions, encounter issues, or need a
 - [Beautiful Soup 4 (bs4)](https://www.crummy.com/software/BeautifulSoup/bs4/doc/): Library for web scraping in Python.
 - [Flask-Babel](https://github.com/python-babel/flask-babel): Flask extension for internationalization and localization support.
 - [Waitress](https://github.com/Pylons/waitress): WSGI server for serving Flask applications.
+- [Python-dotenv](https://github.com/theskumar/python-dotenv): Reads key-value pairs from a .env file and can set them as environment variables
 
 ## ✍️ Authors <a name="authors"></a>
 
