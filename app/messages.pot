@@ -1,152 +1,116 @@
 msgid "Account"
-msgstr ""
+msgstr "Tài khoản"
 
 msgid "Username"
-msgstr ""
+msgstr "Tên người dùng"
 
 msgid "Password"
-msgstr ""
+msgstr "Mật khẩu"
 
 msgid "Login"
-msgstr ""
+msgstr "Đăng nhập"
 
 msgid "Register"
-msgstr ""
+msgstr "Đăng ký"
 
 msgid "Policy & Terms of Use"
-msgstr "&"
+msgstr "Chính sách & Điều khoản sử dụng"
 
 msgid "and"
-msgstr ""
+msgstr "và"
 
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Chính sách bảo mật"
 
 msgid "Contribute"
-msgstr ""
+msgstr "Đóng góp"
 
 msgid "About"
-msgstr ""
+msgstr "Giới thiệu"
 
 msgid "Old password"
-msgstr ""
+msgstr "Mật khẩu cũ"
 
 msgid "New password"
-msgstr ""
+msgstr "Mật khẩu mới"
 
 msgid "Change my password"
-msgstr ""
+msgstr "Đổi mật khẩu"
 
 msgid "Logout"
-msgstr ""
+msgstr "Đăng xuất"
 
 msgid "User ID"
-msgstr ""
+msgstr "ID người dùng"
 
 msgid "Code"
-msgstr ""
+msgstr "Mã"
 
 msgid "Submit"
-msgstr ""
+msgstr "Xác nhận"
 
 msgid "By creating an account, you agree to"
-msgstr ","
+msgstr "Bằng cách tạo một tài khoảng, bạn đồng ý với"
 
 msgid "Text"
-msgstr ""
+msgstr "Văn bản"
 
 msgid "Image"
-msgstr ""
+msgstr "Hình ảnh"
 
 msgid "Insert"
-msgstr ""
+msgstr "Chèn"
 
 msgid "Change"
-msgstr ""
+msgstr "Thay đổi"
 
 msgid "Remove"
-msgstr ""
+msgstr "Loại bỏ"
 
 msgid "Get ID"
-msgstr ""
+msgstr "Lấy ID"
 
-msgid "Link"
-msgstr ""
-
-msgid "Title"
-msgstr ""
-
-msgid "Description"
-msgstr ""
-
-msgid "Keywords"
-msgstr ""
-
-msgid "Shorttext"
-msgstr ""
-
-msgid "Site ID"
-msgstr ""
+msgid "Url"
+msgstr "Địa chỉ"
 
 msgid "Options"
-msgstr ""
+msgstr "Tùy chọn"
 
 msgid "Search something..."
-msgstr "..."
+msgstr "Tìm kiếm thứ gì đó..."
 
 msgid "Logged in successfully."
-msgstr "."
+msgstr "Đăng nhập thành công."
 
 msgid "Account does not exist."
-msgstr "."
+msgstr "Tài khoản không tồn tại."
 
 msgid "This email is already registered. Please use a different email."
-msgstr "."
+msgstr "Email này đã được đăng kí. Vui lòng sử dụng một email khác."
 
 msgid "This email is invalid, please check again."
-msgstr "."
+msgstr "Email này không hợp lệ, vui lòng kiểm tra lại."
 
 msgid "This user name already in use. Please use another username."
-msgstr "."
+msgstr "Tên người dùng này đã được đăng kí. Vui lòng sử dụng tên khác."
 
 msgid "An email containing a confirmation code and user id has been sent to your account."
-msgstr "."
+msgstr "Một email chứa mã xác nhận và id người dùng đã được gửi đến tài khoản của bạn."
 
 msgid "Your account has been successfully created."
-msgstr "."
+msgstr "Tài khoản của bạn đã được tạo thành công."
 
 msgid "Changed password successfully."
-msgstr "."
+msgstr "Thay đổi mật khẩu thành công."
 
 msgid "Password and username are incorrect, please try again."
-msgstr "."
+msgstr "Mật khẩu và tên người dùng không đúng, vui lòng thử lại."
 
 msgid "No results found."
-msgstr "."
+msgstr "Không tìm thấy kết quả nào."
 
-msgid "Error accessing or parsing the website."
-msgstr "."
+msgid "Unable to verify user, looks like you are not logged in to your account, please log in to take any action on the database."
+msgstr "Không thể xác minh người dùng, có vẻ như bạn chưa đăng nhập vào tài khoản của mình, vui lòng đăng nhập để thực hiện bất kỳ hành động nào trên cơ sở dữ liệu."
 
-msgid "Unsafe content detected. Not editing the database."
-msgstr "."
-
-msgid "Data edited successfully."
-msgstr "."
-
-msgid "Content already exists in the database."
-msgstr "."
-
-msgid "Data inserted successfully."
-msgstr "."
-
-msgid "Your add request has been sent to the administrator."
-msgstr "."
-
-msgid "Your edit request has been sent to the administrator."
-msgstr "."
-
-msgid "The user's reliability cannot be determined."
-msgstr "."
-
-msgid "Data removed successfully."
+msgid "Your request has been successfully added to the list."
 msgstr "."

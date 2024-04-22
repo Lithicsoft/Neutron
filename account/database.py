@@ -11,7 +11,7 @@ def create_users_database():
             email VARCHAR(255),
             username VARCHAR(255),
             password VARCHAR(255),
-            reliability INT DEFAULT -1,
+            authentication INT DEFAULT -1,
             confirm INT DEFAULT 0
         )
     ''')

@@ -70,23 +70,8 @@ msgstr "Loại bỏ"
 msgid "Get ID"
 msgstr "Lấy ID"
 
-msgid "Link"
-msgstr "Liên kết"
-
-msgid "Title"
-msgstr "Tiêu đề"
-
-msgid "Description"
-msgstr "Mô tả"
-
-msgid "Keywords"
-msgstr "Từ khóa"
-
-msgid "Shorttext"
-msgstr "Văn bản ngắn"
-
-msgid "Site ID"
-msgstr "ID trang"
+msgid "Url"
+msgstr "Địa chỉ"
 
 msgid "Options"
 msgstr "Tùy chọn"
@@ -124,29 +109,14 @@ msgstr "Mật khẩu và tên người dùng không đúng, vui lòng thử lạ
 msgid "No results found."
 msgstr "Không tìm thấy kết quả nào."
 
-msgid "Error accessing or parsing the website."
-msgstr "Lỗi truy cập hoặc phân tích trang web."
+msgid "Unable to verify user, looks like you are not logged in to your account, please log in to take any action on the database."
+msgstr "Không thể xác minh người dùng, có vẻ như bạn chưa đăng nhập vào tài khoản của mình, vui lòng đăng nhập để thực hiện bất kỳ hành động nào trên cơ sở dữ liệu."
 
-msgid "Unsafe content detected. Not editing the database."
-msgstr "Đã phát hiện thấy nội dung không an toàn. Không chỉnh sửa cơ sở dữ liệu."
+msgid "Your request has been successfully added to the list."
+msgstr "Yêu cầu của bạn đã được thêm thành công vào danh sách."
 
-msgid "Data edited successfully."
-msgstr "Dữ liệu được chỉnh sửa thành công."
+msgid "Your url is invalid."
+msgstr "Url của bạn không hợp lệ."
 
-msgid "Content already exists in the database."
-msgstr "Nội dung đã tồn tại trong cơ sở dữ liệu."
-
-msgid "Data inserted successfully."
-msgstr "Dữ liệu được chèn thành công."
-
-msgid "Your add request has been sent to the administrator."
-msgstr "Yêu cầu thêm của bạn đã được gửi đến quản trị viên."
-
-msgid "Your edit request has been sent to the administrator."
-msgstr "Yêu cầu chỉnh sửa của bạn đã được gửi đến quản trị viên."
-
-msgid "The user's reliability cannot be determined."
-msgstr "Độ tin cậy của người dùng không thể được xác định."
-
-msgid "Data removed successfully."
-msgstr "Đã xóa dữ liệu thành công."
+msgid "The request already exists in the list."
+msgstr "Yêu cầu đã tồn tại trong danh sách."

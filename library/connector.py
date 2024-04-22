@@ -7,10 +7,10 @@ def connect_to_mysql(database_name):
     load_dotenv("./config")
 
     config = {
-        'user': os.getenv('SQLUSERNAME'),
-        'password': os.getenv('SQLPASSWORD'),
-        'host': os.getenv('SQLHOSTNAME'),
-        'port': os.getenv('SQLPORT'),
+        'user': os.getenv('MYSQLUSERNAME'),
+        'password': os.getenv('MYSQLPASSWORD'),
+        'host': os.getenv('MYSQLHOSTNAME'),
+        'port': os.getenv('MYSQLPORT'),
         'raise_on_warnings': True
     }
 

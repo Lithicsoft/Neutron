@@ -103,7 +103,7 @@
       <div id="video_display">
         {% for row in results %}
           <div>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ row[3] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ row[4] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p style="width: 560;"><a style="font-size: x-large;" href="{{ row[1] }}">{{ row[2] }}</a></p>
           </div><br><br>
         {% endfor %}

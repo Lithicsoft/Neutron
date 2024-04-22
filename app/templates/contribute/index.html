@@ -24,23 +24,7 @@
     
     <div id="Insert" class="tabcontent"><br>
         <form action="/contribute/insert" method="POST">
-            <select name="type">
-                <option value="Text">{% trans %}Text{% endtrans %}</option>
-                <option value="Image">{% trans %}Image{% endtrans %}</option>
-                <option value="Video">{% trans %}Video{% endtrans %}</option>
-            </select><br><br>
-
-            <input type="url" name="link" placeholder="{% trans %}Link{% endtrans %}"/>
-
-            <input type="text" name="title" placeholder="{% trans %}Title{% endtrans %}"/><br><br>
-
-            <input type="text" name="text" placeholder="{% trans %}Text{% endtrans %}"/>
-
-            <input type="text" name="description" placeholder="{% trans %}Description{% endtrans %}"/><br><br>
-
-            <input type="text" name="keywords" placeholder="{% trans %}Keywords{% endtrans %}"/>
-
-            <input type="text" name="shorttext" placeholder="{% trans %}Shorttext{% endtrans %}"/><br><br>
+            <input type="url" name="url" placeholder="{% trans %}Url{% endtrans %}"/><br><br>
             
             <button type="submit" name="add_button" value="add_clicked">➕</button><br><br>
         </form>
@@ -48,25 +32,7 @@
 
     <div id="Change" class="tabcontent"><br>
         <form action="/contribute/change" method="POST">
-            <select name="type">
-                <option value="Text">{% trans %}Text{% endtrans %}</option>
-                <option value="Image">{% trans %}Image{% endtrans %}</option>
-                <option value="Video">{% trans %}Video{% endtrans %}</option>
-            </select><br><br>
-
-            <input type="number" name="site_id" placeholder="{% trans %}Site ID{% endtrans %}"/><br><br>
-
-            <input type="url" name="link" placeholder="{% trans %}Link{% endtrans %}"/>
-
-            <input type="text" name="title" placeholder="{% trans %}Title{% endtrans %}"/><br><br>
-
-            <input type="text" name="text" placeholder="{% trans %}Text{% endtrans %}"/>
-
-            <input type="text" name="description" placeholder="{% trans %}Description{% endtrans %}"/><br><br>
-
-            <input type="text" name="keywords" placeholder="{% trans %}Keywords{% endtrans %}"/>
-
-            <input type="text" name="shorttext" placeholder="{% trans %}Shorttext{% endtrans %}"/><br><br>
+            <input type="url" name="url" placeholder="{% trans %}Url{% endtrans %}"/><br><br>
             
             <button type="submit" name="edit_button" value="edit_clicked">🖊️</button><br><br>
         </form>
@@ -74,13 +40,7 @@
 
     <div id="Remove" class="tabcontent"><br>
         <form action="/contribute/remove" method="POST">
-            <select name="type">
-                <option value="Text">{% trans %}Text{% endtrans %}</option>
-                <option value="Image">{% trans %}Image{% endtrans %}</option>
-                <option value="Video">{% trans %}Video{% endtrans %}</option>
-            </select><br><br>
-
-            <input type="number" name="site_id" placeholder="{% trans %}Site ID{% endtrans %}"/><br><br>
+            <input type="number" name="url" placeholder="{% trans %}Url{% endtrans %}"/><br><br>
             
             <button type="submit" name="remove_button" value="remove_clicked">❌</button><br><br>
         </form>
@@ -93,8 +53,8 @@
                 <option value="Image">{% trans %}Image{% endtrans %}</option>
                 <option value="Video">{% trans %}Video{% endtrans %}</option>
             </select><br><br>
-
-            <input type="url" name="link" placeholder="{% trans %}Link{% endtrans %}"/><br><br>
+            
+            <input type="url" name="url" placeholder="{% trans %}Url{% endtrans %}"/><br><br>
 
             <button type="submit" name="find_button" value="find_clicked">🔎</button><br><br>
         </form>

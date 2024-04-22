@@ -7,67 +7,13 @@ sys.path.append(os.path.abspath(os.path.join('./')))
 from account.database import create_users_database
 from library.connector import connect_to_mysql
 from library.deleter import delete_database
-from library.cloner import clone_database
-from datetime import datetime
-import run
 from account.username import get_username
 from initializer.database import Initializer_Database
 from log.write import sys_log
 from account.loader import account_database_loader
-from account.reliability import get_user_reliability
+from account.authentication import get_user_authentication
 
 print('Welcome to Neutron Administrator Panel')
-
-def compare_databases():
-    try:
-        conn1 = connect_to_mysql("search_index")
-        conn2 = connect_to_mysql("censorship")
-
-        cur1 = conn1.cursor()
-        cur2 = conn2.cursor()
-
-        cur1.execute(f"SELECT * FROM information")
-        cur2.execute(f"SELECT * FROM information")
-
-        data1 = cur1.fetchall()
-        data2 = cur2.fetchall()
-
-        set1 = set(data1)
-        set2 = set(data2)
-
-        different_list = list(set2 - set1)
-
-        result = {
-            "Censorship:": different_list,
-            "Search Index:": list(set1-set2)
-        }
-
-        print(result)
-
-        conn1.close()
-        conn2.close()
-
-        if different_list:
-            return False
-        else:
-            return True
-    except Exception as e:
-        print("Error comparing databases:", str(e))
-        return False
-
-def synchronization_databases():
-    try:
-        if not compare_databases():
-            print("Databases cannot be synchronized when there are differences between them.")
-            return
-        else:
-            delete_database("censorship")
-            clone_database("search-index", "censorship")
-
-            print("Synchronization successful.")
-    except Exception as e:
-        print("Error synchronizing databases:", str(e))
-
 
 create_users_database()
 account_conn = account_database_loader()
@@ -85,37 +31,37 @@ def list_users_database():
         print("Email:", row[1])
         print("Username:", row[2])
         print("Password:", row[3])
-        print("Reliability:", row[4])
+        print("Authentication:", row[4])
         print("--------------------")
         user_amount + 1
     
     print("User Amount: ", user_amount)
 
-def get_reliability_from_id(user_id):
-    account_cursor.execute("SELECT reliability FROM users WHERE id = %s", (user_id,))
+def get_authentication_from_id(user_id):
+    account_cursor.execute("SELECT authentication FROM users WHERE id = %s", (user_id,))
 
     rows = account_cursor.fetchall()
 
     for row in rows:
-        reliability = row[0]
+        authentication = row[0]
 
-    return reliability
+    return authentication
 
-def change_reliability_by_user_id(user_id, new_reliability):
-    account_cursor.execute("UPDATE users SET reliability = %s WHERE id = %s", (new_reliability, user_id))
+def change_authentication_by_user_id(user_id, new_authentication):
+    account_cursor.execute("UPDATE users SET authentication = %s WHERE id = %s", (new_authentication, user_id))
     account_conn.commit()
 
-    sys_log("Changed User Reliability", "Username: " + get_username(account_cursor, user_id) + " Reliability: " + str(new_reliability))
+    sys_log("Changed User authentication", "Username: " + get_username(account_cursor, user_id) + " authentication: " + str(new_authentication))
 
 username = input('Username: ')
 password = getpass.getpass('Password: ')
 
-reliability = get_user_reliability(account_cursor, username, password)
+authentication = get_user_authentication(account_cursor, username, password)
 
-if reliability is None:
+if authentication is None:
     print("Account does not exist.")
     exit()
-elif reliability >= 4:
+elif authentication >= 1:
     print('Logged in successfully.')
 else:
     print('You do not have sufficient rights to access the panel.')
@@ -139,7 +85,7 @@ while(True):
             sync: Synchronize the censored database and the parent database (requirement: no data that needs to be censored).
             log: Prints the server log.
             users-list: Lists the list of users.
-            users-rel: Changes user reliability through their user id.
+            users-rel: Changes user authentication through their user id.
         ''')
     elif command == "clear":
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -147,27 +93,22 @@ while(True):
         SG_API = input('SENDGRID API KEY: ')
         GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
         GOOGLE_API = input('GOOGLE GEMINI API KEY: ')
-        SQLUSERNAME = input('SQL USERNAME: ')
-        SQLPASSWORD = getpass.getpass('SQL PASSWORD: ')
-        SQLHOSTNAME = input('SQL HOSTNAME: ')
-        SQLPORT = input('SQL PORT: ')
+        SQLUSERNAME = input('MySQL USERNAME: ')
+        SQLPASSWORD = getpass.getpass('MySQL PASSWORD: ')
+        SQLHOSTNAME = input('MySQL HOSTNAME: ')
+        SQLPORT = input('MySQL PORT: ')
 
         config_path = "./config"
         dotenv.set_key(config_path, "SG_API_KEY", SG_API)
         dotenv.set_key(config_path, "GSB_API_KEY", GSB_API)
         dotenv.set_key(config_path, "GOOGLE_API_KEY", GOOGLE_API)
-        dotenv.set_key(config_path, "SQLUSERNAME", SQLUSERNAME)
-        dotenv.set_key(config_path, "SQLPASSWORD", SQLPASSWORD)
-        dotenv.set_key(config_path, "SQLHOSTNAME", SQLHOSTNAME)
-        dotenv.set_key(config_path, "SQLPORT", SQLPORT)
+        dotenv.set_key(config_path, "MYSQLUSERNAME", SQLUSERNAME)
+        dotenv.set_key(config_path, "MYSQLPASSWORD", SQLPASSWORD)
+        dotenv.set_key(config_path, "MYSQLHOSTNAME", SQLHOSTNAME)
+        dotenv.set_key(config_path, "MYSQLPORT", SQLPORT)
         dotenv.load_dotenv()
         
         Initializer_Database()
-    elif command == "check":
-        compare_databases()
-    elif command == "sync":
-        synchronization_databases()
-        print("Successful data synchronization.")
     elif command == "log":
         with open('log.txt', 'r', encoding='utf-8') as file:
             for line in file:
@@ -176,8 +117,8 @@ while(True):
         list_users_database()
     elif command == "users-rel":
         user_id = input('User ID: ')
-        print("Current reliability: " + str(get_reliability_from_id(user_id)))
-        new_reliability = input('Change reliability to: ')
-        change_reliability_by_user_id(user_id, new_reliability)
-        print('Changed reliability successfully.')
+        print("Current authentication: " + str(get_authentication_from_id(user_id)))
+        new_authentication = input('Change authentication to: ')
+        change_authentication_by_user_id(user_id, new_authentication)
+        print('Changed authentication successfully.')
         

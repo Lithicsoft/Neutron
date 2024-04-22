@@ -2,10 +2,9 @@ import hashlib
 import os
 import random
 import re
-
 from dotenv import load_dotenv
 from account.loader import account_database_loader
-from account.reliability import get_user_reliability
+from account.authentication import get_user_authentication
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from account.userid import get_user_id
@@ -64,7 +63,7 @@ def verification(user_id, confirmation_code):
     confirm_value = cursor.fetchall()[0][0]
     if int(confirmation_code) == confirm_value:
         cursor.execute("UPDATE users SET confirm = 0 WHERE id = %s", (user_id,))
-        cursor.execute("UPDATE users SET reliability = 0 WHERE id = %s", (user_id,))
+        cursor.execute("UPDATE users SET authentication = 0 WHERE id = %s", (user_id,))
         conn.commit()
         return 'Your account has been successfully created.'
     else:
@@ -78,7 +77,7 @@ def login_form():
             username = request.form.get('username')
             password = request.form.get('password')
 
-            login = get_user_reliability(cursor, username, password)
+            login = get_user_authentication(cursor, username, password)
 
             User = request.cookies.get('USERNAME')
             if User is None:
@@ -105,7 +104,7 @@ def login_form():
         username = request.cookies.get('USERNAME')
         password = request.cookies.get('PASSWORD')
 
-        login = get_user_reliability(cursor, username, password, False)
+        login = get_user_authentication(cursor, username, password, False)
 
         if username is not None or password is not None or login is not None:
             return redirect(
@@ -137,7 +136,7 @@ def account_register():
         username = request.cookies.get('USERNAME')
         password = request.cookies.get('PASSWORD')
 
-        login = get_user_reliability(cursor, username, password, False)
+        login = get_user_authentication(cursor, username, password, False)
 
         if username is None or password is None or login is None:
             return render_template(
@@ -189,7 +188,7 @@ def myaccount_form():
         username = request.cookies.get('USERNAME')
         password = request.cookies.get('PASSWORD')
 
-        login = get_user_reliability(cursor, username, password, False)
+        login = get_user_authentication(cursor, username, password, False)
 
         if username is None or password is None or login is None:
             return redirect(
@@ -207,7 +206,7 @@ def myaccount_form():
             new_password = request.form.get('newpassword')
             username = request.form.get('username')
 
-            login = get_user_reliability(cursor, username, old_password)
+            login = get_user_authentication(cursor, username, old_password)
 
             if login is not None:
                 user_id = get_user_id(cursor, username)

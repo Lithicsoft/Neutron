@@ -1,6 +1,6 @@
 import hashlib
 
-def get_user_reliability(cursor, username, password, hash=True):
+def get_user_authentication(cursor, username, password, hash=True):
     if hash:
         password = hashlib.md5(hashlib.sha256(password.encode('utf-8')).hexdigest().encode()).hexdigest()
 
@@ -10,11 +10,11 @@ def get_user_reliability(cursor, username, password, hash=True):
     if row:
         stored_password = row[0]
         if password == stored_password:
-            cursor.execute('SELECT reliability FROM users WHERE username = %s', (username,))
-            reliability_row = cursor.fetchone()
-            if reliability_row:
-                reliability_value = reliability_row[0]
-                return reliability_value
+            cursor.execute('SELECT authentication FROM users WHERE username = %s', (username,))
+            authentication_row = cursor.fetchone()
+            if authentication_row:
+                authentication_value = authentication_row[0]
+                return authentication_value
             else:
                 return None
         else:
