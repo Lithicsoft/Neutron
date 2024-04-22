@@ -33,9 +33,9 @@
 
 - **ADPN (Admin Panel)**
   A versatile Control Panel facilitating administrative commands execution and database management.
-- **FTS**
+- **FTS (Full-Text Search)**
   Employs MySQL Full-Text Search, enhancing search capabilities for improved results.
-- **Account Manager (Server)**
+- **Account Manager**
   Enhance basic account management functionalities, including password modifications and the creation of accounts necessitating confirmation codes via email. This system prioritizes reliability, ensuring seamless operation.
 - **Manager**
   Allows users to send crawl requests to ATMT (Our Website crawler).
