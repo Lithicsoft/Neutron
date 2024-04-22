@@ -21,7 +21,7 @@
 
 ## 🧐 About Neutron <a name="about"></a>
 
-Neutron is a project dedicated to crafting a straightforward and user-friendly search engine. Our primary goal is to provide a platform where users can effortlessly add and contribute websites to expand our search database.
+[Neutron](https://github.com/Lithicsoft/Neutron) is a project dedicated to crafting a straightforward and user-friendly search engine. Our primary goal is to provide a platform where users can effortlessly add and contribute websites to expand our search database.
 
 ## 🏁 Highlights <a name="highlights"></a>
 
@@ -38,12 +38,7 @@ Neutron is a project dedicated to crafting a straightforward and user-friendly s
 - **Account Manager (Server)**
   Enhance basic account management functionalities, including password modifications and the creation of accounts necessitating confirmation codes via email. This system prioritizes reliability, ensuring seamless operation.
 - **Manager**
-  Empowers users to interact with the database based on their reliability levels:
-  + 0: All edits undergo administrator review.
-  + 1: Allows direct addition of websites to the database documents without administrative intervention.
-  + 2: Grants permission for direct website editing.
-  + 3: Enables website deletion.
-  + 4: Administrator privileges.
+  Allows users to send crawl requests to ATMT (Our Website crawler).
 - **Search Index**
   Facilitates searching with two distinct algorithms: full-text search and exact search.
 - **Interface**
