@@ -115,7 +115,7 @@ while(True):
                 print(line.strip())
     elif command == "users-list":
         list_users_database()
-    elif command == "users-rel":
+    elif command == "users-auth":
         user_id = input('User ID: ')
         print("Current authentication: " + str(get_authentication_from_id(user_id)))
         new_authentication = input('Change authentication to: ')
