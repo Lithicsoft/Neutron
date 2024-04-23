@@ -5,8 +5,6 @@ import os
 import sys
 sys.path.append(os.path.abspath(os.path.join('./')))
 from account.database import create_users_database
-from library.connector import connect_to_mysql
-from library.deleter import delete_database
 from account.username import get_username
 from initializer.database import Initializer_Database
 from log.write import sys_log

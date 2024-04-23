@@ -2,7 +2,7 @@ from library.connector import connect_to_mysql
 from log.write import sys_log
 
 def create_users_database():
-    conn = connect_to_mysql('users_account')
+    conn = connect_to_mysql('Neutron')
     cursor = conn.cursor()
 
     cursor.execute('''
@@ -19,4 +19,4 @@ def create_users_database():
     conn.commit()
     conn.close()
 
-    sys_log("Created", "users_account")
+    sys_log("Created", "Users account")
