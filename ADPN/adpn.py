@@ -17,6 +17,8 @@ create_users_database()
 account_conn = account_database_loader()
 account_cursor = account_conn.cursor()
 
+dotenv.load_dotenv()
+
 def list_users_database():
     account_cursor.execute("SELECT * FROM users")
 
@@ -64,8 +66,6 @@ elif authentication >= 1:
 else:
     print('You do not have sufficient rights to access the panel.')
     exit()
-
-dotenv.load_dotenv()
 
 while(True):
     command = input('>>> ')

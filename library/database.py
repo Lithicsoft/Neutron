@@ -53,12 +53,11 @@ def Library_Get_ID(cursor, type, link):
     cursor.execute(f"SELECT site_id FROM information WHERE link = %s AND type = %s", (link, type,))
     return cursor.fetchone()[0]
 
-def Library_Exact_Search(cursor, type, safe_keyword, page):
+def Library_Full_Text_Domain_Search(cursor, type, safe_keyword, domain, page):
     offset = (page - 1) * 15
     cursor.execute(f'''SELECT * FROM information
-                        WHERE title LIKE %s OR text LIKE %s OR description LIKE %s OR keywords LIKE %s OR shorttext LIKE %s AND type = %s
-                        LIMIT 15 OFFSET %s''', 
-                        ('%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%', '%' + safe_keyword + '%', type, offset))
+                        WHERE MATCH(link, title, text, description, keywords, shorttext, type) AGAINST (%s IN NATURAL LANGUAGE MODE) AND type = %s AND link = %s
+                        LIMIT 15 OFFSET %s''', (safe_keyword, type, domain, offset))
     return cursor.fetchall()
 
 def Library_Full_Text_Search(cursor, type, safe_keyword, page):

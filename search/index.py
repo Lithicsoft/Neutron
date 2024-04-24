@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from waitress import serve
 import re
-from library.database import Library_Exact_Search, Library_Full_Text_Search
+from library.database import Library_Full_Text_Domain_Search, Library_Full_Text_Search
 from initializer.loader import database_loader
 
 app = Flask(__name__)
@@ -16,15 +16,14 @@ def Search_Data():
     keyword = data['keyword']
     page = int(data['page'])
 
-    exact_match = re.findall(r'"(.*?)"', keyword)
+    domain_match = re.search(r'site:(\\S+)', keyword)
 
-    if exact_match:
-        cursor = conn.cursor()
+    cursor = conn.cursor()
 
-        rows = Library_Exact_Search(cursor, type, keyword, page)
+    if domain_match:
+        domain = domain_match.group(1)
+        rows = Library_Full_Text_Domain_Search(cursor, type, keyword, domain, page)
     else:
-        cursor = conn.cursor()
-
         rows = Library_Full_Text_Search(cursor, type, keyword, page)
     
     if len(rows) == 0:
