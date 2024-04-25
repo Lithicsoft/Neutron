@@ -6,6 +6,7 @@ def log(cursor, username, password, job, string):
     log_string = "User: " + username + " (ID:" + str(get_user_id(cursor, username)) + ")/(Authentication:" + str(get_user_authentication(cursor, username, password)) + "): " + job + ": " + string
     log_file.write(log_string + '\n')
     log_file.close()
+    print(log_string)
     return log_string
 
 def db_log(log_string):
@@ -18,3 +19,4 @@ def sys_log(job, string):
     log_string = "SYS: " + job + ": " + string
     log_file.write(log_string + '\n')
     log_file.close()
+    print(log_string)

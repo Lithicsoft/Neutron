@@ -111,9 +111,13 @@ def ATMT(username, password):
             print("---------")
 
             soup = BeautifulSoup(response.text, 'html.parser')
-            search_results = soup.select('a[href]')
-            for link in search_results:
-                new_url = urljoin(url, link.get('href'))
+            a_links = [a['href'] for a in soup.select('a[href]') if a['href']]
+            img_links = [img['src'] for img in soup.select('img[src]') if img['src']]
+            video_links = [video['src'] for video in soup.select('video[src]') if video['src']]
+            all_links = a_links + img_links + video_links
+
+            for link in all_links:
+                new_url = urljoin(url, link)
                 if new_url not in investigation_list and new_url not in checked_urls:
                     investigation_list.append(new_url)
         else:
