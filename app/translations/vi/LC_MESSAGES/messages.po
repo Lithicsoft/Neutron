@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-30 16:54+0700\n"
+"POT-Creation-Date: 2024-04-30 21:15+0700\n"
 "PO-Revision-Date: 2024-04-22 15:24+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -83,7 +83,8 @@ msgstr "Văn bản"
 msgid "Image"
 msgstr "Hình ảnh"
 
-msgid "Add website to search engine"
+#, fuzzy
+msgid "Add website to search engine crawler"
 msgstr "Thêm trang web vào công cụ tìm kiếm"
 
 msgid "Url"
@@ -98,8 +99,8 @@ msgstr "Tìm kiếm thứ gì đó..."
 msgid "Logged in successfully."
 msgstr "Đăng nhập thành công."
 
-msgid "Account does not exist."
-msgstr "Tài khoản không tồn tại."
+msgid "Username or password is incorrect."
+msgstr "Tên người dùng hoặc mật khẩu không đúng."
 
 msgid "This email is already registered. Please use a different email."
 msgstr "Email này đã được đăng kí. Vui lòng sử dụng một email khác."
@@ -157,4 +158,7 @@ msgstr "Yêu cầu đã tồn tại trong danh sách."
 
 #~ msgid "Get ID"
 #~ msgstr "Lấy ID"
+
+#~ msgid "Account does not exist."
+#~ msgstr "Tài khoản không tồn tại."
 

@@ -97,7 +97,7 @@ def login_form():
                 return render_template(
                     '/account/login.html',
                     User=User,
-                    message=gettext('Account does not exist.')
+                    message=gettext('Username or password is incorrect.')
                 )
     else:
         username = request.cookies.get('USERNAME')
