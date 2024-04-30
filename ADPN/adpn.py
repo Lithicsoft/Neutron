@@ -90,7 +90,6 @@ while(True):
     elif command == "config":
         SG_API = input('SENDGRID API KEY: ')
         GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
-        GOOGLE_API = input('GOOGLE GEMINI API KEY: ')
         SQLUSERNAME = input('MySQL USERNAME: ')
         SQLPASSWORD = getpass.getpass('MySQL PASSWORD: ')
         SQLHOSTNAME = input('MySQL HOSTNAME: ')
@@ -99,7 +98,6 @@ while(True):
         config_path = "./config"
         dotenv.set_key(config_path, "SG_API_KEY", SG_API)
         dotenv.set_key(config_path, "GSB_API_KEY", GSB_API)
-        dotenv.set_key(config_path, "GOOGLE_API_KEY", GOOGLE_API)
         dotenv.set_key(config_path, "MYSQLUSERNAME", SQLUSERNAME)
         dotenv.set_key(config_path, "MYSQLPASSWORD", SQLPASSWORD)
         dotenv.set_key(config_path, "MYSQLHOSTNAME", SQLHOSTNAME)
