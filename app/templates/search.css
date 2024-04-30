@@ -33,7 +33,7 @@ footer {
 }
 
 a {
-    color: gray;
+    color: rgb(23, 74, 228);
     text-decoration: none;
 }
 
@@ -138,18 +138,6 @@ input[type="search"]::-webkit-search-results-decoration {
 	width: 325px;
     height: 300px;
     object-fit: contain;
-}
-
-/* AI DISPLAY */
-.ai_display {
-	font-size: large;
-    margin-right: 17%;
-  	padding: 6px 12px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-  	width: auto;
-	height: auto;
 }
 
 /* SELECT */

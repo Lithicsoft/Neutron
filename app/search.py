@@ -1,9 +1,5 @@
 from datetime import datetime
 import json
-import time
-import os
-
-from dotenv import load_dotenv
 from app import language
 import requests
 from app import app
@@ -13,37 +9,6 @@ from flask_babel import gettext
 import wikipedia
 from search.get import Search_Data
 import wikipedia
-import google.generativeai as genai
-from bs4 import BeautifulSoup
-from markdown import markdown
-
-def summarize_text(text, max_length=174):
-    text = text.replace("\n", " ")
-    if len(text) <= max_length:
-        return text
-    else:
-        last_space_index = text.rfind(' ', 0, max_length)
-        return text[:last_space_index] + '...'
-
-def get_AI_answer(question):
-    load_dotenv("./config")
-    
-    try:
-        GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
-        genai.configure(api_key=GOOGLE_API_KEY)
-
-        model = genai.GenerativeModel('gemini-pro')
-
-        prompt = language.prompt()
-
-        response = model.generate_content(question + prompt)
-
-        pre_text = markdown(response.text)
-        text = ''.join(BeautifulSoup(pre_text, features="html.parser").findAll(text=True))
-
-        return summarize_text(text)
-    except:
-        return ''
 
 WIKI_REQUEST = 'http://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles='
 
@@ -98,10 +63,6 @@ def search():
     language_hl = request.args.get('hl', '')
     time_sr = request.args.get('tm', '')
     page = request.args.get('pg', '')
-
-    ai_answer = request.args.get('ai', '')
-    if ai_answer == '':
-        ai_answer = get_AI_answer(keyword)
     
     wt = request.args.get('wt', '')
     wi = request.args.get('wi', '')
@@ -174,7 +135,6 @@ def search():
             note=gettext('No results found.'),
             prev_page = prev_page_num,
             next_page=next_page_num,
-            Gemini=ai_answer,
             results=search_result
         )
     else:
@@ -190,6 +150,5 @@ def search():
             wikipedia_image = wikipedia_info[3],
             prev_page=prev_page_num,
             next_page=next_page_num,
-            Gemini=ai_answer,
             results=search_result,
         )

@@ -1,18 +1,15 @@
-from flask import Flask, request
-from waitress import serve
+from flask import request
+from app import app, databases
 from .getid import Get_ID
-from initializer.loader import database_loader
 from log.write import db_log, log
-from account.loader import account_database_loader
 from account.authentication import get_user_authentication
-from initializer.loader import database_loader
 from .edit import edit_data
 from .insert import insert_data
 from .remove import remove_data
 
-conn = database_loader()
+conn = databases.conn
 
-account_conn = account_database_loader()
+account_conn = databases.account_conn
 cursor = account_conn.cursor()
 
 def manager_insert_data(type, username, password, link, title, text, description, keywords, shorttext):
@@ -54,9 +51,7 @@ def manager_remove_data(type, username, password, site_id):
     else: 
         return "The user's authentication cannot be determined."
 
-app = Flask(__name__)
-
-@app.route('/', methods=['POST'])
+@app.route('/api/manager', methods=['POST'])
 def manager():
     data = request.get_json()
     call = data['call']
@@ -83,9 +78,3 @@ def manager():
     elif call == 'getid':
         return_result = Get_ID(conn, type, link)
         return str(return_result)
-    
-def main():
-    serve(app, host='0.0.0.0', port=8501)
-
-if __name__ == '__main__':
-    main()

@@ -1,3 +1,6 @@
+msgid "Neutron là một Công cụ Tìm kiếm với: Riêng tư, An toàn, Bảo mật, Linh hoạt!"
+msgstr "!"
+
 msgid "Account"
 msgstr "Tài khoản"
 
@@ -55,20 +58,8 @@ msgstr "Bằng cách tạo một tài khoảng, bạn đồng ý với"
 msgid "Text"
 msgstr "Văn bản"
 
-msgid "Image"
-msgstr "Hình ảnh"
-
-msgid "Insert"
-msgstr "Chèn"
-
-msgid "Change"
-msgstr "Thay đổi"
-
-msgid "Remove"
-msgstr "Loại bỏ"
-
-msgid "Get ID"
-msgstr "Lấy ID"
+msgid "Add website to search engine"
+msgstr ""
 
 msgid "Url"
 msgstr "Địa chỉ"

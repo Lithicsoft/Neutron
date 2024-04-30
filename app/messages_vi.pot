@@ -1,3 +1,6 @@
+msgid "Neutron is a Search Engine with: Private, Safe, Secure, Flexible!"
+msgstr "Neutron là một Công cụ Tìm kiếm với: Riêng tư, An toàn, Bảo mật, Linh hoạt!"
+
 msgid "Account"
 msgstr "Tài khoản"
 
@@ -58,17 +61,8 @@ msgstr "Văn bản"
 msgid "Image"
 msgstr "Hình ảnh"
 
-msgid "Insert"
-msgstr "Chèn"
-
-msgid "Change"
-msgstr "Thay đổi"
-
-msgid "Remove"
-msgstr "Loại bỏ"
-
-msgid "Get ID"
-msgstr "Lấy ID"
+msgid "Add website to search engine"
+msgstr "Thêm trang web vào công cụ tìm kiếm"
 
 msgid "Url"
 msgstr "Địa chỉ"

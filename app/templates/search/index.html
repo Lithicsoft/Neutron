@@ -4,7 +4,6 @@
   <link rel="stylesheet" href="/search.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script type="text/javascript">
-    var Gemini = "{{ Gemini }}";
     var Wikipedia_Title = "{{ wikipedia_title }}";
     var Wikipedia_Image = "{{ wikipedia_image }}";
     var Wikipedia_Summary = "{{ wikipedia_summary }}";
@@ -17,7 +16,6 @@
     document.addEventListener('DOMContentLoaded', function() {
       var url = new URL(window.location.href);
 
-      url.searchParams.set('ai', Gemini);
       url.searchParams.set('wt', Wikipedia_Title);
       url.searchParams.set('wi', Wikipedia_Image);
       url.searchParams.set('ws', Wikipedia_Summary);
@@ -115,10 +113,6 @@
     </div>
 
     <div class="extent">
-      <div class="ai_display">
-        <h3>Gemini</h3>
-        <label>{{ Gemini }}</label>
-      </div><br><br>
       <div class="wikipedia">
         <h3>{{ wikipedia_title }}</h3>
         <img id="wikipedia_image" class="wikipedia_image" src="{{ wikipedia_image }}"><br>
@@ -152,10 +146,10 @@
   <p style="float: right;">&copy; 2024 Lithicsoft Organization&nbsp;</p>
   <p style="float: left;">
     &nbsp;&nbsp;&nbsp;
-    <a href="https://lithicsoft.github.io/neutron/touap/" target="_blank">{% trans %}Policy & Terms of Use{% endtrans %}</a> {% trans %}and{% endtrans %} <a href="https://lithicsoft.github.io/neutron/pp/" target="_blank">{% trans %}Privacy Policy{% endtrans %}</a>
+    <a style="color: gray;" href="https://lithicsoft.github.io/neutron/touap/" target="_blank">{% trans %}Policy & Terms of Use{% endtrans %}</a> {% trans %}and{% endtrans %} <a style="color: gray;" href="https://lithicsoft.github.io/neutron/pp/" target="_blank">{% trans %}Privacy Policy{% endtrans %}</a>
     &nbsp;&nbsp;&nbsp;
-    <a href="/contribute" target="_blank">{% trans %}Contribute{% endtrans %}</a>
+    <a style="color: gray;" href="/contribute" target="_blank">{% trans %}Contribute{% endtrans %}</a>
     &nbsp;&nbsp;&nbsp;
-    <a href="https://lithicsoft.github.io/neutron" target="_blank">{% trans %}About{% endtrans %}</a>
+    <a style="color: gray;" href="https://lithicsoft.github.io/neutron" target="_blank">{% trans %}About{% endtrans %}</a>
   </p>
 </footer>

@@ -1,25 +1,14 @@
 from datetime import datetime
-import threading
+from app import app
+from waitress import serve
+
 from log.write import sys_log
-from search import index
-from manager import manager
-import run_app
 
-def run_module(module):
-    module.main()
+def main():
+    serve(app, host='0.0.0.0', port=50100, url_scheme='https')
 
-def start_server():
+if __name__ == '__main__':
     sys_log('Start Server', str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+    print("The server is active...")
+    main()
     
-    modules = [index, manager, run_app]
-
-    threads = [threading.Thread(target=run_module, args=(module,)) for module in modules]
-
-    for thread in threads:
-        thread.start()
-
-    for thread in threads:
-        thread.join()
-
-if __name__ == "__main__":
-    start_server()

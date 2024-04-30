@@ -14,7 +14,7 @@
 <body>
     <script>
         function loadBackground() {
-            fetch('https://source.unsplash.com/random?night sky')
+            fetch('https://source.unsplash.com/1920x1080/?wallpaper')
                 .then((response) => {
                     if (response.ok) {
                         document.body.style.backgroundImage = 'url(' + response.url + ')';
@@ -61,6 +61,7 @@
                 <input type="button" id="voice-button" value="&#xf130;" style="font-family:FontAwesome;">
             </div>
         </div>
+        <p style="text-align: center; color: white;">{% trans %}Neutron is a Search Engine with: Private, Safe, Secure, Flexible!{% endtrans %}</p>
     </form>
     
 </body>

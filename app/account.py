@@ -3,18 +3,17 @@ import os
 import random
 import re
 from dotenv import load_dotenv
-from account.loader import account_database_loader
 from account.authentication import get_user_authentication
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from account.userid import get_user_id
-from app import app
+from app import app, databases
 from flask import make_response, redirect, render_template, request
 from flask_babel import gettext
 
 from log.write import sys_log
 
-conn = account_database_loader()
+conn = databases.account_conn
 cursor = conn.cursor()
 
 def send_email(subject, from_email, to_email, content):

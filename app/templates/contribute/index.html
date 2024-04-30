@@ -1,7 +1,6 @@
 <head>
     <title>Neutron Search</title>
     <link rel="icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/104414044?s=400&u=1ed30317ef805a1b447c1c7194b5fcad6c9f3888&v=4">
-    <link rel="stylesheet" href="/contribute/tab.css">
     <link rel="stylesheet" href="/search.css">
 </head>
 <body>
@@ -11,69 +10,30 @@
             <a style="color: rgb(0, 0, 0); font-size: larger;" href="/">Lithicsoft Neutron</a>
         </div>
         <a style="float: right;" href="/account">{{ User }}</a>
-    </div>
-
-    <br>
-
-    <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Insert')">{% trans %}Insert{% endtrans %}</button>
-        <button class="tablinks" onclick="openTab(event, 'Change')">{% trans %}Change{% endtrans %}</button>
-        <button class="tablinks" onclick="openTab(event, 'Remove')">{% trans %}Remove{% endtrans %}</button>
-        <button class="tablinks" onclick="openTab(event, 'GetID')">{% trans %}Get ID{% endtrans %}</button>
     </div><br>
     
-    <div id="Insert" class="tabcontent"><br>
-        <form action="/contribute/insert" method="POST">
+    <div id="Crawl" class="tabcontent"><br>
+        <p style="text-align: center;">{% trans %}Add website to search engine{% endtrans %}</p>
+        <form action="/contribute/crawl" method="POST">
             <input type="url" name="url" placeholder="{% trans %}Url{% endtrans %}"/><br><br>
             
-            <button type="submit" name="add_button" value="add_clicked">➕</button><br><br>
+            <button type="submit" name="submit_button" value="submit_clicked">✅</button><br><br>
         </form>
     </div>
-
-    <div id="Change" class="tabcontent"><br>
-        <form action="/contribute/change" method="POST">
-            <input type="url" name="url" placeholder="{% trans %}Url{% endtrans %}"/><br><br>
-            
-            <button type="submit" name="edit_button" value="edit_clicked">🖊️</button><br><br>
-        </form>
-    </div>
-
-    <div id="Remove" class="tabcontent"><br>
-        <form action="/contribute/remove" method="POST">
-            <input type="number" name="url" placeholder="{% trans %}Url{% endtrans %}"/><br><br>
-            
-            <button type="submit" name="remove_button" value="remove_clicked">❌</button><br><br>
-        </form>
-    </div>
-
-    <div id="GetID" class="tabcontent"><br>
-        <form action="/contribute/getid" method="POST">
-            <select name="type">
-                <option value="Text">{% trans %}Text{% endtrans %}</option>
-                <option value="Image">{% trans %}Image{% endtrans %}</option>
-                <option value="Video">{% trans %}Video{% endtrans %}</option>
-            </select><br><br>
-            
-            <input type="url" name="url" placeholder="{% trans %}Url{% endtrans %}"/><br><br>
-
-            <button type="submit" name="find_button" value="find_clicked">🔎</button><br><br>
-        </form>
-    </div><br>
 
     <div class="result"> {{ message }} </div>
 
     <script src="/result.js"></script>
-    <script src="/contribute/tab.js"></script>
 </body>
 <br><br><br>
 <footer>
     <p style="float: right;">&copy; 2024 Lithicsoft Organization&nbsp;</p>
     <p style="float: left;">
       &nbsp;&nbsp;&nbsp;
-      <a href="https://lithicsoft.github.io/neutron/touap/" target="_blank">{% trans %}Policy & Terms of Use{% endtrans %}</a> {% trans %}and{% endtrans %} <a href="https://lithicsoft.github.io/neutron/pp/" target="_blank">{% trans %}Privacy Policy{% endtrans %}</a>
+      <a style="color: gray;" href="https://lithicsoft.github.io/neutron/touap/" target="_blank">{% trans %}Policy & Terms of Use{% endtrans %}</a> {% trans %}and{% endtrans %} <a style="color: gray;" href="https://lithicsoft.github.io/neutron/pp/" target="_blank">{% trans %}Privacy Policy{% endtrans %}</a>
       &nbsp;&nbsp;&nbsp;
-      <a href="/contribute" target="_blank">{% trans %}Contribute{% endtrans %}</a>
+      <a style="color: gray;" href="/contribute" target="_blank">{% trans %}Contribute{% endtrans %}</a>
       &nbsp;&nbsp;&nbsp;
-      <a href="https://lithicsoft.github.io/neutron" target="_blank">{% trans %}About{% endtrans %}</a>
+      <a style="color: gray;" href="https://lithicsoft.github.io/neutron" target="_blank">{% trans %}About{% endtrans %}</a>
     </p>
 </footer>

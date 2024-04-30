@@ -19,18 +19,6 @@ def searcH_css():
         '/search.css'
     )
 
-@app.route('/contribute/tab.css')
-def tab_css():
-    return render_template(
-        '/contribute/tab.css'
-    )
-
-@app.route('/contribute/tab.js')
-def tab_js():
-    return render_template(
-        '/contribute/tab.js'
-    )
-
 @app.route('/log.txt')
 def log_txt():
     return render_template(
