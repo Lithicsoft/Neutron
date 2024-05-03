@@ -1,0 +1,141 @@
+# Croatian translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-05-04 01:23+0200\n"
+"PO-Revision-Date: 2024-05-04 01:23+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: hr\n"
+"Language-Team: hr <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+msgid "Neutron je privatna, sigurna i fleksibilna web tražilica!"
+msgstr "!"
+
+msgid "Račun"
+msgstr ""
+
+msgid "Korisničko ime"
+msgstr ""
+
+msgid "Lozinka"
+msgstr ""
+
+msgid "Prijava"
+msgstr ""
+
+msgid "Registracija"
+msgstr ""
+
+msgid "Politika i Uvjeti korištenja"
+msgstr "&"
+
+msgid "i"
+msgstr ""
+
+msgid "Politika privatnosti"
+msgstr ""
+
+msgid "Doprini"
+msgstr ""
+
+msgid "O Neutronu"
+msgstr ""
+
+msgid "Stara lozinka"
+msgstr ""
+
+msgid "Nova lozinka"
+msgstr ""
+
+msgid "Promijeni moju lozinku"
+msgstr ""
+
+msgid "Odjava"
+msgstr ""
+
+msgid "Korisnički ID"
+msgstr ""
+
+msgid "Kod"
+msgstr ""
+
+msgid "Pošalji"
+msgstr ""
+
+msgid "Stvaranjem računa, Vi se slažete na"
+msgstr ""
+
+msgid "Tekst"
+msgstr ""
+
+msgid "Slika"
+msgstr ""
+
+msgid "Dodaj web stranicu na alat za indeksaciju"
+msgstr ""
+
+msgid "Url"
+msgstr ""
+
+msgid "Opcije"
+msgstr ""
+
+msgid "Pretraži nešto..."
+msgstr "..."
+
+msgid "Uspješna prijava."
+msgstr "."
+
+msgid "Korisničko ime ili lozinka je netočna."
+msgstr "."
+
+msgid "Ovaj email je već registriran. Molimo koristite drugi email."
+msgstr "."
+
+msgid "Ovaj email je nevaljan, molimo pokušajte ponovo."
+msgstr "."
+
+msgid "Ovo je korisničko ime zauzeto. Molimo vas koristite drugo korisničko ime."
+msgstr "."
+
+msgid "Email koji sadržava potvrdni kod i korisnički ID je poslan na Vaš račun."
+msgstr "."
+
+msgid "Vaš račun je usješno stvoren."
+msgstr "."
+
+msgid "Lozinka je uspješno promijenjena."
+msgstr "."
+
+msgid "Lozinka i korisničko ime su netočni, molimo vas pokušajte ponovo."
+msgstr "."
+
+msgid "Nema rezultata."
+msgstr "."
+
+msgid ""
+"Nemoguće verificirati korisnika jer niste prijavljeni u račun. Molimo "
+"vas, pokušajte se prijaviti kako biste mogli poduzeti radnje na bazi "
+"podataka."
+msgstr "."
+
+msgid "Vaš upit je uspješno dodan na listu."
+msgstr "."
+
+msgid "Vaš URL je nevažeć."
+msgstr "."
+
+msgid "Vaš upit se već nalazi u listi."
+msgstr "."
+

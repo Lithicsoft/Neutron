@@ -1,0 +1,116 @@
+msgid "Neutron je privatna, sigurna i fleksibilna web tražilica!"
+msgstr "!"
+
+msgid "Račun"
+msgstr ""
+
+msgid "Korisničko ime"
+msgstr ""
+
+msgid "Lozinka"
+msgstr ""
+
+msgid "Prijava"
+msgstr ""
+
+msgid "Registracija"
+msgstr ""
+
+msgid "Politika i Uvjeti korištenja"
+msgstr "&"
+
+msgid "i"
+msgstr ""
+
+msgid "Politika privatnosti"
+msgstr ""
+
+msgid "Doprini"
+msgstr ""
+
+msgid "O Neutronu"
+msgstr ""
+
+msgid "Stara lozinka"
+msgstr ""
+
+msgid "Nova lozinka"
+msgstr ""
+
+msgid "Promijeni moju lozinku"
+msgstr ""
+
+msgid "Odjava"
+msgstr ""
+
+msgid "Korisnički ID"
+msgstr ""
+
+msgid "Kod"
+msgstr ""
+
+msgid "Pošalji"
+msgstr ""
+
+msgid "Stvaranjem računa, Vi se slažete na"
+msgstr ""
+
+msgid "Tekst"
+msgstr ""
+
+msgid "Slika"
+msgstr ""
+
+msgid "Dodaj web stranicu na alat za indeksaciju"
+msgstr ""
+
+msgid "Url"
+msgstr ""
+
+msgid "Opcije"
+msgstr ""
+
+msgid "Pretraži nešto..."
+msgstr "..."
+
+msgid "Uspješna prijava."
+msgstr "."
+
+msgid "Korisničko ime ili lozinka je netočna."
+msgstr "."
+
+msgid "Ovaj email je već registriran. Molimo koristite drugi email."
+msgstr "."
+
+msgid "Ovaj email je nevaljan, molimo pokušajte ponovo."
+msgstr "."
+
+msgid "Ovo je korisničko ime zauzeto. Molimo vas koristite drugo korisničko ime."
+msgstr "."
+
+msgid "Email koji sadržava potvrdni kod i korisnički ID je poslan na Vaš račun."
+msgstr "."
+
+msgid "Vaš račun je usješno stvoren."
+msgstr "."
+
+msgid "Lozinka je uspješno promijenjena."
+msgstr "."
+
+msgid "Lozinka i korisničko ime su netočni, molimo vas pokušajte ponovo."
+msgstr "."
+
+msgid "Nema rezultata."
+msgstr "."
+
+msgid "Nemoguće verificirati korisnika jer niste prijavljeni u račun. Molimo vas, pokušajte se prijaviti kako biste mogli poduzeti radnje na bazi podataka."
+msgstr "."
+
+msgid "Vaš upit je uspješno dodan na listu."
+msgstr "."
+
+msgid "Vaš URL je nevažeć."
+msgstr "."
+
+msgid "Vaš upit se već nalazi u listi."
+msgstr "."

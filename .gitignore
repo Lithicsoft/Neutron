@@ -5,3 +5,4 @@ Neutron/**
 API.API
 log.txt
 config
+neutron-env/**
