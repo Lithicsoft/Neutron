@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-04 01:23+0200\n"
-"PO-Revision-Date: 2024-05-04 01:23+0200\n"
+"POT-Creation-Date: 2024-05-04 06:52+0700\n"
+"PO-Revision-Date: 2024-05-04 06:52+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hr\n"
 "Language-Team: hr <LL@li.org>\n"
@@ -19,123 +19,127 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
-msgid "Neutron je privatna, sigurna i fleksibilna web tražilica!"
-msgstr "!"
+msgid "Neutron is a Search Engine with: Private, Safe, Secure, Flexible!"
+msgstr "Neutron je privatna, sigurna i fleksibilna web tražilica!"
 
-msgid "Račun"
-msgstr ""
+msgid "Account"
+msgstr "Račun"
 
-msgid "Korisničko ime"
-msgstr ""
+msgid "Username"
+msgstr "Korisničko ime"
 
-msgid "Lozinka"
-msgstr ""
+msgid "Password"
+msgstr "Lozinka"
 
-msgid "Prijava"
-msgstr ""
+msgid "Login"
+msgstr "Prijava"
 
-msgid "Registracija"
-msgstr ""
+msgid "Register"
+msgstr "Registracija"
 
-msgid "Politika i Uvjeti korištenja"
-msgstr "&"
+msgid "Policy & Terms of Use"
+msgstr "Politika & Uvjeti korištenja"
 
-msgid "i"
-msgstr ""
+msgid "and"
+msgstr "i"
 
-msgid "Politika privatnosti"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "Politika privatnosti"
 
-msgid "Doprini"
-msgstr ""
+msgid "Contribute"
+msgstr "Doprini"
 
-msgid "O Neutronu"
-msgstr ""
+msgid "About"
+msgstr "O Neutronu"
 
-msgid "Stara lozinka"
-msgstr ""
+msgid "Old password"
+msgstr "Stara lozinka"
 
-msgid "Nova lozinka"
-msgstr ""
+msgid "New password"
+msgstr "Nova lozinka"
 
-msgid "Promijeni moju lozinku"
-msgstr ""
+msgid "Change my password"
+msgstr "Promijeni moju lozinku"
 
 msgid "Odjava"
-msgstr ""
+msgstr "Đăng xuất"
 
-msgid "Korisnički ID"
-msgstr ""
+msgid "User ID"
+msgstr "Korisnički ID"
 
-msgid "Kod"
-msgstr ""
+msgid "Code"
+msgstr "Kod"
 
-msgid "Pošalji"
-msgstr ""
+msgid "Submit"
+msgstr "Pošalji"
 
-msgid "Stvaranjem računa, Vi se slažete na"
-msgstr ""
+msgid "By creating an account, you agree to"
+msgstr "Stvaranjem računa, Vi se slažete na"
 
-msgid "Tekst"
-msgstr ""
+msgid "Text"
+msgstr "Tekst"
 
-msgid "Slika"
-msgstr ""
+msgid "Image"
+msgstr "Slika"
 
-msgid "Dodaj web stranicu na alat za indeksaciju"
-msgstr ""
+msgid "Add website to search engine crawler"
+msgstr "Dodaj web stranicu na alat za indeksaciju"
 
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
-msgid "Opcije"
-msgstr ""
+msgid "Options"
+msgstr "Opcije"
 
-msgid "Pretraži nešto..."
-msgstr "..."
+msgid "Search something..."
+msgstr "Pretraži nešto..."
 
-msgid "Uspješna prijava."
-msgstr "."
+msgid "Logged in successfully."
+msgstr "Uspješna prijava."
 
-msgid "Korisničko ime ili lozinka je netočna."
-msgstr "."
+msgid "Username or password is incorrect."
+msgstr "Korisničko ime ili lozinka je netočna."
 
-msgid "Ovaj email je već registriran. Molimo koristite drugi email."
-msgstr "."
+msgid "This email is already registered. Please use a different email."
+msgstr "Ovaj email je već registriran. Molimo koristite drugi email."
 
-msgid "Ovaj email je nevaljan, molimo pokušajte ponovo."
-msgstr "."
+msgid "This email is invalid, please check again."
+msgstr "Ovaj email je nevaljan, molimo pokušajte ponovo."
 
-msgid "Ovo je korisničko ime zauzeto. Molimo vas koristite drugo korisničko ime."
-msgstr "."
-
-msgid "Email koji sadržava potvrdni kod i korisnički ID je poslan na Vaš račun."
-msgstr "."
-
-msgid "Vaš račun je usješno stvoren."
-msgstr "."
-
-msgid "Lozinka je uspješno promijenjena."
-msgstr "."
-
-msgid "Lozinka i korisničko ime su netočni, molimo vas pokušajte ponovo."
-msgstr "."
-
-msgid "Nema rezultata."
-msgstr "."
+msgid "This user name already in use. Please use another username."
+msgstr "Ovo je korisničko ime zauzeto. Molimo vas koristite drugo korisničko ime."
 
 msgid ""
+"An email containing a confirmation code and user id has been sent to your"
+" account."
+msgstr "Email koji sadržava potvrdni kod i korisnički ID je poslan na Vaš račun."
+
+msgid "Your account has been successfully created."
+msgstr "Vaš račun je usješno stvoren."
+
+msgid "Changed password successfully."
+msgstr "Lozinka je uspješno promijenjena."
+
+msgid "Password and username are incorrect, please try again."
+msgstr "Lozinka i korisničko ime su netočni, molimo vas pokušajte ponovo."
+
+msgid "No results found."
+msgstr "Nema rezultata."
+
+msgid ""
+"Unable to verify user, looks like you are not logged in to your account, "
+"please log in to take any action on the database."
+msgstr ""
 "Nemoguće verificirati korisnika jer niste prijavljeni u račun. Molimo "
 "vas, pokušajte se prijaviti kako biste mogli poduzeti radnje na bazi "
 "podataka."
-msgstr "."
 
-msgid "Vaš upit je uspješno dodan na listu."
-msgstr "."
+msgid "Your request has been successfully added to the list."
+msgstr "Vaš upit je uspješno dodan na listu."
 
-msgid "Vaš URL je nevažeć."
-msgstr "."
+msgid "Your url is invalid."
+msgstr "Vaš URL je nevažeć."
 
-msgid "Vaš upit se već nalazi u listi."
-msgstr "."
+msgid "The request already exists in the list."
+msgstr "Vaš upit se već nalazi u listi."
 

@@ -1,3 +1,8 @@
+# "msgid" is the original text of the application,
+# "msgstr" is a translation for that text,
+# please substitute your translation in "msgstr",
+# making sure your translation is correct and uses the required punctuation.
+
 msgid "Neutron is a Search Engine with: Private, Safe, Secure, Flexible!"
 msgstr "!"
 
