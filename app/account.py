@@ -3,6 +3,8 @@ import os
 import random
 import re
 from dotenv import load_dotenv
+import dotenv
+import requests
 from account.authentication import get_user_authentication
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
@@ -15,6 +17,8 @@ from log.write import sys_log
 
 conn = databases.account_conn
 cursor = conn.cursor()
+
+dotenv.load_dotenv()
 
 def send_email(subject, from_email, to_email, content):
     message = Mail(
@@ -73,31 +77,50 @@ def verification(user_id, confirmation_code):
 def login_form():
     if request.method == 'POST':
         if request.form.get('login_button') == 'login_clicked':
-            username = request.form.get('username')
-            password = request.form.get('password')
+            recaptcha_response = request.form.get('g-recaptcha-response')
+            data = {
+                'secret': os.getenv('RECAPTCHA_SECRET_KEY'),
+                'response': recaptcha_response
+            }
 
-            login = get_user_authentication(cursor, username, password)
+            req = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+            result = req.json()
 
-            User = request.cookies.get('USERNAME')
-            if User is None:
-                User = gettext('Account')
+            if result['success']:
+                username = request.form.get('username')
+                password = request.form.get('password')
 
-            if login is not None:
-                resp = make_response(render_template(
-                    '/account/login.html',
-                    User=User,
-                    message=gettext('Logged in successfully.'),
-                    redirect='/account/me'
-                ))
-                password = hashlib.md5(hashlib.sha256(password.encode('utf-8')).hexdigest().encode()).hexdigest()
-                resp.set_cookie('USERNAME', username)
-                resp.set_cookie('PASSWORD', password)
-                return resp
+                login = get_user_authentication(cursor, username, password)
+
+                User = request.cookies.get('USERNAME')
+                if User is None:
+                    User = gettext('Account')
+
+                if login is not None:
+                    resp = make_response(render_template(
+                        '/account/login.html',
+                        User=User,
+                        SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
+                        message=gettext('Logged in successfully.'),
+                        redirect='/account/me'
+                    ))
+                    password = hashlib.md5(hashlib.sha256(password.encode('utf-8')).hexdigest().encode()).hexdigest()
+                    resp.set_cookie('USERNAME', username)
+                    resp.set_cookie('PASSWORD', password)
+                    return resp
+                else:
+                    return render_template(
+                        '/account/login.html',
+                        User=User,
+                        SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
+                        message=gettext('Username or password is incorrect.')
+                    )
             else:
                 return render_template(
                     '/account/login.html',
                     User=User,
-                    message=gettext('Username or password is incorrect.')
+                    SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
+                    message=gettext('CAPTCHA validation failed.')
                 )
     else:
         username = request.cookies.get('USERNAME')
@@ -107,12 +130,14 @@ def login_form():
 
         if username is not None or password is not None or login is not None:
             return redirect(
-                '/account/me'
+                '/account/me',
+                SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY')
             )
         else:
             return render_template(
                 '/account/login.html',
-                User=gettext("Account")
+                User=gettext("Account"),
+                SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY')
             )
     
 @app.route('/account/register', methods=['GET', 'POST'])
@@ -128,6 +153,7 @@ def account_register():
         return render_template(
             'account/register.html',
             User=User,
+            SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
             message=gettext(verification(int(user_id), int(confirmcode)))
         )
 
@@ -140,46 +166,67 @@ def account_register():
         if username is None or password is None or login is None:
             return render_template(
                 '/account/register.html',
-                User=User,
+                SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
+                User=User
             )
         else:
             return redirect(
-                '/account/login',
+                '/account/login'
             )
     else:
         if request.form.get('register_button') == 'register_clicked':
-            email = request.form.get('email')
-            username = request.form.get('username')
-            password = request.form.get('password')
+            recaptcha_response = request.form.get('g-recaptcha-response')
+            data = {
+                'secret': os.getenv('RECAPTCHA_SECRET_KEY'),
+                'response': recaptcha_response
+            }
 
-            if check_existing_email(email):
+            req = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+            result = req.json()
+
+            if not result['success']:
                 return render_template(
                     '/account/register.html',
                     User=User,
-                    message=gettext('This email is already registered. Please use a different email.')
-                )
-            elif verify_email(email):
-                return render_template(
-                    '/account/register.html',
-                    User=User,
-                    message=gettext('This email is invalid, please check again.')
-                )
-            elif check_existing_username(username):
-                return render_template(
-                    '/account/register.html',
-                    User=User,
-                    message=gettext('This user name already in use. Please use another username.')
+                    SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
+                    message=gettext('CAPTCHA validation failed.')
                 )
             else:
-                confirm_code = random.randint(10000, 99999)
-                add_user(email, username, password, confirm_code)
-                user_id = get_user_id(cursor, username)
-                send_email('Neutron Verification', 'lithicsoft@gmail.com', email, 'Hello ' + username + ', Your Neutron confirmation code is: ' + str(confirm_code) + ' and your id is: ' + str(user_id) + '.')
-                return render_template(
-                    '/account/register.html',
-                    User=User,
-                    message=gettext('An email containing a confirmation code and user id has been sent to your account.')
-                )
+                email = request.form.get('email')
+                username = request.form.get('username')
+                password = request.form.get('password')
+
+                if check_existing_email(email):
+                    return render_template(
+                        '/account/register.html',
+                        User=User,
+                        SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
+                        message=gettext('This email is already registered. Please use a different email.')
+                    )
+                elif verify_email(email):
+                    return render_template(
+                        '/account/register.html',
+                        User=User,
+                        SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
+                        message=gettext('This email is invalid, please check again.')
+                    )
+                elif check_existing_username(username):
+                    return render_template(
+                        '/account/register.html',
+                        User=User,
+                        SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
+                        message=gettext('This user name already in use. Please use another username.')
+                    )
+                else:
+                    confirm_code = random.randint(10000, 99999)
+                    add_user(email, username, password, confirm_code)
+                    user_id = get_user_id(cursor, username)
+                    send_email('Neutron Verification', 'lithicsoft@gmail.com', email, 'Hello ' + username + ', Your Neutron confirmation code is: ' + str(confirm_code) + ' and your id is: ' + str(user_id) + '.')
+                    return render_template(
+                        '/account/register.html',
+                        User=User,
+                        message=gettext('An email containing a confirmation code and user id has been sent to your account.')
+                    )
 
 @app.route('/account/me', methods=['GET', 'POST'])
 def myaccount_form():
@@ -191,46 +238,68 @@ def myaccount_form():
 
         if username is None or password is None or login is None:
             return redirect(
-                '/account/login'
+                '/account/login',
+                SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY')
             )
         else:
             return render_template(
                 '/account/me.html',
                 User=username,
+                SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
                 username=username
             )
     else:
         if request.form.get('change_button') == 'change_clicked':
-            old_password = request.form.get('oldpassword')
-            new_password = request.form.get('newpassword')
-            username = request.form.get('username')
+            recaptcha_response = request.form.get('g-recaptcha-response')
+            data = {
+                'secret': os.getenv('RECAPTCHA_SECRET_KEY'),
+                'response': recaptcha_response
+            }
 
-            login = get_user_authentication(cursor, username, old_password)
+            req = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+            result = req.json()
 
-            if login is not None:
-                user_id = get_user_id(cursor, username)
-                update_password(user_id, new_password)
+            if result['success']:
+                old_password = request.form.get('oldpassword')
+                new_password = request.form.get('newpassword')
+                username = request.form.get('username')
 
-                User = request.cookies.get('USERNAME')
-                if User is None:
-                    User = gettext('Account')
+                login = get_user_authentication(cursor, username, old_password)
 
-                resp = make_response(render_template(
-                    '/account/me.html',
-                    User=User,
-                    message=gettext('Changed password successfully.')
-                ))
+                if login is not None:
+                    user_id = get_user_id(cursor, username)
+                    update_password(user_id, new_password)
 
-                resp.set_cookie('USERNAME', '', expires=0)
-                resp.set_cookie('PASSWORD', '', expires=0)
+                    User = request.cookies.get('USERNAME')
+                    if User is None:
+                        User = gettext('Account')
 
-                return resp
+                    resp = make_response(render_template(
+                        '/account/me.html',
+                        User=User,
+                        SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
+                        message=gettext('Changed password successfully.')
+                    ))
+
+                    resp.set_cookie('USERNAME', '', expires=0)
+                    resp.set_cookie('PASSWORD', '', expires=0)
+
+                    return resp
+                else:
+                    return render_template(
+                        '/account/me.html',
+                        User=User,
+                        username=User,
+                        SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
+                        message=gettext('Password and username are incorrect, please try again.')
+                    )
             else:
                 return render_template(
                     '/account/me.html',
                     User=User,
                     username=User,
-                    message=gettext('Password and username are incorrect, please try again.')
+                    SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
+                    message=gettext('CAPTCHA validation failed.')
                 )
 
 @app.route('/account/me/logout', methods=['GET', 'POST'])

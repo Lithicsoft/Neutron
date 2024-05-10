@@ -90,6 +90,8 @@ while(True):
     elif command == "config":
         SG_API = input('SENDGRID API KEY: ')
         GSB_API = input('GOOGLE SAFE BROWSING API KEY: ')
+        RECAPTCHA_SITE_KEY = input('RECAPTCHA SITE KEY: ')
+        RECAPTCHA_SECRET_KEY = input('RECAPTCHA SECRET KEY: ')
         SQLUSERNAME = input('MySQL USERNAME: ')
         SQLPASSWORD = getpass.getpass('MySQL PASSWORD: ')
         SQLHOSTNAME = input('MySQL HOSTNAME: ')
@@ -98,6 +100,8 @@ while(True):
         config_path = "./config"
         dotenv.set_key(config_path, "SG_API_KEY", SG_API)
         dotenv.set_key(config_path, "GSB_API_KEY", GSB_API)
+        dotenv.set_key(config_path, "RECAPTCHA_SITE_KEY", RECAPTCHA_SITE_KEY)
+        dotenv.set_key(config_path, "RECAPTCHA_SECRET_KEY", RECAPTCHA_SECRET_KEY)
         dotenv.set_key(config_path, "MYSQLUSERNAME", SQLUSERNAME)
         dotenv.set_key(config_path, "MYSQLPASSWORD", SQLPASSWORD)
         dotenv.set_key(config_path, "MYSQLHOSTNAME", SQLHOSTNAME)

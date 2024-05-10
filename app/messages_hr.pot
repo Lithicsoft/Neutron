@@ -40,8 +40,8 @@ msgstr "Nova lozinka"
 msgid "Change my password"
 msgstr "Promijeni moju lozinku"
 
-msgid "Odjava"
-msgstr "Đăng xuất"
+msgid "Logout"
+msgstr "Odjava"
 
 msgid "User ID"
 msgstr "Korisnički ID"
@@ -78,6 +78,9 @@ msgstr "Uspješna prijava."
 
 msgid "Username or password is incorrect."
 msgstr "Korisničko ime ili lozinka je netočna."
+
+msgid "CAPTCHA validation failed."
+msgstr "CAPTCHA provjera nije uspjela."
 
 msgid "This email is already registered. Please use a different email."
 msgstr "Ovaj email je već registriran. Molimo koristite drugi email."

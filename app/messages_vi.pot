@@ -79,6 +79,9 @@ msgstr "Đăng nhập thành công."
 msgid "Username or password is incorrect."
 msgstr "Tên người dùng hoặc mật khẩu không đúng."
 
+msgid "CAPTCHA validation failed."
+msgstr "Xác thực CAPTCHA không thành công."
+
 msgid "This email is already registered. Please use a different email."
 msgstr "Email này đã được đăng kí. Vui lòng sử dụng một email khác."
 

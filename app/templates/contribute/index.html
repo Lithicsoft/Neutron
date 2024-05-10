@@ -2,6 +2,7 @@
     <title>Neutron Search</title>
     <link rel="icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/104414044?s=400&u=1ed30317ef805a1b447c1c7194b5fcad6c9f3888&v=4">
     <link rel="stylesheet" href="/search.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="topnav">
@@ -17,6 +18,10 @@
         <form action="/contribute/crawl" method="POST">
             <input type="url" name="url" placeholder="{% trans %}Url{% endtrans %}"/><br><br>
             
+            <div style="display: flex; justify-content: center;">
+                <div class="g-recaptcha" data-sitekey="{{SITE_KEY}}"></div>
+            </div><br><br>
+
             <button type="submit" name="submit_button" value="submit_clicked">✅</button><br><br>
         </form>
     </div>
