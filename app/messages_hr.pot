@@ -10,6 +10,9 @@ msgstr "Korisničko ime"
 msgid "Password"
 msgstr "Lozinka"
 
+msgid "Re-enter the password"
+msgstr "Ponovno unesite lozinku"
+
 msgid "Login"
 msgstr "Prijava"
 

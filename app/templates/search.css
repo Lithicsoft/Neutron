@@ -164,7 +164,18 @@ button {
     border: 2px solid #000000;
     padding: 10px 30px;
     border-radius: 4px;
+    transition-duration: 0.4s;
     cursor: pointer;
+}
+
+button:not(:disabled):hover {
+    background-color: black;
+    color: white;
+}
+
+button:disabled {
+    border: 2px solid #ccc;
+    color: gray;
 }
 
 /* LABEL */
@@ -179,7 +190,7 @@ input[type=text] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: 2px solid red;
     border-radius: 4px;
 }
 
@@ -188,7 +199,7 @@ input[type=password] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: 2px solid red;
     border-radius: 4px;
 }
 
@@ -197,7 +208,7 @@ input[type=email] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: 2px solid red;
     border-radius: 4px;
 }
 
@@ -206,7 +217,7 @@ input[type=url] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: 2px solid red;
     border-radius: 4px;
 }
 
@@ -215,7 +226,7 @@ input[type=number] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: 2px solid red;
     border-radius: 4px;
 }
 

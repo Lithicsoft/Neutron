@@ -16,14 +16,31 @@
     <div id="Crawl" class="tabcontent"><br>
         <p style="text-align: center;">{% trans %}Add website to search engine crawler{% endtrans %}</p>
         <form action="/contribute/crawl" method="POST">
-            <input type="url" name="url" placeholder="{% trans %}Url{% endtrans %}"/><br><br>
+            <input type="url" name="url" id="url" placeholder="{% trans %}Url{% endtrans %}"/><br><br>
             
             <div style="display: flex; justify-content: center;">
                 <div class="g-recaptcha" data-sitekey="{{SITE_KEY}}"></div>
             </div><br><br>
 
-            <button type="submit" name="submit_button" value="submit_clicked">✅</button><br><br>
+            <button type="submit" name="submit_button" id="submit_button" value="submit_clicked">✅</button><br><br>
         </form>
+
+        <script>
+            var urlInput = document.getElementById('url');
+            var submitButton = document.getElementById('submit_button');
+
+            submitButton.disabled = true;
+            
+            urlInput.addEventListener('input', function() {
+                if (urlInput.value != "") {
+                    submitButton.disabled = false;
+                    urlInput.style.border = "2px solid green";
+                } else {
+                    submitButton.disabled = true;
+                    urlInput.style.border = "2px solid red";
+                }
+            });
+        </script>
     </div>
 
     <div class="result"> {{ message }} </div>

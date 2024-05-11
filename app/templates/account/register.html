@@ -16,26 +16,140 @@
     <div class="center">
         <div class="background_form"><br>
             <form action="/account/register" method="POST">
-                <input type="email" name="email" placeholder="Email"/><br><br>
+                <input type="email" name="email" id="email" placeholder="Email"/><br><br>
 
-                <input type="text" name="username" placeholder="{% trans %}Username{% endtrans %}"/><br><br>
+                <input type="text" name="username" id="username" placeholder="{% trans %}Username{% endtrans %}"/><br><br>
 
-                <input type="password" name="password" placeholder="{% trans %}Password{% endtrans %}"/><br><br>
+                <input type="password" name="password" id="password_input" placeholder="{% trans %}Password{% endtrans %}"/><br>
+                <input type="password" id="password_reinput" placeholder="{% trans %}Re-enter the password{% endtrans %}"/><br><br>
 
                 <div style="display: flex; justify-content: center;">
                     <div class="g-recaptcha" data-sitekey="{{SITE_KEY}}"></div>
                 </div><br><br>
 
-                <button type="submit" name="register_button" value="register_clicked">{% trans %}Register{% endtrans %}</button><br><br>
+                <button type="submit" name="register_button" id="register_button" value="register_clicked">{% trans %}Register{% endtrans %}</button><br><br>
             </form>
+
+            <script>
+                function checkPasswordStrength(password) {
+                    if (password == "") {
+                        return '';
+                    }
+
+                    var Strength = 3;
+                    if (password.length < 8) {
+                        return 1;
+                    }
+                    if (!/\d/.test(password)) {
+                        Strength = 2;
+                    }
+                    if (!/[A-Z]/.test(password)) {
+                        Strength = 2;
+                    }
+                    if (!/[a-z]/.test(password)) {
+                        Strength = 2;
+                    }
+                    return Strength;
+                }
+                
+                var emailInput = document.getElementById('email');
+                var usernameInput = document.getElementById('username');
+                var passwordInput = document.getElementById('password_input');
+                var passwordReInput = document.getElementById('password_reinput');
+                var registerButton = document.getElementById('register_button');
+
+                registerButton.disabled = true;
+
+                emailInput.addEventListener('input', function() {
+                    if (emailInput.value != "") {
+                        registerButton.disabled = false;
+                        emailInput.style.border = "2px solid green";
+                    } else {
+                        registerButton.disabled = true;
+                        emailInput.style.border = "2px solid red";
+                    }
+                });
+
+                usernameInput.addEventListener('input', function() {
+                    if (emailInput.value != "") {
+                        registerButton.disabled = false;
+                        usernameInput.style.border = "2px solid green";
+                    } else {
+                        registerButton.disabled = true;
+                        usernameInput.style.border = "2px solid red";
+                    }
+                });
+
+                passwordInput.addEventListener('input', function() {
+                    var passwordStrength = checkPasswordStrength(passwordInput.value);
+
+                    if (passwordStrength === 1) {
+                        registerButton.disabled = true;
+                        passwordInput.style.border = "2px solid red";
+                    } else if (passwordStrength >= 2){
+                        registerButton.disabled = false;
+                        if (passwordStrength === 2) {
+                            passwordInput.style.border = "2px solid yellow";
+                        } else {
+                            passwordInput.style.border = "2px solid green"
+                        }
+                    }
+
+                    if (passwordInput.value != passwordReInput.value) {
+                        registerButton.disabled = true;
+                        passwordReInput.style.border = "2px solid red";
+                    } else {
+                        registerButton.disabled = false;
+                        passwordReInput.style.border = "2px solid green";
+                    }
+                });
+
+                passwordReInput.addEventListener('input', function() {
+                    if (passwordInput.value != passwordReInput.value) {
+                        registerButton.disabled = true;
+                        passwordReInput.style.border = "2px solid red";
+                    } else {
+                        registerButton.disabled = false;
+                        passwordReInput.style.border = "2px solid green";
+                    }
+                });
+            </script>
 
             <form action="/account/register" method="POST">
-                <input type="number" name="userid" placeholder="{% trans %}User ID{% endtrans %}"/><br><br>
+                <input type="number" name="userid" id="userid" placeholder="{% trans %}User ID{% endtrans %}"/><br><br>
 
-                <input type="number" name="confirmcode" placeholder="{% trans %}Code{% endtrans %}"/><br><br>
+                <input type="number" name="confirmcode" id="confirmcode" placeholder="{% trans %}Code{% endtrans %}"/><br><br>
 
-                <button type="submit" name="submit_button" value="submit_clicked">{% trans %}Submit{% endtrans %}</button><br><br>
+                <button type="submit" name="submit_button" id="submit_button" value="submit_clicked">{% trans %}Submit{% endtrans %}</button><br><br>
             </form>
+
+            <script>
+                var submitButton = document.getElementById('submit_button');
+                var useridInput = document.getElementById('userid');
+                var confirmcodeInput = document.getElementById('confirmcode');
+                
+                submitButton.disabled = true;
+
+                useridInput.addEventListener('input', function() {
+                    if (useridInput.value != "") {
+                        submitButton.disabled = false;
+                        useridInput.style.border = "2px solid green";
+                    } else {
+                        submitButton.disabled = true;
+                        useridInput.style.border = "2px solid red";
+                    }
+                });
+
+                confirmcodeInput.addEventListener('input', function () {
+                    if (confirmcodeInput.value != "") {
+                        submitButton.disabled = false;
+                        confirmcodeInput.style.border = "2px solid green";
+                    } else {
+                        submitButton.disabled = true;
+                        confirmcodeInput.style.border = "2px solid red";
+                    }
+                });
+            </script>
 
             <p>{% trans %}By creating an account, you agree to{% endtrans %} <a href="https://lithicsoft.github.io/neutron/touap/" target="_blank">{% trans %}Policy & Terms of Use{% endtrans %}</a> {% trans %}and{% endtrans %} <a href="https://lithicsoft.rf.gd/neutron/privacy-policy/" target="_blank">{% trans %}Privacy Policy{% endtrans %}.</a></p>
         </div><br><br>

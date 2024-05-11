@@ -16,16 +16,44 @@
     <div class="center">
         <div class="background_form"><br>
             <form action="/account/login" method="POST">
-                <input type="text" name="username" placeholder="{% trans %}Username{% endtrans %}"/><br><br>
+                <input type="text" name="username" id="username" placeholder="{% trans %}Username{% endtrans %}"/><br><br>
 
-                <input type="password" name="password" placeholder="{% trans %}Password{% endtrans %}"/><br><br>
+                <input type="password" name="password" id="password" placeholder="{% trans %}Password{% endtrans %}"/><br><br>
                 
                 <div style="display: flex; justify-content: center;">
                     <div class="g-recaptcha" data-sitekey="{{SITE_KEY}}"></div>
                 </div><br><br>
 
-                <button type="submit" name="login_button" value="login_clicked">{% trans %}Login{% endtrans %}</button><br>
+                <button type="submit" name="login_button" id="login_button" value="login_clicked">{% trans %}Login{% endtrans %}</button><br>
             </form>
+
+            <script>
+                var usernameInput = document.getElementById('username');
+                var passwordInput = document.getElementById('password');
+                var loginButton = document.getElementById('login_button');
+
+                loginButton.disabled = true;
+                
+                usernameInput.addEventListener('input', function() {
+                    if (usernameInput.value != "") {
+                        loginButton.disabled = false;
+                        usernameInput.style.border = "2px solid green";
+                    } else {
+                        loginButton.disabled = true;
+                        usernameInput.style.border = "2px solid red";
+                    }
+                });
+
+                passwordInput.addEventListener('input', function() {
+                    if (passwordInput.value != "") {
+                        loginButton.disabled = false;
+                        passwordInput.style.border = "2px solid green";
+                    } else {
+                        loginButton.disabled = true;
+                        passwordInput.style.border = "2px solid red";
+                    }
+                });
+            </script>
 
             <form action="/account/register" method="GET">
                 <button type="submit">{% trans %}Register{% endtrans %}</button><br><br>

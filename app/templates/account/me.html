@@ -18,18 +18,57 @@
             <label> {% trans %}Hello{% endtrans %}, {{ username }}! </label><br><br>
 
             <form action="/account/me" method="POST">
-                <input type="password" name="oldpassword" placeholder="{% trans %}Old password{% endtrans %}"/><br><br>
+                <input type="password" name="oldpassword" id="oldpassword" placeholder="{% trans %}Old password{% endtrans %}"/><br><br>
 
-                <input type="password" name="newpassword" placeholder="{% trans %}New password{% endtrans %}"/><br><br>
+                <input type="password" name="newpassword" id="newpassword" placeholder="{% trans %}New password{% endtrans %}"/><br><br>
 
-                <input type="text" name="username" placeholder="{% trans %}Username{% endtrans %}"/><br><br>
+                <input type="text" name="username" id="username" placeholder="{% trans %}Username{% endtrans %}"/><br><br>
                 
                 <div style="display: flex; justify-content: center;">
                     <div class="g-recaptcha" data-sitekey="{{SITE_KEY}}"></div>
                 </div><br><br>
 
-                <button type="submit" name="change_button" value="change_clicked">{% trans %}Change my password{% endtrans %}</button><br>
+                <button type="submit" name="change_button" id="change_button" value="change_clicked">{% trans %}Change my password{% endtrans %}</button><br>
             </form><br>
+
+            <script>
+                var usernameInput = document.getElementById('username');
+                var oldpasswordInput = document.getElementById('oldpassword');
+                var newpasswordInput = document.getElementById('newpassword');
+                var changeButton = document.getElementById('change_button');
+
+                changeButton.disabled = true;
+
+                oldpasswordInput.addEventListener('input', function() {
+                    if (oldpasswordInput.value != "") {
+                        changeButton.disabled = false;
+                        oldpasswordInput.style.border = "2px solid green";
+                    } else {
+                        changeButton.disabled = true;
+                        oldpasswordInput.style.border = "2px solid red";
+                    }
+                });
+
+                newpasswordInput.addEventListener('input', function() {
+                    if (newpasswordInput.value != "") {
+                        changeButton.disabled = false;
+                        newpasswordInput.style.border = "2px solid green";
+                    } else {
+                        changeButton.disabled = true;
+                        newpasswordInput.style.border = "2px solid red";
+                    }
+                });
+
+                usernameInput.addEventListener('input', function() {
+                    if (usernameInput.value != "") {
+                        changeButton.disabled = false;
+                        usernameInput.style.border = "2px solid green";
+                    } else {
+                        changeButton.disabled = true;
+                        usernameInput.style.border = "2px solid red";
+                    }
+                });
+            </script>
 
             <div class="result"> {{ message }} </div>
 

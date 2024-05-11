@@ -10,6 +10,9 @@ msgstr "Tên người dùng"
 msgid "Password"
 msgstr "Mật khẩu"
 
+msgid "Re-enter the password"
+msgstr "Nhập lại mật khẩu"
+
 msgid "Login"
 msgstr "Đăng nhập"
 

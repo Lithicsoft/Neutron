@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-04 06:52+0700\n"
-"PO-Revision-Date: 2024-05-04 06:52+0700\n"
+"POT-Creation-Date: 2024-05-11 17:05+0700\n"
+"PO-Revision-Date: 2024-05-11 17:05+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hr\n"
 "Language-Team: hr <LL@li.org>\n"
@@ -30,6 +30,9 @@ msgstr "Korisničko ime"
 
 msgid "Password"
 msgstr "Lozinka"
+
+msgid "Re-enter the password"
+msgstr "Ponovno unesite lozinku"
 
 msgid "Login"
 msgstr "Prijava"
@@ -61,8 +64,8 @@ msgstr "Nova lozinka"
 msgid "Change my password"
 msgstr "Promijeni moju lozinku"
 
-msgid "Odjava"
-msgstr "Đăng xuất"
+msgid "Logout"
+msgstr "Odjava"
 
 msgid "User ID"
 msgstr "Korisnički ID"
@@ -99,6 +102,9 @@ msgstr "Uspješna prijava."
 
 msgid "Username or password is incorrect."
 msgstr "Korisničko ime ili lozinka je netočna."
+
+msgid "CAPTCHA validation failed."
+msgstr "CAPTCHA provjera nije uspjela."
 
 msgid "This email is already registered. Please use a different email."
 msgstr "Ovaj email je već registriran. Molimo koristite drugi email."

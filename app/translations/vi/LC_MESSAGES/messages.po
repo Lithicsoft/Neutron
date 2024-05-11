@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-04 06:52+0700\n"
-"PO-Revision-Date: 2024-05-04 06:52+0700\n"
+"POT-Creation-Date: 2024-05-11 17:05+0700\n"
+"PO-Revision-Date: 2024-05-11 17:05+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: vi\n"
 "Language-Team: vi <LL@li.org>\n"
@@ -31,6 +31,9 @@ msgstr "Tên người dùng"
 
 msgid "Password"
 msgstr "Mật khẩu"
+
+msgid "Re-enter the password"
+msgstr "Nhập lại mật khẩu"
 
 msgid "Login"
 msgstr "Đăng nhập"
@@ -100,6 +103,9 @@ msgstr "Đăng nhập thành công."
 
 msgid "Username or password is incorrect."
 msgstr "Tên người dùng hoặc mật khẩu không đúng."
+
+msgid "CAPTCHA validation failed."
+msgstr "Xác thực CAPTCHA không thành công."
 
 msgid "This email is already registered. Please use a different email."
 msgstr "Email này đã được đăng kí. Vui lòng sử dụng một email khác."

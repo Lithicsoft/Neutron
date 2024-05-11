@@ -86,13 +86,13 @@ def login_form():
             req = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
             result = req.json()
 
+            User = request.cookies.get('USERNAME')
             if result['success']:
                 username = request.form.get('username')
                 password = request.form.get('password')
 
                 login = get_user_authentication(cursor, username, password)
-
-                User = request.cookies.get('USERNAME')
+                
                 if User is None:
                     User = gettext('Account')
 

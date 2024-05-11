@@ -36,6 +36,7 @@ def contribute_insert():
         req = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
         result = req.json()
 
+        User = request.cookies.get('USERNAME')
         if result['success']:
             username = request.cookies.get('USERNAME')
             password = request.cookies.get('PASSWORD')
@@ -48,7 +49,6 @@ def contribute_insert():
                 url = request.form.get('url')
                 message_call = add_to_crawl_list(url)
             
-            User = request.cookies.get('USERNAME')
             if User is None:
                 User = gettext('Account')
 
@@ -62,5 +62,6 @@ def contribute_insert():
             return render_template(
                 '/contribute/index.html',
                 User=User,
+                SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
                 message=gettext('CAPTCHA validation failed.')
             )
