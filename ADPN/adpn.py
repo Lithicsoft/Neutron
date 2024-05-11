@@ -1,5 +1,4 @@
 import getpass
-import threading
 import dotenv
 import os
 import sys
@@ -77,13 +76,10 @@ while(True):
             exit: Exit ADPN.
             help: This command.
             clear: Clear the terminal.
-            start: Start the servers needed for MonoSearch.
             config: Add the necessary API KEY environment variables to the servers, setup for MySQL and prepair the database.
-            check: Lists the data that needs to be censored.
-            sync: Synchronize the censored database and the parent database (requirement: no data that needs to be censored).
             log: Prints the server log.
             users-list: Lists the list of users.
-            users-rel: Changes user authentication through their user id.
+            users-auth: Changes user authentication through their user id.
         ''')
     elif command == "clear":
         os.system('cls' if os.name == 'nt' else 'clear')

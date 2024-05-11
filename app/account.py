@@ -5,15 +5,13 @@ import re
 from dotenv import load_dotenv
 import dotenv
 import requests
-from account.authentication import get_user_authentication
+from account.authentication import add_user, check_existing_email, check_existing_username, get_user_authentication, update_password, verification
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from account.userid import get_user_id
 from app import app, databases
 from flask import make_response, redirect, render_template, request
 from flask_babel import gettext
-
-from log.write import sys_log
 
 conn = databases.account_conn
 cursor = conn.cursor()
@@ -35,42 +33,12 @@ def send_email(subject, from_email, to_email, content):
     except Exception as e:
         print("Error sending email:", str(e))
 
-def add_user(email, username, password, confirm):
-    password = hashlib.md5(hashlib.sha256(password.encode('utf-8')).hexdigest().encode()).hexdigest()
-    cursor.execute('''INSERT INTO users (email, username, password, confirm) VALUES (%s, %s, %s, %s)''', (email, username, password, confirm))
-    sys_log("Created User Account", "Username: " + username + " Email: " + email)
-    conn.commit()
-
-def update_password(user_id, new_password):
-    new_password = hashlib.md5(hashlib.sha256(new_password.encode('utf-8')).hexdigest().encode()).hexdigest()
-    cursor.execute("UPDATE users SET password = %s WHERE id = %s", (new_password, user_id))
-    conn.commit()
-
 def verify_email(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
     if(re.fullmatch(regex, email)):
         return False
     else:
         return True
-
-def check_existing_email(email):
-    cursor.execute("SELECT * FROM users WHERE email=%s", (email,))
-    return cursor.fetchone() is not None
-
-def check_existing_username(username):
-    cursor.execute("SELECT * FROM users WHERE username=%s", (username,))
-    return cursor.fetchone() is not None
-
-def verification(user_id, confirmation_code):
-    cursor.execute("SELECT confirm FROM users WHERE id = %s", (user_id,))
-    confirm_value = cursor.fetchall()[0][0]
-    if int(confirmation_code) == confirm_value:
-        cursor.execute("UPDATE users SET confirm = 0 WHERE id = %s", (user_id,))
-        cursor.execute("UPDATE users SET authentication = 0 WHERE id = %s", (user_id,))
-        conn.commit()
-        return 'Your account has been successfully created.'
-    else:
-        return 'The verification code is incorrect, please check again.'
 
 @app.route('/account', methods=['GET', 'POST'])
 @app.route('/account/login', methods=['GET', 'POST'])
@@ -154,7 +122,7 @@ def account_register():
             'account/register.html',
             User=User,
             SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
-            message=gettext(verification(int(user_id), int(confirmcode)))
+            message=gettext(verification(conn, cursor, int(user_id), int(confirmcode)))
         )
 
     if request.method == 'GET':
@@ -196,7 +164,7 @@ def account_register():
                 username = request.form.get('username')
                 password = request.form.get('password')
 
-                if check_existing_email(email):
+                if check_existing_email(cursor, email):
                     return render_template(
                         '/account/register.html',
                         User=User,
@@ -210,7 +178,7 @@ def account_register():
                         SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY'),
                         message=gettext('This email is invalid, please check again.')
                     )
-                elif check_existing_username(username):
+                elif check_existing_username(cursor, username):
                     return render_template(
                         '/account/register.html',
                         User=User,
@@ -219,7 +187,7 @@ def account_register():
                     )
                 else:
                     confirm_code = random.randint(10000, 99999)
-                    add_user(email, username, password, confirm_code)
+                    add_user(conn, cursor, email, username, password, confirm_code)
                     user_id = get_user_id(cursor, username)
                     send_email('Neutron Verification', 'lithicsoft@gmail.com', email, 'Hello ' + username + ', Your Neutron confirmation code is: ' + str(confirm_code) + ' and your id is: ' + str(user_id) + '.')
                     return render_template(
@@ -268,7 +236,7 @@ def myaccount_form():
 
                 if login is not None:
                     user_id = get_user_id(cursor, username)
-                    update_password(user_id, new_password)
+                    update_password(conn, cursor, user_id, new_password)
 
                     User = request.cookies.get('USERNAME')
                     if User is None:
