@@ -55,15 +55,16 @@
 
     <br><br><br><form action="/search" method="GET">
         <div class="search-bar-main">
-            <input type="search" id="search-input" value="{{ query }}" name="q" placeholder="{% trans %}Search something...{% endtrans %}">
+            <input type="search" id="search-input" value="{{ query }}" name="q" placeholder="{% trans %}Search something...{% endtrans %}" oninput="getSuggestions(this.value)">
             <div class="icon-container">
                 <input type="submit" id="search-button" value="&#xF002;" style="font-family:FontAwesome;">
                 <input type="button" id="voice-button" value="&#xf130;" style="font-family:FontAwesome;">
             </div>
-        </div>
+        </div><br>
+        <div id="suggestions"></div>
         <p style="text-align: center; color: white;">{% trans %}Neutron is a Search Engine with: Private, Safe, Secure, Flexible!{% endtrans %}</p>
     </form>
-    
+    <script src="/search.js"></script>
 </body>
 <br><br><br>
 <footer>

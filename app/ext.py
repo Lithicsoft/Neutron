@@ -8,9 +8,15 @@ def result_js():
     )
 
 @app.route('/search/script.js')
-def searcH_js():
+def search_js():
     return render_template(
         '/search/script.js'
+    )
+
+@app.route('/search.js')
+def search_suggestions_js():
+    return render_template(
+        '/search.js'
     )
 
 @app.route('/search.css')

@@ -1,6 +1,7 @@
 from flask import jsonify, request
 from app import app, databases
 import re
+import wikipedia
 from library.database import Library_Full_Text_Domain_Search, Library_Full_Text_Search
 
 @app.route('/api/search', methods=['POST'])
@@ -27,3 +28,8 @@ def Search_Data():
         return jsonify([])
     else:
         return rows
+    
+@app.route('/api/search/suggestions', methods=['POST'])
+def Search_Suggestions():
+    data = request.get_json()
+    return wikipedia.search(data['keyword']) if data['keyword'] else []

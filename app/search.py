@@ -69,7 +69,7 @@ def search():
     ws = request.args.get('ws', '')
     wl = request.args.get('wl', '')
 
-    if wt == '' or wi == '' or ws == '' or wl == '':
+    if wt == '' or ws == '' or wl == '':
         wikipedia_info = get_wikipedia_info(keyword, language.get_locale())
     else:
         wikipedia_info = wt, wl, ws, wi

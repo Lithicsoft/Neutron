@@ -38,15 +38,15 @@
     <a style="float: right; margin-top: 1%;" href="/account">{{ User }}</a>
     <form action="/search" method="GET">
       <div class="search-bar-result">
-        <input style="float: left;" type="search" id="search-input" value="{{ query }}" name="q" placeholder="{% trans %}Search something...{% endtrans %}">
+        <input style="float: left;" type="search" id="search-input" value="{{ query }}" name="q" placeholder="{% trans %}Search something...{% endtrans %}" oninput="getspecialSuggestions(this.value)">
         <div class="icon-container">
             <input type="button" id="search-button" value="&#xF002;" style="font-family:FontAwesome;">
             <input type="button" id="voice-button" value="&#xf130;" style="font-family:FontAwesome;">
         </div>
       </div>
     </form>
-  </div>
-  <br>
+  </div><br>
+  <div id="suggestionsspecial"></div>
   <div class="navbar">
     <div id="tagList">
       <input style="border-bottom: none;" id="TextTag" type="button" class="tag" value="{% trans %}Text{% endtrans %}" data-type="Text">
@@ -139,6 +139,7 @@
     });
   </script>
   <script src="/result.js"></script>
+  <script src="/search.js"></script>
   <script src="/search/script.js"></script>
 </body>
 <br><br><br>

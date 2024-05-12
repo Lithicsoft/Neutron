@@ -1,7 +1,6 @@
 import hashlib
 import os
 import threading
-import keyboard 
 import re
 from urllib import response
 import requests
@@ -131,8 +130,3 @@ def check_and_create_thread():
         thread_id = threading.active_count() 
         new_thread = threading.Thread(target=ATMT, args=(thread_id,))
         new_thread.start()
-
-keyboard.add_hotkey('esc', check_and_create_thread)
-
-while True:
-    pass
