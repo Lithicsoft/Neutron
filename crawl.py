@@ -1,5 +1,7 @@
 import hashlib
 import os
+import threading
+import keyboard 
 import re
 from urllib import response
 import requests
@@ -76,22 +78,20 @@ def add_to_crawl_list(url):
         crawl_list.write(url + '\n')
     return "Your request has been successfully added to the list."
 
-def load_to_deque():
-    with open("./crawl.txt", 'r') as file:
+def load_to_deque(thread_id):
+    with open(f"./{thread_id}.txt", 'r') as file:
         lines = file.readlines()
     return deque(lines)
 
-def save_from_deque(d: deque):
-    with open("./crawl.txt", 'w') as file:
-        for line in d:
-            file.write(line)
+def ATMT(thread_id, username="", password=""):
+    print(f"Thread {thread_id} is running...")
+    os.rename('crawl.txt', f'{thread_id}.txt')
 
-def ATMT(username, password):
     password = hashlib.md5(hashlib.sha256(password.encode('utf-8')).hexdigest().encode()).hexdigest()
 
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107 Safari/537.36'
     headers = {'User-Agent': user_agent}
-    investigation_list = load_to_deque()
+    investigation_list = load_to_deque(thread_id)
     checked_urls = set()
 
     while investigation_list:
@@ -124,5 +124,15 @@ def ATMT(username, password):
             site_id = manager_get_id(type, url)
             if site_id is not None:
                 print(manager_remove_data(type, username, password, site_id))
-    os.remove("./crawl.txt")
-    save_from_deque(investigation_list)
+    os.remove(f"./{thread_id}.txt")
+
+def check_and_create_thread():
+    if os.path.exists('crawl.txt'):
+        thread_id = threading.active_count() 
+        new_thread = threading.Thread(target=ATMT, args=(thread_id,))
+        new_thread.start()
+
+keyboard.add_hotkey('esc', check_and_create_thread)
+
+while True:
+    pass
