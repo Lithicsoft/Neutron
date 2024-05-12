@@ -60,7 +60,7 @@ def login_form():
                 password = request.form.get('password')
 
                 login = get_user_authentication(cursor, username, password)
-                
+
                 if User is None:
                     User = gettext('Account')
 
@@ -99,7 +99,6 @@ def login_form():
         if username is not None or password is not None or login is not None:
             return redirect(
                 '/account/me',
-                SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY')
             )
         else:
             return render_template(
@@ -207,7 +206,6 @@ def myaccount_form():
         if username is None or password is None or login is None:
             return redirect(
                 '/account/login',
-                SITE_KEY=os.getenv('RECAPTCHA_SITE_KEY')
             )
         else:
             return render_template(
@@ -230,7 +228,7 @@ def myaccount_form():
             if result['success']:
                 old_password = request.form.get('oldpassword')
                 new_password = request.form.get('newpassword')
-                username = request.form.get('username')
+                username = request.cookies.get('USERNAME')
 
                 login = get_user_authentication(cursor, username, old_password)
 

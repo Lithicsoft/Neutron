@@ -20,9 +20,9 @@
             <form action="/account/me" method="POST">
                 <input type="password" name="oldpassword" id="oldpassword" placeholder="{% trans %}Old password{% endtrans %}"/><br><br>
 
-                <input type="password" name="newpassword" id="newpassword" placeholder="{% trans %}New password{% endtrans %}"/><br><br>
+                <input type="password" name="newpassword" id="newpassword" placeholder="{% trans %}New password{% endtrans %}"/><br>
 
-                <input type="text" name="username" id="username" placeholder="{% trans %}Username{% endtrans %}"/><br><br>
+                <input type="password" name="password_reinput" id="password_reinput" placeholder="{% trans %}Re-enter the password{% endtrans %}"/><br><br>
                 
                 <div style="display: flex; justify-content: center;">
                     <div class="g-recaptcha" data-sitekey="{{SITE_KEY}}"></div>
@@ -32,9 +32,9 @@
             </form><br>
 
             <script>
-                var usernameInput = document.getElementById('username');
                 var oldpasswordInput = document.getElementById('oldpassword');
                 var newpasswordInput = document.getElementById('newpassword');
+                var repasswordInput = document.getElementById('password_reinput');
                 var changeButton = document.getElementById('change_button');
 
                 changeButton.disabled = true;
@@ -59,13 +59,16 @@
                     }
                 });
 
-                usernameInput.addEventListener('input', function() {
-                    if (usernameInput.value != "") {
+                repasswordInput.addEventListener('input', function() {
+                    if (repasswordInput.value == "") {
+                        changeButton.disabled = true;
+                        repasswordInput.style.border = "2px solid red";
+                    } else if (repasswordInput.value == newpasswordInput.value) {
                         changeButton.disabled = false;
-                        usernameInput.style.border = "2px solid green";
+                        repasswordInput.style.border = "2px solid green";
                     } else {
                         changeButton.disabled = true;
-                        usernameInput.style.border = "2px solid red";
+                        repasswordInput.style.border = "2px solid red";
                     }
                 });
             </script>
