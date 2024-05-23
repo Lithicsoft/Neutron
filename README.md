@@ -55,7 +55,6 @@ We value your feedback! If you have any suggestions, encounter issues, or need a
 
 - [MySQL](https://www.mysql.com/): Database system.
 - [Langdetect](https://pypi.org/project/langdetect/): Library for language detection.
-- [Gemini](https://gemini.google.com/): Google's Gemini AI platform.
 - [Wikipedia](https://pypi.org/project/wikipedia/): Python library for accessing Wikipedia API.
 - [SendGrid](https://sendgrid.com/): Email delivery service.
 - [Gunicorn](https://gunicorn.org/): WSGI HTTP server for hosting Python web applications.
