@@ -5,7 +5,7 @@ from log.write import sys_log
 
 def connect_to_mysql(database_name):
     load_dotenv("./config")
-    database_name = 's884_' + database_name
+    database_name = 's35_' + database_name
 
     config = {
         'user': os.getenv('MYSQLUSERNAME'),
