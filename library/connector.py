@@ -4,7 +4,7 @@ import mysql.connector
 from log.write import sys_log
 
 def connect_to_mysql(database_name):
-    load_dotenv("./config")
+    load_dotenv("../config")
     database_name = 's35_' + database_name
 
     config = {
