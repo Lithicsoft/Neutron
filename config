@@ -1,4 +1,0 @@
-dotenv.set_key(config_path, "MYSQLUSERNAME", ENTERUSERNAME)
-dotenv.set_key(config_path, "MYSQLPASSWORD", ENTERYOURPASSWORD)
-dotenv.set_key(config_path, "MYSQLHOSTNAME", ENTERYOURHOSTNAME)
-dotenv.set_key(config_path, "MYSQLPORT", ENTERYOURPORT)
